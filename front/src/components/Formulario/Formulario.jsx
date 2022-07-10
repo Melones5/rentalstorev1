@@ -59,15 +59,15 @@ const Formulario = () => {
                 {errors.contraseña?.type === 'pattern' && <p className='text-danger text-small d-block mb-2'>El formato del contraseña es incorrecto</p>}
               </div>
               <div className='mb-4'>
-                <button className='btn contact-button my-2'>Registrarme</button>
+                <button className='btn register-button my-2'>Registrarme</button>
               </div>
               <div className='container'>
                 <div className='row'>
                   <div className='col'>
-                    <button className='btn contact-button my-2'><i class="fa-brands fa-google"></i> Registrate con google</button>
+                    <button className='btn register-button my-2'><i class="fa-brands fa-google"></i> Registrate con google</button>
                   </div>
                   <div className='col'>
-                    <button className='btn contact-button my-2'> <i class="fa-brands fa-facebook"></i> Registrate con facebook</button>
+                    <button className='btn register-button my-2'> <i class="fa-brands fa-facebook"></i> Registrate con facebook</button>
                   </div>
                 </div>
               </div>
@@ -100,7 +100,7 @@ const Formulario = () => {
                 <a className='text' href='#olvido'>¿Olvido su contraseña?</a>
               </div>
               <div>
-                <button className='btn contact-button'><i class="fa-brands fa-google"></i> Iniciar sesión</button>
+                <button className='btn login-button'><i class="fa-brands fa-google"></i> Iniciar sesión</button>
               </div>
             </form>
           </Col>

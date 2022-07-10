@@ -1,6 +1,6 @@
 .form-container-register {
       width: 100%;
-      background: #26547C;
+      background: #6d435aff;
       padding: 25px 10px;
       border-radius: 40px;
       box-shadow: 0 0 11px 5px rgba(49, 48, 49, 0.268);
@@ -8,7 +8,7 @@
 
 .form-container-login {
       width: 100%;
-      background: #26547C;
+      background: #6d435aff;
       padding: 25px 10px;
       border-radius: 40px;
       box-shadow: 0 0 11px 5px rgba(49, 48, 49, 0.268);
@@ -31,3 +31,35 @@
       background-color: #a571ff;
       color: #f0f0f0;
 }
+
+.register-button{
+      font-size: 13px;
+      color: white;
+      background-color: #352d39ff;
+      font-weight: 400;
+      border-radius: 30px;
+}
+
+.register-button:hover {
+      background-color: #a571ff;
+      color: #f0f0f0;
+}
+
+.login-button{
+      font-size: 13px;
+      color: white;
+      background-color: #352d39ff;
+      font-weight: 400;
+      border-radius: 30px;
+}
+
+.login-button:hover {
+      background-color: #a571ff;
+      color: #f0f0f0;
+}
+
+/*--ultra-red: #ff6978ff;
+--baby-powder: #fffcf9ff;
+--celeste: #b1ede8ff;
+--eggplant: #6d435aff;
+--black-coffee: #352d39ff;*/
