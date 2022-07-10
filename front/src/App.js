@@ -18,7 +18,7 @@ function App() {
           <Routes>
             <Route path="/" exact element={ <Home /> } />
             {/* <Route path="/about" element={ <About /> } /> */}
-            <Route path="/contact" element={ <Contact /> } />
+            <Route path="/contact" exact element={ <Contact /> } />
             {/* <Route path="/register" element={ <Register /> } /> */}
             <Route path="/login" exact element={ <Login />} />
             {/* <Route path="*" element={<NoMatch />} />  */}
