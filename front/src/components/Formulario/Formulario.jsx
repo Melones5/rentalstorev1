@@ -15,11 +15,11 @@ const Formulario = () => {
 
   return (
     <div>
-      <Container>
+      <Container className='py-5'>
         <Row>
           <Col xs={12} md={8} lg={6}>
             {/** Declaro nuevo usuario */}
-            <h1 className='py-5 form-h1'>Nuevo Usuario</h1>
+            <h1 className='pt-5 form-h1'>Nuevo Usuario</h1>
             <h5 className='form-h5'>¡Registrate es gratis!</h5>
             <form onSubmit={handleSubmit(onSubmit)} autoComplete="off" className=" form-container-register">
               <div className='mb-4'>
@@ -75,7 +75,7 @@ const Formulario = () => {
           </Col>
            {/** usuario registrado */}
           <Col xs={12} md={8} lg={6}>
-            <h1 className='py-5 form-h1'>Usuario Registrado</h1>
+            <h1 className='pt-5 form-h1'>Usuario Registrado</h1>
             <h5 className='form-h5'>¡Si tiene una cuenta, acceda!</h5>
             <form className='form-container-login'>
               <div className='mb-4'>

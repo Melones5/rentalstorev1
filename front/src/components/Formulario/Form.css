@@ -1,62 +1,62 @@
+/*Form register styles*/
 .form-container-register {
-      width: 100%;
-      background: #6d435aff;
-      padding: 25px 10px;
-      border-radius: 40px;
-      box-shadow: 0 0 11px 5px rgba(49, 48, 49, 0.268);
+  width: 100%;
+  background: #6d435aff;
+  padding: 25px 10px;
+  border-radius: 40px;
+  box-shadow: 0 0 11px 5px rgba(49, 48, 49, 0.268);
 }
 
-.form-container-login {
-      width: 100%;
-      background: #6d435aff;
-      padding: 25px 10px;
-      border-radius: 40px;
-      box-shadow: 0 0 11px 5px rgba(49, 48, 49, 0.268);
-}
-
-.form-button {
-      color: #f0f0f0;
-      background-color: #FF4C4C;
-      font-family: 'Poppins', sans-serif;
-      font-size: 16px;
-      font-weight: 400;
-      border-radius: 30px;
-}
-
-.form-button:active {
-      background-color: #006AE8;
-}
-
-.form-button:hover {
-      background-color: #a571ff;
-      color: #f0f0f0;
-}
-
-.register-button{
-      font-size: 13px;
-      color: white;
-      background-color: #352d39ff;
-      font-weight: 400;
-      border-radius: 30px;
+.register-button {
+  font-size: 13px;
+  color: white;
+  background-color: #352d39ff;
+  font-weight: 400;
+  border-radius: 30px;
 }
 
 .register-button:hover {
-      background-color: #a571ff;
-      color: #f0f0f0;
+  background-color: #a571ff;
+  color: #f0f0f0;
 }
 
-.login-button{
-      font-size: 13px;
-      color: white;
-      background-color: #352d39ff;
-      font-weight: 400;
-      border-radius: 30px;
+/*Form login styles*/
+.form-container-login {
+  width: 100%;
+  background: #6d435aff;
+  padding: 25px 10px;
+  border-radius: 40px;
+  box-shadow: 0 0 11px 5px rgba(49, 48, 49, 0.268);
+}
+
+.login-button {
+  font-size: 13px;
+  color: white;
+  background-color: #352d39ff;
+  font-weight: 400;
+  border-radius: 30px;
 }
 
 .login-button:hover {
-      background-color: #a571ff;
-      color: #f0f0f0;
+  background-color: #a571ff;
+  color: #f0f0f0;
 }
+
+.form-h1 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 25px;
+  text-align: center;
+  font-weight: 600;
+  color: #352d39ff;
+}
+
+.form-h5 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: #b1ede8ff;
+}
+
 
 /*--ultra-red: #ff6978ff;
 --baby-powder: #fffcf9ff;
