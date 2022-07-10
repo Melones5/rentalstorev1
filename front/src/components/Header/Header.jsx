@@ -15,10 +15,7 @@ const Header = () => {
               <NavLink to="/" className="py-1 px-2 cursor-pointer" activeClassName="active">Inicio</NavLink>
               <NavLink to="/contact" className="py-1 px-2 cursor-pointer" activeClassName="active">Contacto</NavLink>
               <NavLink to="/login" className="py-1 px-2 cursor-pointer" activeClassName="active"><i className="fa-solid fa-right-to-bracket"></i> Ingresá</NavLink>
-              <NavLink to='/'>
-                <a>
-                </a>
-              </NavLink>         
+              <NavLink to='/cart' className="py-1 px-2 cursor-pointer" activeClassName="active"> <i class="fa-solid fa-cart-shopping"></i> Carrito</NavLink>         
             </Nav>
           </Navbar.Collapse>
         </Container>
