@@ -1,0 +1,32 @@
+.footer-body {
+    background: #FF4C4C;
+    bottom: 0;
+}
+
+.footer-ul{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    color: #f0f0f0;
+    padding: 0;
+}
+
+.footer-p {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    
+}
+
+.footer-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 147px;
+    height: 42px;
+    
+}
+
+.footer-color {
+    background: #f93333;
+}

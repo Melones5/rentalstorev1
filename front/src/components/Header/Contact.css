@@ -1,0 +1,37 @@
+.h1-contact {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 32px;
+  color: #FF4C4C;
+  padding-top: 100px;
+}
+
+.label-contact {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: #f0f0f0;
+  padding: 0;
+}
+
+.contact-button {
+  color: #f0f0f0;
+  background-color: #FF4C4C;
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  border-radius: 30px;
+}
+
+.contact-button:active {
+  background-color: #006AE8;
+}
+
+.contact-button:hover {
+  background-color: #a571ff;
+  color: #f0f0f0;
+}
+
+.contact-input{
+  border-color: #FF4C4C;
+}

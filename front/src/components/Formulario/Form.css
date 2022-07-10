@@ -1,0 +1,33 @@
+.form-container-register {
+      width: 100%;
+      background: #26547C;
+      padding: 25px 10px;
+      border-radius: 40px;
+      box-shadow: 0 0 11px 5px rgba(49, 48, 49, 0.268);
+}
+
+.form-container-login {
+      width: 100%;
+      background: #26547C;
+      padding: 25px 10px;
+      border-radius: 40px;
+      box-shadow: 0 0 11px 5px rgba(49, 48, 49, 0.268);
+}
+
+.form-button {
+      color: #f0f0f0;
+      background-color: #FF4C4C;
+      font-family: 'Poppins', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      border-radius: 30px;
+}
+
+.form-button:active {
+      background-color: #006AE8;
+}
+
+.form-button:hover {
+      background-color: #a571ff;
+      color: #f0f0f0;
+}
