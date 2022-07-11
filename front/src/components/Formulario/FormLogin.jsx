@@ -9,7 +9,13 @@ import './Form.css';
 
 const FormLogin = () => {
 
-  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const { register, handleSubmit, watch, formState: { errors } } = useForm(
+    {
+      defaultValues: {
+        email: '',
+        password: '',
+      }
+    });
 
   const onSubmit = (data, e) => {
     console.log(data);
@@ -20,24 +26,26 @@ const FormLogin = () => {
     <div>
       <h1 className='pt-5 form-h1'>Usuario Registrado</h1>
       <h5 className='form-h5'>¡Si tiene una cuenta, acceda!</h5>
-      <form className='form-container-login' onSubmit={handleSubmit(onSubmit)}>
+      <form className='form-container-login' autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
         <div className='mb-4'>
           <label className='label-contact'>Dirección de E-mail:*</label>
-          <input className='form-control my-2' type="text" {...register('emailLogin', {
+          <input className='form-control my-2' type="text" {...register('email', {
             required: true,
             pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/i
           })} />
-          {errors.emailLogin?.type === 'required' && <p className='text-danger text-small d-block mb-2'>El campo email es requerido</p>}
-          {errors.emailLogin?.type === 'pattern' && <p className='text-danger text-small d-block mb-2'>El formato del email es incorrecto</p>}
+          {errors.email?.type === 'required' && <p className='text-danger text-small d-block mb-2'>El campo email es requerido</p>}
+          {errors.email?.type === 'pattern' && <p className='text-danger text-small d-block mb-2'>El formato del email es incorrecto</p>}
         </div>
         <div className='mb-4'>
           <label className='label-contact'>Contraseña:*</label>
-          <input className='form-control my-2' type="text" {...register('contraseña', {
+          <input className='form-control my-2' type="text" {...register('password', {
             required: true,
-            pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/i
+            minLength: {
+              value: 4,
+            }
           })} />
-          {errors.contraseña?.type === 'required' && <p className='text-danger text-small d-block mb-2'>El campo contraseña es requerido</p>}
-          {errors.contraseña?.type === 'pattern' && <p className='text-danger text-small d-block mb-2'>El formato del contraseña es incorrecto</p>}
+          {errors.password?.type === 'required' && <p className='text-danger text-small d-block mb-2'>El campo contraseña es requerido</p>}
+          {errors.password?.type === 'minLength' && <p className='text-danger text-small d-block mb-2'>La contraseña debe tener al menos 4 letras</p>}
         </div>
         <div className='mb-4'>
           <a className='text' href='#olvido'>¿Olvido su contraseña?</a>

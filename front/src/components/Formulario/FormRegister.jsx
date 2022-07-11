@@ -7,7 +7,18 @@ import './Form.css';
 
 
 const FormRegister = () => {
-  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const { register, handleSubmit, watch, formState: { errors } } = useForm(
+    {
+      defaultValues: {
+        nombre: '',
+        apellido: '',
+        direccion: '',
+        telefono: '',
+        email: '',
+        password: '',
+        rol: '',
+      }
+    });
 
   const onSubmit = (data, e) => {
     console.log(data);
@@ -17,7 +28,7 @@ const FormRegister = () => {
     <div>
       <h1 className='pt-5 form-h1'>Nuevo Usuario</h1>
       <h5 className='form-h5'>¡Registrate es gratis!</h5>
-      <form onSubmit={handleSubmit(onSubmit)} autoComplete="off" className=" form-container-register">
+      <form className=" form-container-register" autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
         <div className='mb-4'>
           <label className='label-contact'>Nombre:*</label>
           <input className='form-control my-2' type="text" {...register('nombre', {
@@ -35,6 +46,28 @@ const FormRegister = () => {
           })} />
           {errors.apellido?.type === 'required' && <p className='text-danger text-small d-block mb-2'>El campo apellido es requerido</p>}
           {errors.apellido?.type === 'maxLength' && <p className='text-danger text-small d-block mb-2'>El campo apellido debe tener menos de 10 caracteres</p>}
+        </div>
+        <div className='mb-4'>
+          <label className='label-contact'>Dirección:*</label>
+          <input className='form-control my-2' type="text" {...register('direccion', {
+            required: true,
+            minLength: {
+              value: 4,
+            }
+          })} />
+          {errors.direccion?.type === 'required' && <p className='text-danger text-small d-block mb-2'>El campo dirección es requerido</p>}
+          {errors.direccion?.type === 'minLength' && <p className='text-danger text-small d-block mb-2'>El campo direccion debe tener al menos 4 letras</p>}
+        </div>
+        <div className='mb-4'>
+          <label className='label-contact'>Teléfono:*</label>
+          <input className='form-control my-2' type="text" placeholder="(Código de área) Número" {...register('telefono', {
+            required: true,
+            minLength: {
+              value: 10,
+            }
+          })} />
+          {errors.telefono?.type === 'required' && <p className='text-danger text-small d-block mb-2'>El campo teléfono es requerido</p>}
+          {errors.telefono?.type === 'minLength' && <p className='text-danger text-small d-block mb-2'>El campo teléfono debe tener al menos 10 números</p>}
         </div>
         <div className='mb-4'>
           <label className='label-contact'>Dirección de E-mail:*</label>
@@ -55,6 +88,17 @@ const FormRegister = () => {
           })} />
           {errors.password?.type === 'required' && <p className='text-danger text-small d-block mb-2'>El campo contraseña es requerido</p>}
           {errors.password?.type === 'minLength' && <p className='text-danger text-small d-block mb-2'>La contraseña debe tener al menos 4 letras</p>}
+        </div>
+        <div className='mb-4'>
+          <label className='label-contact'>Rol:*</label>
+          <input className='form-control my-2' type="text" {...register('rol', {
+            required: true,
+            minLength: {
+              value: 7,
+            }
+          })} />
+          {errors.rol?.type === 'required' && <p className='text-danger text-small d-block mb-2'>El campo rol es requerido</p>}
+          {errors.rol?.type === 'minLength' && <p className='text-danger text-small d-block mb-2'>El rol debe tener al menos 6 letras</p>}
         </div>
         <div className='mb-4'>
           <button className='btn register-button my-2'>Registrarme</button>
