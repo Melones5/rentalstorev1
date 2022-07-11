@@ -35,6 +35,7 @@
   background-color: #352d39ff;
   font-weight: 400;
   border-radius: 30px;
+  border: none;
 }
 
 .login-button:hover {
