@@ -64,3 +64,22 @@
 --celeste: #b1ede8ff;
 --eggplant: #6d435aff;
 --black-coffee: #352d39ff;*/
+
+button.social-icon {
+  color: white;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  border: none;
+}
+button.social-icon:hover{
+  color: black;
+}
+
+.facebook {
+  background-color: #4267b2;
+}
+
+.google {
+  background-color: #db4437;
+}

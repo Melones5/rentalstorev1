@@ -1,85 +1,66 @@
-import React from 'react';
-import { useForm } from 'react-hook-form';
-import { edadValidator } from './validators';
+import React from 'react'
+import { useForm } from "react-hook-form";
+import { Button } from 'react-bootstrap';
+import { FaFacebookF, FaGoogle } from 'react-icons/fa';
+
+import './Form.css';
+
+
 
 const FormLogin = () => {
 
-  const { register, handleSubmit, formState: { errors}, watch } = useForm(
-    {
-      defaultValues: {
-        nombre: '',
-        apellido: '',
-        email: '',
-        edad: '',
-        telefono: '',
-      }
-  });
+  const { register, handleSubmit, watch, formState: { errors } } = useForm();
 
   const onSubmit = (data, e) => {
     console.log(data);
     e.target.reset();
   }
 
-  const incluirTelefono = watch('incluirTelefono');
-
-
   return (
     <div>
-      <h2>Formulario</h2>
-      <p>Nombre: {watch('nombre')}</p>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <label>Nombre</label>
-          <input type="text" {...register('nombre', {
+      <h1 className='pt-5 form-h1'>Usuario Registrado</h1>
+      <h5 className='form-h5'>¡Si tiene una cuenta, acceda!</h5>
+      <form className='form-container-login' onSubmit={handleSubmit(onSubmit)}>
+        <div className='mb-4'>
+          <label className='label-contact'>Dirección de E-mail:*</label>
+          <input className='form-control my-2' type="text" {...register('emailLogin', {
             required: true,
-            maxLength:10
-          })}/>
-          {errors.nombre?.type === 'required' &&  <p className='bg-danger'>El campo nombre debe tener menos de 10 caracteres</p>}
-          {errors.nombre?.type === 'maxLength' && <p>El campo nombre debe tener menos de 10 caracteres</p>}
-        </div>
-        <div>
-          <label>Apellido</label>
-          <input type="text" {...register('apellido',{
-            required:true,
-            maxLength:10
-          })}/>
-        </div>
-        <div>
-          <label>Email</label>
-          <input type="text" {...register('email',{
             pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/i
-          })}/>
-          {errors.email?.type === 'pattern' && <p>El formato del email es incorrecto</p>}
+          })} />
+          {errors.emailLogin?.type === 'required' && <p className='text-danger text-small d-block mb-2'>El campo email es requerido</p>}
+          {errors.emailLogin?.type === 'pattern' && <p className='text-danger text-small d-block mb-2'>El formato del email es incorrecto</p>}
         </div>
-        <div>
-          <label>Edad</label>
-          <input type="text" {...register('edad', {
-            validate: edadValidator
-          })}/>
-          {errors.edad && <p>La edad debe estar entre 18 y 65 años</p>}
+        <div className='mb-4'>
+          <label className='label-contact'>Contraseña:*</label>
+          <input className='form-control my-2' type="text" {...register('contraseña', {
+            required: true,
+            pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/i
+          })} />
+          {errors.contraseña?.type === 'required' && <p className='text-danger text-small d-block mb-2'>El campo contraseña es requerido</p>}
+          {errors.contraseña?.type === 'pattern' && <p className='text-danger text-small d-block mb-2'>El formato del contraseña es incorrecto</p>}
         </div>
-        <div>
-          <label>Pais</label>
-          <select {...register('pais')}>
-            <option value="es">España</option>
-            <option value="it">Italia</option>
-            <option value="fr">Francia</option>
-          </select>
+        <div className='mb-4'>
+          <a className='text' href='#olvido'>¿Olvido su contraseña?</a>
         </div>
-        <div>
-          <label>¿Incluir teléfono?</label>
-          <input type="checkbox" {...register('incluirTelefono')} />
+        <div className='d-flex justify-content-between'>
+          <Button type="submit" className='login-button'>Registrarme</Button>
+          <Button type="submit" className='login-button'>Logearte</Button>
         </div>
-        { incluirTelefono && (
-           <div>
-           <label>¿Incluir teléfono?</label>
-           <input type="text" {...register('telefono')} />
-         </div>
-        )}
-        <input type="submit" value="Enviar"/>
+        <hr />
+        <p className='text-center label-contact'>
+          Logeate con tus redes sociales
+        </p>
+        <div className='d-flex flex-row mb-3 justify-content-center social-media'>
+          <Button className='social-icon facebook'>
+            <FaFacebookF />
+          </Button>
+          <Button className='social-icon google'>
+            <FaGoogle />
+          </Button>
+        </div>
       </form>
     </div>
   )
 }
 
-export default FormLogin;
+export default FormLogin
