@@ -3,14 +3,15 @@ import { Container, Row, Col } from 'react-bootstrap';
 import './Footer.css';
 
 import LogoMercadopago from '../../assets/logo__mercadopago.png';
+import imgLogo from '../../assets/logoRental.png'
 
 const Footer = () => {
   return (
     <footer>
       <Container fluid className="text-white footer-body">
         <Row className="ps-4 pe-4">
-          <Col xs={12} md={8} lg={2}>
-            <p class='h3 py-3'>Rental Store</p>
+          <Col xs={12} md={8} lg={2} className="py-2 center">
+            <img src={imgLogo} widht="100" height="100" alt="logo"/>
           </Col>
           <Col xs={12} md={8} lg={2}>
             <p className='h5 py-3 footer-p'>Categorías</p>
