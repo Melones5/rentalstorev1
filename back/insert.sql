@@ -1,4 +1,4 @@
-insert into cliente (id_cliente, nombre, apellido, direccion, telefono, mail, rol) values (36703180,'Alejandro', 'Perez', 'Uchitel 203', 3445-251463,'prueba1_otp@gmail.com', 'Usuario');
+﻿insert into cliente (id_cliente, nombre, apellido, direccion, telefono, mail, rol) values (36703180,'Alejandro', 'Perez', 'Uchitel 203', 3445-251463,'prueba1_otp@gmail.com', 'Usuario');
 insert into cliente (id_cliente, nombre, apellido, direccion, telefono, mail, rol) values (36705241,'Daniel', 'Rosales', 'Lucia Lopez 203', 3445-625142,'prueba2_otp@gmail.com', 'Usuario');
 insert into cliente (id_cliente, nombre, apellido, direccion, telefono, mail, rol) values (36706325,'Luis', 'Mista', 'klauss 12', 3445-965245, 'prueba3_otp@gmail.com', 'Usuario');
 insert into cliente (id_cliente, nombre, apellido, direccion, telefono, mail, rol) values (36715975,'Pedro', 'Mista', 'blv. irigoyen 504', 3445-635284, 'prueba4_otp@gmail.com', 'Usuario');
@@ -64,3 +64,5 @@ select * from producto
 select * from pago
 select * from extensionAlquiler
 select * from devolucion
+
+select * from cliente

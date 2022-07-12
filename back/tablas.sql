@@ -1,4 +1,4 @@
-create table producto(
+﻿create table producto(
 	id_producto SERIAL not null,
 	nombre_producto varchar(30) not null,
 	precio float not null,
@@ -41,6 +41,7 @@ create table cliente(
 	direccion varchar(50),
 	telefono integer not null,
 	mail varchar(55) not null,
+	password varchar (30) not null,
 	rol varchar (20) not null,
 	primary key (id_cliente)
 );
