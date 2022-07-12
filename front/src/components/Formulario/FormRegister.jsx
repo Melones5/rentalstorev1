@@ -106,7 +106,7 @@ const FormRegister = () => {
         <div className='container'>
           <div className='row'>
             <hr />
-            <p className='text-center'>
+            <p className='text-center label-contact'>
               Registrate con tus redes sociales
             </p>
             <div className='d-flex flex-row mb-3 justify-content-center social-media'>

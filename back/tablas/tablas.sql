@@ -39,7 +39,7 @@ create table cliente(
 	nombre varchar(30) not null,
 	apellido varchar(30) not null,
 	direccion varchar(50),
-	telefono integer not null,
+	telefono VARCHAR(30) NOT NULL,
 	mail varchar(55) not null,
 	password varchar (30) not null,
 	rol varchar (20) not null,
