@@ -35,7 +35,7 @@ create table carrito(
 
 
 create table cliente(
-	id_cliente integer not null,
+	id_cliente UUID not null,
 	nombre varchar(30) not null,
 	apellido varchar(30) not null,
 	direccion varchar(50),
@@ -71,3 +71,5 @@ create table extensionAlquiler(
 	primary key(id_extension),
 	foreign key(id_extension) REFERENCES alquiler(id_alquiler)
 );
+
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";

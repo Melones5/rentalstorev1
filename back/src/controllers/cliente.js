@@ -8,12 +8,16 @@ const pool = new Pool({
       port: 5432
 })
 
-
+//Clientes
 const getCliente = async (req, res) => {
-      const response = await pool.query('SELECT * FROM cliente');
-      console.log(response.rows); 
-      res.status(200).json(response.rows);     
-      // res.json(`CLIENTES consultados de manera satisfactoria`)  
+      try {
+            const response = await pool.query('SELECT * FROM cliente');
+            console.log(response.rows); 
+            res.status(200).json(response.rows);     
+            // res.json(`CLIENTES consultados de manera satisfactoria`)  
+      } catch (error) {
+            console.error(error.message);
+      }
 }
 
 const getClienteById = async(req,res) => {
@@ -21,7 +25,7 @@ const getClienteById = async(req,res) => {
       const response = await pool.query('SELECT * FROM cliente WHERE id_cliente = $1', [id_cliente]);
       res.status(200).json(response.rows);
       console.log(response);
-      res.json(`CLIENTE ${id_cliente} consultado de manera satisfactoria`)
+      // res.json(`CLIENTE ${id_cliente} consultado de manera satisfactoria`)
 }
 
 const createCliente = async (req,res) => {
@@ -32,7 +36,7 @@ const createCliente = async (req,res) => {
       ]);
       res.status(200).json(response.rows);
       console.log(response);
-      res.json(`CLIENTE ${id_cliente} creado de manera satisfactoria`)   
+      // res.json(`CLIENTE ${id_cliente} creado de manera satisfactoria`)   
 }
 
 const deleteCliente = async (req,res) => {
@@ -40,7 +44,7 @@ const deleteCliente = async (req,res) => {
       const response = await pool.query('DELETE FROM cliente WHERE id_cliente = $1', [id_cliente]);
       res.status(200).json(response.rows);
       console.log(response);
-      res.json(`CLIENTE ${id_cliente} eliminado de manera satisfactoria`)
+      // res.json(`CLIENTE ${id_cliente} eliminado de manera satisfactoria`)
 }
 const updateCliente = async (req,res) => {
       const id_cliente = req.params.id_cliente;
@@ -56,7 +60,7 @@ const updateCliente = async (req,res) => {
             id_cliente,
       ]);
       console.log(response);
-      res.json(`CLIENTES ${id_cliente} actualizado de manera satisfactoria`)
+      // res.json(`CLIENTES ${id_cliente} actualizado de manera satisfactoria`)
 }
  
 module.exports = {

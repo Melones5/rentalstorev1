@@ -1,29 +1,59 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm } from "react-hook-form";
 import { Button } from 'react-bootstrap';
+import { v4 as uuidv4 } from 'uuid';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 import { FaFacebookF, FaGoogle } from 'react-icons/fa';
 import './Form.css';
 
 
 const FormRegister = () => {
-  const { register, handleSubmit, watch, formState: { errors } } = useForm(
+
+  let history = useNavigate();
+
+  const { register, handleSubmit, formState: { errors } } = useForm(
     {
       defaultValues: {
+        id_cliente: uuidv4(),
         nombre: '',
         apellido: '',
         direccion: '',
         telefono: '',
-        email: '',
+        mail: '',
         password: '',
         rol: '',
       }
     });
 
-  const onSubmit = (data, e) => {
-    console.log(data);
+  const onSubmit = (data, e) => axios.post("http://localhost:5000/cliente", data)
+  .then(() => {
+    console.log("anda")
+    alert("Validación exitosa");
     e.target.reset();
-  }
+    history("/")
+  })
+  .catch(() =>{
+    console.log("no anda")
+  })
+  
+  /**  const onSubmit = async (data, e) => {
+    console.log("data", data);
+    try {
+      const response = await fetch("http://localhost:5000/cliente", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: { 'Content-Type': 'application/json' }
+      });
+      console.log(response);
+    } catch (error) {
+      console.log(e.error)
+    }
+    alert("Validación exitosa");
+    e.target.reset();
+  }*/
+
   return (
     <div>
       <h1 className='pt-5 form-h1'>Nuevo Usuario</h1>
@@ -71,12 +101,12 @@ const FormRegister = () => {
         </div>
         <div className='mb-4'>
           <label className='label-contact'>Dirección de E-mail:*</label>
-          <input className='form-control my-2' type="text" {...register('email', {
+          <input className='form-control my-2' type="text" {...register('mail', {
             required: true,
             pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
           })} />
-          {errors.email?.type === 'required' && <p className='text-danger text-small d-block mb-2'>El campo email es requerido</p>}
-          {errors.email?.type === 'pattern' && <p className='text-danger text-small d-block mb-2'>El formato del email es incorrecto</p>}
+          {errors.mail?.type === 'required' && <p className='text-danger text-small d-block mb-2'>El campo email es requerido</p>}
+          {errors.mail?.type === 'pattern' && <p className='text-danger text-small d-block mb-2'>El formato del email es incorrecto</p>}
         </div>
         <div className='mb-4'>
           <label className='label-contact'>Contraseña:*</label>
