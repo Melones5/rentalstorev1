@@ -4,6 +4,7 @@ import { Button } from 'react-bootstrap';
 import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import swal from 'sweetalert';
 
 import { FaFacebookF, FaGoogle } from 'react-icons/fa';
 import './Form.css';
@@ -16,12 +17,11 @@ const FormRegister = () => {
   const { register, handleSubmit, formState: { errors } } = useForm(
     {
       defaultValues: {
-        id_cliente: uuidv4(),
         nombre: '',
         apellido: '',
         direccion: '',
         telefono: '',
-        mail: '',
+        email: '',
         password: '',
         rol: '',
       }
@@ -30,13 +30,26 @@ const FormRegister = () => {
   const onSubmit = (data, e) => axios.post("http://localhost:5000/cliente", data)
   .then(() => {
     console.log("anda")
-    alert("Validación exitosa");
+    swal({
+      title: "Usuario",
+      text: "Usuario creado de manera correcta",
+      icon: "success",
+      button: "Aceptar"
+    });
     e.target.reset();
     history("/")
   })
   .catch(() =>{
-    console.log("no anda")
+    swal({
+      title: "Usario",
+      text: "Usuario creado de manera correcta",
+      icon: "error",
+      button: "Aceptar"
+    });
+    e.target.reset();
+    console.log(data)
   })
+  
   
   /**  const onSubmit = async (data, e) => {
     console.log("data", data);
@@ -101,12 +114,12 @@ const FormRegister = () => {
         </div>
         <div className='mb-4'>
           <label className='label-contact'>Dirección de E-mail:*</label>
-          <input className='form-control my-2' type="text" {...register('mail', {
+          <input className='form-control my-2' type="text" {...register('email', {
             required: true,
             pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
           })} />
-          {errors.mail?.type === 'required' && <p className='text-danger text-small d-block mb-2'>El campo email es requerido</p>}
-          {errors.mail?.type === 'pattern' && <p className='text-danger text-small d-block mb-2'>El formato del email es incorrecto</p>}
+          {errors.email?.type === 'required' && <p className='text-danger text-small d-block mb-2'>El campo email es requerido</p>}
+          {errors.email?.type === 'pattern' && <p className='text-danger text-small d-block mb-2'>El formato del email es incorrecto</p>}
         </div>
         <div className='mb-4'>
           <label className='label-contact'>Contraseña:*</label>

@@ -10,7 +10,7 @@ config = {
       port: 5432
 }
 
-var pool = new pg.Pool(config);
+/*var pool = new pg.Pool(config);
 pool.query('SELECT NOW()', (err, res) => {
   console.log("Conexion Exitosa")
   pool.end()
@@ -18,7 +18,7 @@ pool.query('SELECT NOW()', (err, res) => {
 
 module.exports = config ;
 
-/*const pool = new Pool({
+const pool = new Pool({
       user: "postgres",
       password: "1234",
       host: "localhost",

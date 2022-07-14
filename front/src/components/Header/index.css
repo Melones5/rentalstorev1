@@ -8,13 +8,16 @@
     font-size: 18px;
 }
 
+.burger{
+    transition: all 6s ease-in;
+}
+
 .active {
-    background-color: #FF4C4C;
-    border-radius: ;
+    border: 1px solid white;
 }
 
 .active:hover{
-    color: #352d39ff !important;
+    color: #ff6978ff !important;
 }
 
 .navbar-light .navbar-toggler-icon{

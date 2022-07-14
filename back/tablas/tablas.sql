@@ -5,6 +5,8 @@
 	descripcion_producto varchar,
 	cantidad integer not null,
 	estado varchar(15) not null,
+	categoria_producto VARCHAR(30) NOT NULL,
+	urlfoto varchar(2083),
 	primary key (id_producto)
 );
 
@@ -35,12 +37,12 @@ create table carrito(
 
 
 create table cliente(
-	id_cliente UUID not null,
+	id_cliente SERIAL not null,
 	nombre varchar(30) not null,
 	apellido varchar(30) not null,
 	direccion varchar(50),
 	telefono VARCHAR(30) NOT NULL,
-	mail varchar(55) not null,
+	email varchar(55) not null unique,
 	password varchar (30) not null,
 	rol varchar (20) not null,
 	primary key (id_cliente)
@@ -71,5 +73,10 @@ create table extensionAlquiler(
 	primary key(id_extension),
 	foreign key(id_extension) REFERENCES alquiler(id_alquiler)
 );
+
+
+INSERT INTO rol VALUES (DEFAULT, 'ARRENDADOR');
+INSERT INTO rol VALUES (DEFAULT, 'PROPIETARIO');
+
 
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";

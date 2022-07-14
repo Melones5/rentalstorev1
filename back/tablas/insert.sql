@@ -66,3 +66,8 @@ select * from extensionAlquiler
 select * from devolucion
 
 select * from cliente
+
+--INSERTS NUEVOS
+insert into producto (nombre_producto, precio, descripcion_producto, cantidad, estado,categoria_producto, urlfoto) 
+values ('Sombrilla Playa Playera', 150 , 
+	'Sombrilla playera de excelente calidad, IDEAL para tus vacaciones.', 12,'perfecto estado', 'articulos de playa', 'https://http2.mlstatic.com/D_NQ_NP_691068-MLA48754634335_012022-O.jpg');

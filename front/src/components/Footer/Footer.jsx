@@ -45,8 +45,8 @@ const Footer = () => {
           <Col xs={12} md={8} lg={2}>
             <p className='h5 py-3 footer-p'>Seguinos</p>
             <ul className='footer-ul'>
-              <li> <i class="fa-brands fa-facebook"></i> Facebook</li>
-              <li> <i class="fa-brands fa-instagram"></i> Instagram</li>
+              <li> <a href='https://www.facebook.com/' target="_blank" title="Facebook" className='footer-brand'><i class="fa-brands fa-facebook"></i> Facebook</a></li>
+              <li> <a href='https://www.instagram.com/' target="_blank" title="Instagram" className='footer-brand'><i class="fa-brands fa-instagram"></i> Instagram</a></li>
             </ul>
           </Col>
           <Col xs={12} md={8} lg={2}>
@@ -55,8 +55,10 @@ const Footer = () => {
           </Col>
         </Row>
         <Row className='footer-body text-white footer-color'>
-          <Col className='text-center py-3 h9'>
-            Copyright &copy; Rental Store
+          <Col className='text-center py-3'>
+           <p className='p-footer'>Copyright &copy; Rental Store</p>
+           <p className='p-footer'>Todos los derechos reservados</p> 
+           <p className='p-footer'>Sitio desarrollado por el Melons</p>
           </Col>
         </Row>
       </Container>
