@@ -1,0 +1,18 @@
+.carousel-slider{
+      margin-top: 10px;
+}
+
+.carousel-slider img {
+      height: 37rem;
+      opacity: 65%;
+}
+
+.carousel-slider h3 {
+      font-weight: 600;
+      font-size: 30px;
+} 
+
+.carousel-slider p {
+      font-weight: 600;
+      font-size: 14px;
+} 

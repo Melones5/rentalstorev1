@@ -1,0 +1,27 @@
+.product-card{
+      margin-top: 10px;
+      background-color: antiquewhite;
+}
+
+.product-title{
+      font-weight: 600;
+      font-size: 18px;
+}
+
+.product-text{
+      font-weight: 400;
+      font-size: 14px;
+}
+
+.product-price{
+      font-weight: 600;
+      font-size: 30px;
+      color: #ff6978ff !important;
+}
+
+.product-button{
+      background-color: #ff6978ff !important;
+      border: none;
+      border-radius: 0%;
+      width: 100%;
+}

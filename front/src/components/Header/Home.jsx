@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import SearchBar from '../SearchBar/SearchBar'
+import Slider from '../Header_Category/Slider'
 import HeaderCategory from '../Header_Category/HeaderCategory'
 import Product from '../Products/Product'
 import axios from 'axios';
@@ -18,7 +19,7 @@ const Home = () => {
     .catch(()=>{
       console.log("no anda")
     })
-  }, [])*/
+  }, [])
 
   useEffect(() => {
     axios.get("http://localhost:5000/producto")
@@ -29,28 +30,13 @@ const Home = () => {
     .catch(()=>{
       console.log("no anda")
     })
-  }, [])
+  }, [])*/
 
   return (
     <div className='py-5'>
-      {productos.map((producto, key) => {
-        return(
-          <div>
-            <ul>
-              <li key={producto.id_producto}>
-                <h2>{producto.nombre_producto}</h2>
-                <h2>{producto.precio}</h2>
-                <h2>{producto.descripcion_producto}</h2>
-                <h2>{producto.cantidad}</h2>
-                <h2>{producto.estado}</h2>
-                <h2>{producto.categoria_producto}</h2>
-                <img src={producto.urlfoto} alt="" />
-              </li>
-            </ul>
-          </div>
-        )
-      })}
       <SearchBar />
+      <Slider />
+      <Product />
       {/* <HeaderCategory /> 
       <Product />*/}
     </div>
