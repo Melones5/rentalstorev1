@@ -16,12 +16,20 @@
 .product-price{
       font-weight: 600;
       font-size: 30px;
-      color: #ff6978ff !important;
+      color: #f93333 !important;
 }
 
 .product-button{
-      background-color: #ff6978ff !important;
+      background-color: #352d39ff !important;
       border: none;
       border-radius: 0%;
       width: 100%;
+}
+
+.product-button:hover{
+      background-color: #a571ff;
+}
+
+.product-button:active {
+      background-color: #006AE8;
 }

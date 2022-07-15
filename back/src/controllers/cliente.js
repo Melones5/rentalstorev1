@@ -82,6 +82,18 @@ const getProducto = async(req,res) => {
       }
 }
 
+const deleteProducto = async(req,res) =>{
+      try {
+            const id_producto = req.params.id_producto;
+            const response = await pool.query('DELETE FROM producto WHERE id_producto = $1', [id_producto]);
+            res.status(200).json(response.rows);
+            console.log(response);
+      } catch (error) {
+            console.error(error.message);
+      }
+      // res.json(`CLIENTE ${id_cliente} eliminado de manera satisfactoria`)
+}
+
 module.exports = {
       getCliente,
       getClienteById,
@@ -89,4 +101,5 @@ module.exports = {
       deleteCliente,
       updateCliente,
       getProducto,
+      deleteProducto,
 }
