@@ -30,16 +30,17 @@ const ProductCard = () => {
     })
   };
   return (
-    <Container>
-      <Row xs={1} md={2} lg={5} className="g-3">
+    <Container className='container-product py-5'>
+      <Row xs={1} md={2} lg={4} className="g-3">
         {productos.map((producto, key) => {
           return (
             <Col key={producto.id_producto}>
-              <Card border="danger" className='product-card'>
+              <Card className='product-card'>
                 <Card.Img variant="top" src={producto.urlfoto} />
                 <Card.Body className="text-center">
                   <Card.Title className='product-title'>{producto.nombre_producto}</Card.Title>
                   <Card.Text className='product-text'>{producto.descripcion_producto}</Card.Text>
+                  <Card.Text className='product-text'>{producto.categoria_producto}</Card.Text>
                   <Card.Text className='product-price'>${producto.precio}</Card.Text>
                   <Button className='product-button' onClick={() => deleteProduct(producto.id_producto)}>Añadir a carrito</Button>
                 </Card.Body>

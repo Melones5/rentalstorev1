@@ -1,6 +1,7 @@
 .product-card{
       margin-top: 10px;
-      background-color: antiquewhite;
+      background-color: #f7f7f7;
+      box-shadow: 0 0 11px 5px rgba(49, 48, 49, 0.268);
 }
 
 .product-title{
@@ -32,4 +33,8 @@
 
 .product-button:active {
       background-color: #006AE8;
+}
+
+.container-product{
+      
 }
