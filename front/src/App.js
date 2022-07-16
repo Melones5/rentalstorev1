@@ -6,9 +6,13 @@ import Contact from './components/Header/Contact';
 import Login from './components/Header/Login';
 import Footer from './components/Footer/Footer.jsx';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import {CartProvider} from './CartContext';
+import Cart from './components/Products/Cart.jsx';
+
 
 function App() {
   return (
+    <CartProvider>
     <BrowserRouter>
       <Header />
       <main className='py-3'>
@@ -17,12 +21,14 @@ function App() {
             <Route path="/" exact element={ <Home /> } />
             <Route path="/contact" exact element={ <Contact /> } />
             <Route path="/login" exact element={ <Login />} />
+            <Route path="/cart" exact element ={ <Cart />} />
             {/* <Route path="*" element={<NoMatch />} />  */}
           </Routes>
       </Container>
       </main>
       <Footer />
     </BrowserRouter>
+    </CartProvider>
   );
 }
 
