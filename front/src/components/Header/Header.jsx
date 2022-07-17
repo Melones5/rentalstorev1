@@ -22,6 +22,7 @@ const Header = () => {
               <NavLink exact="true" to="/" className="py-1 px-2 cursor-pointer" activeClassName="active">Inicio</NavLink>
               <NavLink exact="true" to="/contact" className="py-1 px-2 cursor-pointer" activeClassName="active">Contacto</NavLink>
               <NavLink exact="true" to="/login" className="py-1 px-2 cursor-pointer" activeClassName="active"><i className="fa-solid fa-right-to-bracket"></i> Ingresá</NavLink>
+              <NavLink exact="true" to="/loginsocial" className="py-1 px-2 cursor-pointer" activeClassName="active"><i className="fa-solid fa-right-to-bracket"></i> SocialLogin</NavLink>
               <NavLink exact="true" to='/cart' className="py-1 px-2 cursor-pointer" activeClassName="active"> <i class="fa-solid fa-cart-shopping"></i> <span>{productos.length}</span></NavLink>         
             </Nav>
           </Navbar.Collapse>

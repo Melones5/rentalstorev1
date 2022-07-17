@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useForm } from "react-hook-form";
-import { Button } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -28,29 +28,29 @@ const FormRegister = () => {
     });
 
   const onSubmit = (data, e) => axios.post("http://localhost:5000/cliente", data)
-  .then(() => {
-    console.log("anda")
-    swal({
-      title: "Usuario",
-      text: "Usuario creado de manera correcta",
-      icon: "success",
-      button: "Aceptar"
-    });
-    e.target.reset();
-    history("/")
-  })
-  .catch(() =>{
-    swal({
-      title: "Usario",
-      text: "Usuario creado de manera correcta",
-      icon: "error",
-      button: "Aceptar"
-    });
-    e.target.reset();
-    console.log(data)
-  })
-  
-  
+    .then(() => {
+      console.log("anda")
+      swal({
+        title: "Usuario",
+        text: "Usuario creado de manera correcta",
+        icon: "success",
+        button: "Aceptar"
+      });
+      e.target.reset();
+      history("/")
+    })
+    .catch(() => {
+      swal({
+        title: "Usario",
+        text: "Usuario creado de manera correcta",
+        icon: "error",
+        button: "Aceptar"
+      });
+      e.target.reset();
+      console.log(data)
+    })
+
+
   /**  const onSubmit = async (data, e) => {
     console.log("data", data);
     try {
@@ -134,14 +134,17 @@ const FormRegister = () => {
         </div>
         <div className='mb-4'>
           <label className='label-contact'>Rol:*</label>
-          <input className='form-control my-2' type="text" {...register('rol', {
+          <select aria-label="Default select example my-2" {...register('rol', {required: true})}>
+            <option value="Arrendador">Arrendador</option>
+            <option value="Propietario">Propietario</option>
+          </select>
+          {/* <input className='form-control my-2' type="text" {...register('rol', { 
             required: true,
             minLength: {
               value: 7,
             }
-          })} />
+          })} />*/}
           {errors.rol?.type === 'required' && <p className='text-danger text-small d-block mb-2'>El campo rol es requerido</p>}
-          {errors.rol?.type === 'minLength' && <p className='text-danger text-small d-block mb-2'>El rol debe tener al menos 6 letras</p>}
         </div>
         <div className='mb-4'>
           <button className='btn register-button my-2'>Registrarme</button>

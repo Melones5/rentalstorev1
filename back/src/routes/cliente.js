@@ -5,6 +5,8 @@ const { getCliente,
       deleteCliente, 
       updateCliente,
       getProducto,
+      getProductoById,
+      updateProducto,
       deleteProducto, 
 } = require('../controllers/cliente')
 
@@ -19,6 +21,8 @@ router.put('/cliente/:id_cliente', updateCliente)
 
 //producto 
 router.get('/producto', getProducto)
+router.get('/producto/:id_producto', getProductoById)
 router.delete('/producto/:id_producto', deleteProducto)
+router.put('/producto/:id_producto', updateProducto)
 
 module.exports = router;
