@@ -69,7 +69,7 @@ const FormRegister = () => {
 
   return (
     <div>
-      <h1 className='pt-5 form-h1'>Nuevo Usuario</h1>
+      <h1 className='pt-5 form-h1'>Registrarse</h1>
       <h5 className='form-h5'>¡Registrate es gratis!</h5>
       <form className=" form-container-register" autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
         <div className='mb-4'>

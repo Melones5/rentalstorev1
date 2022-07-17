@@ -21,7 +21,7 @@ const Formulario = () => {
         <Row>
           {/** usuario registrado */}
           <Col xs={12} md={8} lg={6}>
-            <h1 className='pt-5 form-h1'>Usuario Registrado</h1>
+            <h1 className='pt-5 form-h1'>Acceder</h1>
             <h5 className='form-h5'>¡Si tiene una cuenta, acceda!</h5>
             <form className='form-container-login' onSubmit={handleSubmit(onSubmit)}>
               <div className='mb-4'>

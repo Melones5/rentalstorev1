@@ -24,7 +24,7 @@ const FormLogin = () => {
 
   return (
     <div>
-      <h1 className='pt-5 form-h1'>Usuario Registrado</h1>
+      <h1 className='pt-5 form-h1'>Acceder</h1>
       <h5 className='form-h5'>¡Si tiene una cuenta, acceda!</h5>
       <form className='form-container-login' autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
         <div className='mb-4'>
@@ -48,7 +48,7 @@ const FormLogin = () => {
           {errors.password?.type === 'minLength' && <p className='text-danger text-small d-block mb-2'>La contraseña debe tener al menos 4 letras</p>}
         </div>
         <div className='mb-4'>
-          <a className='text' href='#olvido'>¿Olvido su contraseña?</a>
+          <a className='text-white' href='#olvido'>¿Olvido su contraseña?</a>
         </div>
         <div className='d-flex justify-content-between'>
           <Button type="submit" className='login-button'>Registrarme</Button>

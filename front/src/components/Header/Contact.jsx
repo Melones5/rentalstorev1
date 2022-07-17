@@ -2,6 +2,7 @@ import React from 'react'
 import { useForm } from "react-hook-form";
 import { Container, Row, Col } from 'react-bootstrap';
 import './Contact.css';
+import imgContact from '../../assets/contact.svg'
 
 const Contact = () => {
 
@@ -16,6 +17,9 @@ const Contact = () => {
   return (
     <Container className='py-5'>
       <Row>
+        <Col xs={12} lg={6} className='d-flex justify-contenct-center py-5'>
+          <img src={imgContact} style={{width: '100%'}} alt="imagen contacto" />
+        </Col>
         <Col xs={12} lg={6}>
           <h1 className='text-left h1-contact'> Contáctenos </h1>
           <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
