@@ -9,6 +9,7 @@ import Footer from './components/Footer/Footer.jsx';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import {CartProvider} from './CartContext';
 import Cart from './components/Products/Cart.jsx';
+import Error404 from './components/Error404.jsx';
 
 
 function App() {
@@ -24,7 +25,7 @@ function App() {
             <Route path="/login" exact element={ <Login />} />
             <Route path="/loginsocial" exact element={ <LoginSocial />} />
             <Route path="/cart" exact element ={ <Cart />} />
-            {/* <Route path="*" element={<NoMatch />} />  */}
+            <Route path="*" element={<Error404 />} /> 
           </Routes>
       </Container>
       </main>

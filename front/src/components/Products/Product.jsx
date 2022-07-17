@@ -17,17 +17,13 @@ const Product = () => {
       .catch(() => {
         console.log("no anda")
       })
-  }, []);
+  }, [deleteProduct]);
 
   //filtro por producto, donde el id del producto es diferente a los que se pasan por parámetros
   function deleteProduct(id_producto) {
     axios.delete(`http://localhost:5000/producto/${id_producto}`)
     setProductos(productos.filter(producto => producto.id_producto !== id_producto))
   }
-
-  {productos.map((producto) => {
-      console.log(producto.id_producto)
-  })};
 
   return (
     <Container className='container-product py-5'>
