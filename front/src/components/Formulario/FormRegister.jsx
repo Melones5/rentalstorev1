@@ -135,8 +135,8 @@ const FormRegister = () => {
         <div className='mb-4'>
           <label className='label-contact'>Rol:*</label>
           <select aria-label="Default select example my-2" {...register('rol', {required: true})}>
-            <option value="Arrendador">Arrendador</option>
-            <option value="Propietario">Propietario</option>
+            <option value="ARRENDADOR">ARRENDADOR</option>
+            <option value="PROPIETARIO">PROPIETARIO</option>
           </select>
           {/* <input className='form-control my-2' type="text" {...register('rol', { 
             required: true,

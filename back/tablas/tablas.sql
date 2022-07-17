@@ -1,4 +1,18 @@
-﻿create table producto(
+create table cliente(
+	id_cliente SERIAL not null,
+	nombre varchar(30) not null,
+	apellido varchar(30) not null,
+	direccion varchar(50),
+	telefono VARCHAR(30) NOT NULL,
+	email varchar(55) not null unique,
+	password varchar (30) not null,
+	rol varchar (20) not null,
+	constraint nombre_rol check (rol in
+	('ARRENDADOR','PROPIETARIO')),
+	constraint pk_id_cliente primary key (id_cliente)
+);
+
+create table producto(
 	id_producto SERIAL not null,
 	nombre_producto varchar(30) not null,
 	precio float not null,
@@ -35,18 +49,6 @@ create table carrito(
 	foreign key (id_carrito) REFERENCES alquiler(id_alquiler)
 );
 
-
-create table cliente(
-	id_cliente SERIAL not null,
-	nombre varchar(30) not null,
-	apellido varchar(30) not null,
-	direccion varchar(50),
-	telefono VARCHAR(30) NOT NULL,
-	email varchar(55) not null unique,
-	password varchar (30) not null,
-	rol varchar (20) not null,
-	primary key (id_cliente)
-);
 
 create table devolucion(
 	id_devolucion integer not null,

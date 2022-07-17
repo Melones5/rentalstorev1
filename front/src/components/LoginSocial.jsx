@@ -26,8 +26,9 @@ const LoginSocial = () => {
   const Login = async() => {
     try {
       const user = await signInWithPopup(auth, provider);
-      // if user !==null {}
-        // axios.post("http://localhost:5000/cliente"
+      // if (user !==null) {
+        // axios.post("http://localhost:5000/cliente")
+      // }
       console.log(user)
     } catch (error) {
       console.log(error)
