@@ -94,15 +94,15 @@ const getProductoById = async(req,res) => {
 
 const updateProducto = async(req,res) =>{
       const id_producto = req.params.id_producto;
-      const { nombre_producto, precio, descripcion_producto, cantidad, estado, categoria_producto,urlfoto} = req.body;
-      const response = await pool.query('UPDATE producto SET nombre_producto = $1, precio = $2, descripcion_producto =$3, cantidad=$4, estado=$5, categoria_producto=$6, urlfoto=$7 WHERE id_producto=$8',[
+      const { nombre_producto, precio, descripcion_producto, cantidad, estado, urlfoto, categoria} = req.body;
+      const response = await pool.query('UPDATE producto SET nombre_producto = $1, precio = $2, descripcion_producto =$3, cantidad=$4, estado=$5, urlfoto=$6, categoria=$7 WHERE id_producto=$8',[
             nombre_producto,
             precio,
             descripcion_producto,
             cantidad,
             estado,
-            categoria_producto,
             urlfoto,
+            categoria,
             id_producto,
       ]);
       res.status(200).json(response.rows);

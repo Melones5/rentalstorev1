@@ -9,8 +9,8 @@ const ProductCard = ({urlfoto,nombre,descripcion,categoria,precio,id, deleteProd
   const {addToCart} = useContext(CartContext);
 
   return (
-    <Card className='product-card' onClick={() => addToCart(nombre,precio,urlfoto,categoria,id,descripcion)}>
-      <Card.Img variant="top" src={urlfoto}/>
+    <Card className='product-card h-100' onClick={() => addToCart(nombre,precio,urlfoto,categoria,id,descripcion)}>
+      <Card.Img variant="top" src={urlfoto} width="300" height="300" className='product-img'/>
       <Card.Body className="text-center">
         <Card.Title className='product-title'>{nombre}</Card.Title>
         <Card.Text className='product-text'>{descripcion}</Card.Text>

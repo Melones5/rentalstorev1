@@ -35,7 +35,7 @@ const Home = () => {
   return (
     <div className='py-5'>
       <SearchBar />
-      <Slider />
+      {/* <Slider /> */}
       <Product />
       {/* <HeaderCategory /> 
       <Product />*/}

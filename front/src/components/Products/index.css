@@ -1,8 +1,17 @@
 .product-card{
       margin-top: 10px;
-      background-color: #f7f7f7;
       box-shadow: 0 0 11px 5px rgba(49, 48, 49, 0.268);
+      background-color: #f7f7f7;
+      overflow: hidden;
+      transition: all 400ms ease;
+      max-width: 100%;
 }
+
+.product-card:hover{
+      box-shadow: 0 0 11px 5px rgba(49, 48, 49, 0.268);
+      transform: translateY(-2%);
+}
+
 
 .product-title{
       font-weight: 600;

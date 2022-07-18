@@ -17,7 +17,7 @@ const Product = () => {
       .catch(() => {
         console.log("no anda")
       })
-  }, [deleteProduct]);
+  }, []);
 
   //filtro por producto, donde el id del producto es diferente a los que se pasan por parámetros
   function deleteProduct(id_producto) {

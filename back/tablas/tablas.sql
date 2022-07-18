@@ -19,16 +19,17 @@ create table producto(
 	descripcion_producto varchar,
 	cantidad integer not null,
 	estado varchar(15) not null,
-	categoria_producto VARCHAR(30) NOT NULL,
 	urlfoto varchar(2083),
-	primary key (id_producto)
+	categoria VARCHAR(30) NOT NULL,
+	constraint pk_id_producto primary key (id_producto),
+	constraint fk_id_categoria foreing key (categoria) references categoria(id_categoria)
 );
 
 create table categoria(
 	id_categoria integer not null,
-	nombre_categoria varchar(30) not null,
-	descripcion_categoria varchar,
-	primary key (id_categoria)
+	categoria varchar(30) not null,
+	constraint nombre_categoria check (categoria in 	('ARTICULOS DE PLAYA','ARTICULOS DE CAMPING','ARTICULOS 	DEPORTIVOS','HERRAMIENTAS'))
+	constraint pk_id_categoria primary key (id_categoria)
 );
 
 create table alquiler(
