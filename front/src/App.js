@@ -5,6 +5,7 @@ import Home from './components/Header/Home';
 import Contact from './components/Header/Contact';
 import Login from './components/Header/Login';
 import LoginSocial from './components/LoginSocial.jsx';
+import Account from './components/User/Account.jsx';
 import Footer from './components/Footer/Footer.jsx';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import {CartProvider} from './CartContext';
@@ -24,6 +25,7 @@ function App() {
             <Route path="/contact" exact element={ <Contact /> } />
             <Route path="/login" exact element={ <Login />} />
             <Route path="/loginsocial" exact element={ <LoginSocial />} />
+            <Route path="/account" exact element={ <Account />} />
             <Route path="/cart" exact element ={ <Cart />} />
             <Route path="*" element={<Error404 />} /> 
           </Routes>

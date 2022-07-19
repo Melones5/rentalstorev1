@@ -51,7 +51,6 @@ const FormLogin = () => {
           <a className='text-white' href='#olvido'>¿Olvido su contraseña?</a>
         </div>
         <div className='d-flex justify-content-between'>
-          <Button type="submit" className='login-button'>Registrarme</Button>
           <Button type="submit" className='login-button'>Logearte</Button>
         </div>
         <hr />

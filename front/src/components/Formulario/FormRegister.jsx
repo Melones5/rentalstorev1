@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 import { useForm } from "react-hook-form";
 import { Button, Form } from 'react-bootstrap';
-import { v4 as uuidv4 } from 'uuid';
+//import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
 
 import { FaFacebookF, FaGoogle } from 'react-icons/fa';
 import './Form.css';
+
 
 
 const FormRegister = () => {
@@ -42,7 +43,7 @@ const FormRegister = () => {
     .catch(() => {
       swal({
         title: "Usario",
-        text: "Usuario creado de manera correcta",
+        text: "El usuario no pudo ser dado de alta",
         icon: "error",
         button: "Aceptar"
       });

@@ -7,6 +7,6 @@ const getProductos = async(state) => {
 }
 
 export {
-      getProductos
+      getProductos,
 }
 

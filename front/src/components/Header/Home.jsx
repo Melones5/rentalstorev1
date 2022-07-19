@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import SearchBar from '../SearchBar/SearchBar'
-import Slider from '../Header_Category/Slider'
-import HeaderCategory from '../Header_Category/HeaderCategory'
+import Slider from '../Products/Header_Category/Slider'
+import HeaderCategory from '../Products/Header_Category/HeaderCategory'
 import Product from '../Products/Product'
 import axios from 'axios';
 
