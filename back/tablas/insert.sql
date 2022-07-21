@@ -71,9 +71,9 @@ select * from producto
 --INSERTS NUEVOS 
 
 --categorias
-insert into categoria (categoria) values ('ARTICULOS DE PLAYA');
-insert into categoria (categoria) values ('ARTICULOS DE CAMPING');
-insert into categoria (categoria) values ('ARTICULOS DEPORTIVOS');
+insert into categoria (categoria) values ('PLAYA');
+insert into categoria (categoria) values ('CAMPING');
+insert into categoria (categoria) values ('DEPORTIVOS');
 insert into categoria (categoria) values ('HERRAMIENTAS');
 
 --articulos de playa-
@@ -83,23 +83,21 @@ insert into producto (nombre_producto, precio, descripcion_producto, cantidad, e
 insert into producto (nombre_producto, precio, descripcion_producto, cantidad, estado, urlfoto,categoria) values ('Sombrilla Playa Playera', 150 , 'Sombrilla playera de excelente calidad, IDEAL para tus vacaciones.', 12,'perfecto estado', 'https://http2.mlstatic.com/D_NQ_NP_691068-MLA48754634335_012022-O.jpg', 1);
 
 --articulos de camping-
-insert into producto (nombre_producto, precio, descripcion_producto, cantidad, estado,urlfoto,categoria) values ('Carpa Camping Ottawa', 150 , 'Modelo: CNG 417 Ottawa IV, IDEAL para tus vacaciones.', 12,'perfecto estado', 'https://http2.mlstatic.com/D_NQ_NP_608040-MLA48923827009_012022-O.jpg',2);
-insert into producto (nombre_producto, precio, descripcion_producto, cantidad, estado,urlfoto,categoria) values ('Carpa Camping Ottawa', 150 , 'Modelo: CNG 417 Ottawa IV, IDEAL para tus vacaciones.', 12,'perfecto estado', 'https://http2.mlstatic.com/D_NQ_NP_608040-MLA48923827009_012022-O.jpg',2);
-insert into producto (nombre_producto, precio, descripcion_producto, cantidad, estado,urlfoto,categoria) values ('Carpa Camping Ottawa', 150 , 'Modelo: CNG 417 Ottawa IV, IDEAL para tus vacaciones.', 12,'perfecto estado', 'https://http2.mlstatic.com/D_NQ_NP_608040-MLA48923827009_012022-O.jpg',2);
-insert into producto (nombre_producto, precio, descripcion_producto, cantidad, estado,urlfoto,categoria) values ('Carpa Camping Ottawa', 150 , 'Modelo: CNG 417 Ottawa IV, IDEAL para tus vacaciones.', 12,'perfecto estado', 'https://http2.mlstatic.com/D_NQ_NP_608040-MLA48923827009_012022-O.jpg',2);
+insert into producto (nombre_producto, precio, descripcion_producto, cantidad, estado,urlfoto,categoria) values ('Carpa Camping Ottawa', 160 , 'Modelo: CNG 417 Ottawa IV, IDEAL para tus vacaciones.', 12,'perfecto estado', 'https://http2.mlstatic.com/D_NQ_NP_608040-MLA48923827009_012022-O.jpg',2);
+insert into producto (nombre_producto, precio, descripcion_producto, cantidad, estado,urlfoto,categoria) values ('Carpa Camping Ottawa', 160 , 'Modelo: CNG 417 Ottawa IV, IDEAL para tus vacaciones.', 12,'perfecto estado', 'https://http2.mlstatic.com/D_NQ_NP_608040-MLA48923827009_012022-O.jpg',2);
+insert into producto (nombre_producto, precio, descripcion_producto, cantidad, estado,urlfoto,categoria) values ('Carpa Camping Ottawa', 160 , 'Modelo: CNG 417 Ottawa IV, IDEAL para tus vacaciones.', 12,'perfecto estado', 'https://http2.mlstatic.com/D_NQ_NP_608040-MLA48923827009_012022-O.jpg',2);
+insert into producto (nombre_producto, precio, descripcion_producto, cantidad, estado,urlfoto,categoria) values ('Carpa Camping Ottawa', 160 , 'Modelo: CNG 417 Ottawa IV, IDEAL para tus vacaciones.', 12,'perfecto estado', 'https://http2.mlstatic.com/D_NQ_NP_608040-MLA48923827009_012022-O.jpg',2);
 
 
 --articulos deportivos-
-insert into producto (nombre_producto, precio, descripcion_producto, cantidad, estado,urlfoto,categoria) values ('Paleta de pádel', 150 , 'Esta paleta de pádel compuesta por soft eva te permitirá conseguir una mayor estabilidad, duplicando la capacidad de respuesta en todo tipo de golpes.', 12,'perfecto estado', 'https://http2.mlstatic.com/D_NQ_NP_812253-MLA48995446364_022022-O.jpg',3);
-insert into producto (nombre_producto, precio, descripcion_producto, cantidad, estado,urlfoto,categoria) values ('Paleta de pádel', 150 , 'Esta paleta de pádel compuesta por soft eva te permitirá conseguir una mayor estabilidad, duplicando la capacidad de respuesta en todo tipo de golpes.', 12,'perfecto estado', 'https://http2.mlstatic.com/D_NQ_NP_812253-MLA48995446364_022022-O.jpg',3);
-insert into producto (nombre_producto, precio, descripcion_producto, cantidad, estado,urlfoto,categoria) values ('Paleta de pádel', 150 , 'Esta paleta de pádel compuesta por soft eva te permitirá conseguir una mayor estabilidad, duplicando la capacidad de respuesta en todo tipo de golpes.', 12,'perfecto estado', 'https://http2.mlstatic.com/D_NQ_NP_812253-MLA48995446364_022022-O.jpg',3);
-insert into producto (nombre_producto, precio, descripcion_producto, cantidad, estado,urlfoto,categoria) values ('Paleta de pádel', 150 , 'Esta paleta de pádel compuesta por soft eva te permitirá conseguir una mayor estabilidad, duplicando la capacidad de respuesta en todo tipo de golpes.', 12,'perfecto estado', 'https://http2.mlstatic.com/D_NQ_NP_812253-MLA48995446364_022022-O.jpg',3);
+insert into producto (nombre_producto, precio, descripcion_producto, cantidad, estado,urlfoto,categoria) values ('Paleta de pádel', 160 , 'Esta paleta de pádel compuesta por soft eva te permitirá conseguir una mayor estabilidad, duplicando la capacidad de respuesta en todo tipo de golpes.', 12,'perfecto estado', 'https://http2.mlstatic.com/D_NQ_NP_812253-MLA48995446364_022022-O.jpg',3);
+insert into producto (nombre_producto, precio, descripcion_producto, cantidad, estado,urlfoto,categoria) values ('Paleta de pádel', 170 , 'Esta paleta de pádel compuesta por soft eva te permitirá conseguir una mayor estabilidad, duplicando la capacidad de respuesta en todo tipo de golpes.', 12,'perfecto estado', 'https://http2.mlstatic.com/D_NQ_NP_812253-MLA48995446364_022022-O.jpg',3);
+insert into producto (nombre_producto, precio, descripcion_producto, cantidad, estado,urlfoto,categoria) values ('Paleta de pádel', 170 , 'Esta paleta de pádel compuesta por soft eva te permitirá conseguir una mayor estabilidad, duplicando la capacidad de respuesta en todo tipo de golpes.', 12,'perfecto estado', 'https://http2.mlstatic.com/D_NQ_NP_812253-MLA48995446364_022022-O.jpg',3);
+insert into producto (nombre_producto, precio, descripcion_producto, cantidad, estado,urlfoto,categoria) values ('Paleta de pádel', 170 , 'Esta paleta de pádel compuesta por soft eva te permitirá conseguir una mayor estabilidad, duplicando la capacidad de respuesta en todo tipo de golpes.', 12,'perfecto estado', 'https://http2.mlstatic.com/D_NQ_NP_812253-MLA48995446364_022022-O.jpg',3);
 
 --herramientas--
-insert into producto (nombre_producto, precio, descripcion_producto, cantidad, estado, urlfoto, categoria) values ('Taladro percutor inalámbrico', 150 , 'Con el taladro eléctrico Lüsqtoff ATL18-8B podrás realizar múltiples tareas en diversas superficies de un modo práctico y sencillo.', 12,'perfecto estado', 'https://http2.mlstatic.com/D_NQ_NP_923962-MLA44666427411_012021-O.jpg',4);
-insert into producto (nombre_producto, precio, descripcion_producto, cantidad, estado, urlfoto, categoria) values ('Taladro percutor inalámbrico', 150 , 'Con el taladro eléctrico Lüsqtoff ATL18-8B podrás realizar múltiples tareas en diversas superficies de un modo práctico y sencillo.', 12,'perfecto estado', 'https://http2.mlstatic.com/D_NQ_NP_923962-MLA44666427411_012021-O.jpg',4);
-insert into producto (nombre_producto, precio, descripcion_producto, cantidad, estado, urlfoto, categoria) values ('Taladro percutor inalámbrico', 150 , 'Con el taladro eléctrico Lüsqtoff ATL18-8B podrás realizar múltiples tareas en diversas superficies de un modo práctico y sencillo.', 12,'perfecto estado', 'https://http2.mlstatic.com/D_NQ_NP_923962-MLA44666427411_012021-O.jpg',4);
-insert into producto (nombre_producto, precio, descripcion_producto, cantidad, estado, urlfoto, categoria) values ('Taladro percutor inalámbrico', 150 , 'Con el taladro eléctrico Lüsqtoff ATL18-8B podrás realizar múltiples tareas en diversas superficies de un modo práctico y sencillo.', 12,'perfecto estado', 'https://http2.mlstatic.com/D_NQ_NP_923962-MLA44666427411_012021-O.jpg',4);
-
-
+insert into producto (nombre_producto, precio, descripcion_producto, cantidad, estado, urlfoto, categoria) values ('Taladro percutor inalámbrico', 160 , 'Con el taladro eléctrico Lüsqtoff ATL18-8B podrás realizar múltiples tareas en diversas superficies de un modo práctico y sencillo.', 12,'perfecto estado', 'https://http2.mlstatic.com/D_NQ_NP_923962-MLA44666427411_012021-O.jpg',4);
+insert into producto (nombre_producto, precio, descripcion_producto, cantidad, estado, urlfoto, categoria) values ('Taladro percutor inalámbrico', 180 , 'Con el taladro eléctrico Lüsqtoff ATL18-8B podrás realizar múltiples tareas en diversas superficies de un modo práctico y sencillo.', 12,'perfecto estado', 'https://http2.mlstatic.com/D_NQ_NP_923962-MLA44666427411_012021-O.jpg',4);
+insert into producto (nombre_producto, precio, descripcion_producto, cantidad, estado, urlfoto, categoria) values ('Taladro percutor inalámbrico', 180 , 'Con el taladro eléctrico Lüsqtoff ATL18-8B podrás realizar múltiples tareas en diversas superficies de un modo práctico y sencillo.', 12,'perfecto estado', 'https://http2.mlstatic.com/D_NQ_NP_923962-MLA44666427411_012021-O.jpg',4);
+insert into producto (nombre_producto, precio, descripcion_producto, cantidad, estado, urlfoto, categoria) values ('Taladro percutor inalámbrico', 180 , 'Con el taladro eléctrico Lüsqtoff ATL18-8B podrás realizar múltiples tareas en diversas superficies de un modo práctico y sencillo.', 12,'perfecto estado', 'https://http2.mlstatic.com/D_NQ_NP_923962-MLA44666427411_012021-O.jpg',4);
 

@@ -8,17 +8,9 @@ import { getProductos } from '../../funciones/funciones';
 const Product = () => {
 
   const [productos, setProductos] = useState([]);
-  const [nombre_producto, setbusquedaNombre] = useState("")
-  // const [categorias, setCategorias] = useState([]);
+  //const [nombre_producto, setbusquedaNombre] = useState("")
+  //const [categorias, setCategorias] = useState([]);
 
-  const datos = e => {
-    e.preventDefault()
-    axios.get(`http://localhost:5000/producto/${nombre_producto}`)
-  }
-
-  const cambiarState = e =>{
-    setbusquedaNombre(e.target.value)
-  }
 
   useEffect(() => {
     // TODO: TRAIGO LAS FUNCIONES ESPECÍFICAS DESDE EL ARCHIVO FUNCIONES
@@ -40,6 +32,7 @@ const Product = () => {
     setProductos(productos.filter(producto => producto.id_producto !== id_producto))
   }
 
+  
   /*function serachCategory(categoria) {
     setCategorias(productos.filter(producto => producto.categoria === categoria))
   }*/

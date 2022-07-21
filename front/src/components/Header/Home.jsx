@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import SearchBar from '../SearchBar/SearchBar'
-import Slider from '../Products/Header_Category/Slider'
-import HeaderCategory from '../Products/Header_Category/HeaderCategory'
+import SearchBar from '../Products/SearchBar/SearchBar'
+//import Slider from '../Products/Header_Category/Slider'
+//import HeaderCategory from '../Products/Header_Category/HeaderCategory'
 import Product from '../Products/Product'
-import axios from 'axios';
+//import axios from 'axios';
 
 
 
 const Home = () => {
-  const [clientes, setClientes ] = useState([]);
-  const [productos, setProductos] = useState([]);
+ // const [clientes, setClientes ] = useState([]);
+ // const [productos, setProductos] = useState([]);
   
   /*useEffect(() => {
     axios.get("http://localhost:5000/cliente")

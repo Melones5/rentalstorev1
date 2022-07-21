@@ -1,4 +1,4 @@
-create table cliente(
+﻿create table cliente(
 	id_cliente SERIAL not null,
 	nombre varchar(30) not null,
 	apellido varchar(30) not null,
@@ -20,15 +20,15 @@ create table producto(
 	cantidad integer not null,
 	estado varchar(15) not null,
 	urlfoto varchar(2083),
-	categoria VARCHAR(30) NOT NULL,
+	categoria serial not null,
 	constraint pk_id_producto primary key (id_producto),
-	constraint fk_id_categoria foreing key (categoria) references categoria(id_categoria)
+	constraint fk_id_categoria foreign key (categoria) references categoria(id_categoria)
 );
 
 create table categoria(
-	id_categoria integer not null,
+	id_categoria serial not null,
 	categoria varchar(30) not null,
-	constraint nombre_categoria check (categoria in 	('ARTICULOS DE PLAYA','ARTICULOS DE CAMPING','ARTICULOS 	DEPORTIVOS','HERRAMIENTAS'))
+	constraint nombre_categoria check (categoria in('PLAYA','CAMPING','DEPORTIVOS','HERRAMIENTAS')),
 	constraint pk_id_categoria primary key (id_categoria)
 );
 

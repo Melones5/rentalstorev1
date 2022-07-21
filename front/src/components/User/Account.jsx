@@ -1,4 +1,5 @@
 import React from 'react'
+import Dropdown from 'react-bootstrap/Dropdown';
 
 // TODO: en este archivo se debería renderizar todas las vistas de la cuenta de usuario
 // TODO: como lo son, ver-productos-alquilados, ver-productos-en-alquiler, perfil (moficiar, alta producto talvez)

@@ -6,11 +6,10 @@
 .search input {
   background-color: white;
   border: 0;
-  border-radius: 50px;
   font-size: 18px;
   padding: 15px;
   height: 30px;
-  width: 70%;
+  width: 100%;
 }
 
 .searchIcon {
@@ -19,4 +18,8 @@
   background-color: white;
   display: grid;
   place-items: center;
+}
+
+.container-search{
+  height: 55px;
 }
