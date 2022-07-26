@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm } from "react-hook-form";
 import { Button } from 'react-bootstrap';
 import { FaFacebookF, FaGoogle } from 'react-icons/fa';
+
+import { getClientes } from '../../funciones/funciones';
+
 
 import './Form.css';
 
@@ -9,6 +12,22 @@ import './Form.css';
 
 const FormLogin = () => {
 
+  const [clientes, setClientes] = useState([])
+
+  useEffect(() =>{
+    console.log(getClientes(setClientes))
+  }, [])
+
+  function compareCliente(email, password){
+    if(clientes.email === email && clientes.password === password){
+      console.log(clientes)
+    }else{
+      console.log("pingo")
+    }
+  }
+
+
+  
   const { register, handleSubmit, watch, formState: { errors } } = useForm(
     {
       defaultValues: {
@@ -19,8 +38,10 @@ const FormLogin = () => {
 
   const onSubmit = (data, e) => {
     console.log(data);
-    e.target.reset();
+    // e.target.reset();
   }
+
+
 
   return (
     <div>

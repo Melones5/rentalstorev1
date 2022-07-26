@@ -9,8 +9,11 @@ const Product = () => {
 
   const [productos, setProductos] = useState([]);
   //const [nombre_producto, setbusquedaNombre] = useState("")
-  //const [categorias, setCategorias] = useState([]);
+  //const [categoria, setCategoria] = useState([]);
 
+  // const getProductsInCategory = () =>{
+  //   return productos.filter((product) => product.categoria === categoria);
+  // }
 
   useEffect(() => {
     // TODO: TRAIGO LAS FUNCIONES ESPECÍFICAS DESDE EL ARCHIVO FUNCIONES
@@ -60,6 +63,8 @@ const Product = () => {
     }
   })
   console.log(categoriaResult)*/
+
+
 
   return (
     <Fragment>
