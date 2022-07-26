@@ -24,7 +24,7 @@ const FormRegister = () => {
         telefono: '',
         email: '',
         password: '',
-        rol: '',
+        rol: 'ARRENDADOR',
       }
     });
 
@@ -133,7 +133,7 @@ const FormRegister = () => {
           {errors.password?.type === 'required' && <p className='text-danger text-small d-block mb-2'>El campo contraseña es requerido</p>}
           {errors.password?.type === 'minLength' && <p className='text-danger text-small d-block mb-2'>La contraseña debe tener al menos 4 letras</p>}
         </div>
-        <div className='mb-4'>
+        {/* <div className='mb-4'> 
           <label className='label-contact'>Rol:*</label>
           <select aria-label="Default select example my-2" {...register('rol', {required: true})}>
             <option value="ARRENDADOR">ARRENDADOR</option>
@@ -144,9 +144,9 @@ const FormRegister = () => {
             minLength: {
               value: 7,
             }
-          })} />*/}
+          })} />
           {errors.rol?.type === 'required' && <p className='text-danger text-small d-block mb-2'>El campo rol es requerido</p>}
-        </div>
+        </div>*/}
         <div className='mb-4'>
           <button className='btn register-button my-2'>Registrarme</button>
         </div>
