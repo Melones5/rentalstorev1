@@ -3,7 +3,7 @@
   width: 100%;
   background: #6d435aff;
   padding: 25px 10px;
-  border-radius: 40px;
+  border-radius: 20px;
   box-shadow: 0 0 11px 5px rgba(49, 48, 49, 0.268);
 }
 
@@ -25,7 +25,7 @@
   width: 100%;
   background: #6d435aff;
   padding: 25px 10px;
-  border-radius: 40px;
+  border-radius: 20px;
   box-shadow: 0 0 11px 5px rgba(49, 48, 49, 0.268);
 }
 
@@ -45,17 +45,17 @@
 
 .form-h1 {
   font-family: 'Poppins', sans-serif;
-  font-size: 25px;
+  font-size: 35px;
   text-align: center;
   font-weight: 600;
-  color: #352d39ff;
+  color: rgb(255, 255, 255);
 }
 
 .form-h5 {
   font-family: 'Poppins', sans-serif;
   font-size: 18px;
   font-weight: 400;
-  color: #b1ede8ff;
+  color: rgb(229, 255, 0);
 }
 
 
