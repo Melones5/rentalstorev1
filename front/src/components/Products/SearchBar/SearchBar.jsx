@@ -42,14 +42,7 @@ const SearchBar = () => {
                 </div>
               </div>
             </Col>
-
-
-            {/* Buscador de productos */}
-            <Col className='pt-2' md="auto">
-              <input type='text' className='form-control mx-auto' />
-              <div className="serchIcon">
-              </div>
-            </Col>
+            
           </Row>
 
         </Container>

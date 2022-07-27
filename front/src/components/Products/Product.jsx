@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState} from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { Row, Col, Container } from 'react-bootstrap'
 import ProductCard from './ProductCard'
 import axios from 'axios';
@@ -8,6 +8,7 @@ import { getProductos } from '../../funciones/funciones';
 const Product = () => {
 
   const [productos, setProductos] = useState([]);
+  const [query, setQuery] = useState("")
   //const [nombre_producto, setbusquedaNombre] = useState("")
   //const [categoria, setCategoria] = useState([]);
 
@@ -17,7 +18,19 @@ const Product = () => {
 
   useEffect(() => {
     // TODO: TRAIGO LAS FUNCIONES ESPECÍFICAS DESDE EL ARCHIVO FUNCIONES
-    getProductos(setProductos)
+    //getProductos(setProductos)
+
+    const fetchData = async () => {
+      try {
+        const { data } = await axios.get(`http://localhost:5000/producto/?nombre_producto=${query}`)
+        setProductos(data)
+        console.log(data)
+      } catch (error) {
+        console.error(error)
+      }
+    }
+
+    fetchData()
     /* 
     axios.get("http://localhost:5000/producto")
       .then((response) => {
@@ -27,7 +40,7 @@ const Product = () => {
       .catch(() => {
         console.log("no anda")
       })*/
-  }, []);
+  }, [query]);
 
   //filtro por producto, donde el id del producto es diferente a los que se pasan por parámetros
   function deleteProduct(id_producto) {
@@ -35,7 +48,7 @@ const Product = () => {
     setProductos(productos.filter(producto => producto.id_producto !== id_producto))
   }
 
-  
+
   /*function serachCategory(categoria) {
     setCategorias(productos.filter(producto => producto.categoria === categoria))
   }*/
@@ -64,11 +77,16 @@ const Product = () => {
   })
   console.log(categoriaResult)*/
 
-
-
   return (
     <Fragment>
       <Container className='container-product py-5'>
+        <input
+          type='text'
+          className='form-control mx-auto'
+          placeholder='Buscá un producto...'
+          onChange={e => setQuery(e.target.value)}
+          value={query}
+        />
         <Row xs={1} md={2} lg={4} className="g-3">
           {productos.map((producto, key) => {
             return (

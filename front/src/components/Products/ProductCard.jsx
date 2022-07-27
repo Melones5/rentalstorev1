@@ -6,10 +6,11 @@ import CartContext from '../../CartContext'
 
 
 const ProductCard = ({urlfoto,nombre,descripcion,categoria,precio,id, deleteProduct}) => {
-  const {addToCart} = useContext(CartContext);
+  //const {addToCart} = useContext(CartContext);
+  //onClick={() => addToCart(nombre,precio,urlfoto,categoria,id,descripcion)}
 
   return (
-    <Card className='product-card h-100' onClick={() => addToCart(nombre,precio,urlfoto,categoria,id,descripcion)}>
+    <Card className='product-card h-100'>
       <Card.Img variant="top" src={urlfoto} width="300" height="300" className='product-img'/>
       <Card.Body className="text-center">
         <Card.Title className='product-title'>{nombre}</Card.Title>
