@@ -2,80 +2,31 @@ import React, { Fragment, useEffect, useState } from 'react'
 import { Row, Col, Container } from 'react-bootstrap'
 import ProductCard from './ProductCard'
 import axios from 'axios';
-import { getProductos } from '../../funciones/funciones';
+import { getProductos } from '../../services/funciones';
+
 
 
 const Product = () => {
-
   const [productos, setProductos] = useState([]);
-  const [query, setQuery] = useState("")
-  //const [nombre_producto, setbusquedaNombre] = useState("")
-  //const [categoria, setCategoria] = useState([]);
 
-  // const getProductsInCategory = () =>{
-  //   return productos.filter((product) => product.categoria === categoria);
-  // }
 
   useEffect(() => {
-    // TODO: TRAIGO LAS FUNCIONES ESPECÍFICAS DESDE EL ARCHIVO FUNCIONES
-    //getProductos(setProductos)
-
-    const fetchData = async () => {
-      try {
-        const { data } = await axios.get(`http://localhost:5000/producto/?nombre_producto=${query}`)
-        setProductos(data)
-        console.log(data)
-      } catch (error) {
-        console.error(error)
+    // TODO: TRAIGO LAS FUNCIONES ESPECÍFICAS DESDE EL ARCHIVO SERVICES
+    async function cargarProductos(){
+      const response = await getProductos()
+      if (response.status === 200) {
+        setProductos(response.data)
+        console.log(response.data)
       }
     }
-
-    fetchData()
-    /* 
-    axios.get("http://localhost:5000/producto")
-      .then((response) => {
-        setProductos(response.data);
-        console.log(response.data);
-      })
-      .catch(() => {
-        console.log("no anda")
-      })*/
-  }, [query]);
+    cargarProductos()
+  }, []);
 
   //filtro por producto, donde el id del producto es diferente a los que se pasan por parámetros
   function deleteProduct(id_producto) {
     axios.delete(`http://localhost:5000/producto/${id_producto}`)
     setProductos(productos.filter(producto => producto.id_producto !== id_producto))
   }
-
-
-  /*function serachCategory(categoria) {
-    setCategorias(productos.filter(producto => producto.categoria === categoria))
-  }*/
-
-  /*const mappedResults = Object.keys(productos).map(key =>{
-    const value = productos[key]
-    console.log(key, 'y', value)
-  })
-
-  for (let i = 0; i <productos.length; i++){
-    if(productos[i].categoria === 1){
-      console.log(productos[i])
-    }
-  }
-
-  const categoriaResult = productos.filter(function (producto){
-    if(producto.categoria === 1){
-      return true
-    }
-    if(producto.categoria === 2){
-      return true
-    }
-    if(producto.categoria === 3){
-      return true
-    }
-  })
-  console.log(categoriaResult)*/
 
   return (
     <Fragment>
@@ -84,8 +35,8 @@ const Product = () => {
           type='text'
           className='form-control mx-auto'
           placeholder='Buscá un producto...'
-          onChange={e => setQuery(e.target.value)}
-          value={query}
+          onChange={""}
+          value={""}
         />
         <Row xs={1} md={2} lg={4} className="g-3">
           {productos.map((producto, key) => {

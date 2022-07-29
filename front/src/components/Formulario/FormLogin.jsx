@@ -3,8 +3,7 @@ import { useForm } from "react-hook-form";
 import { Button } from 'react-bootstrap';
 import { FaFacebookF, FaGoogle } from 'react-icons/fa';
 
-import { getClientes } from '../../funciones/funciones';
-
+import { getClientes } from '../../services/funciones';
 
 import './Form.css';
 
