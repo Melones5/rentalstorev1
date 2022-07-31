@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+
+//endpoint api
 const baseUrl = 'http://localhost:5000'
 
 export async function getProductos(){

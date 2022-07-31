@@ -4,6 +4,7 @@ const { getCliente,
       createCliente, 
       deleteCliente, 
       updateCliente,
+      authCliente,
       getProducto,
       getProductoById,
       updateProducto,
@@ -18,6 +19,7 @@ router.get('/cliente/:id_cliente', getClienteById)
 router.post('/cliente', createCliente)
 router.delete('/cliente/:id_cliente', deleteCliente)
 router.put('/cliente/:id_cliente', updateCliente)
+router.post('/login', authCliente)
 
 //producto 
 router.get('/producto', getProducto)

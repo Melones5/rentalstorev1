@@ -3,7 +3,10 @@ import { useForm } from "react-hook-form";
 import { Button } from 'react-bootstrap';
 import { FaFacebookF, FaGoogle } from 'react-icons/fa';
 
-import { getClientes } from '../../services/funciones';
+
+import axios from "axios";
+import { useNavigate } from 'react-router-dom';
+
 
 import './Form.css';
 
@@ -11,22 +14,23 @@ import './Form.css';
 
 const FormLogin = () => {
 
-  const [clientes, setClientes] = useState([])
+  let navigate = useNavigate();
 
-  useEffect(() =>{
-    console.log(getClientes(setClientes))
-  }, [])
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
-  function compareCliente(email, password){
-    if(clientes.email === email && clientes.password === password){
-      console.log(clientes)
-    }else{
-      console.log("pingo")
+  const handleChange = e => {
+    if (e.target.name === 'email') {
+      setEmail(e.target.value);
+    } else if (e.target.name === 'password') {
+      setPassword(e.target.value)
+    } else if (e.target.name === 'error') {
+      setError(e.target.value)
     }
-  }
+  };
 
 
-  
   const { register, handleSubmit, watch, formState: { errors } } = useForm(
     {
       defaultValues: {
@@ -35,9 +39,24 @@ const FormLogin = () => {
       }
     });
 
-  const onSubmit = (data, e) => {
-    console.log(data);
-    // e.target.reset();
+  const onSubmit = async (data, e) => {
+    e.preventDefault();
+    axios.post('http://localhost:5000/login', data)
+    .then(function (response) {
+      console.log('primer console',data);
+      console.log('SeGUNDO console',response);
+      //console.log(response);
+      localStorage.setItem('token', response.data);
+      navigate('/');
+      //this.props.history.push('/');
+      alert('Login Successful');
+
+    })
+      .catch(function (error) {
+        console.log(error);
+        handleChange({ target: { name: 'error', value: 'Credenciales inválidas' } });
+
+      });
   }
 
 
@@ -49,7 +68,7 @@ const FormLogin = () => {
       <form className='form-container-login' autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
         <div className='mb-4'>
           <label className='label-contact'>Dirección de E-mail:*</label>
-          <input className='form-control my-2' type="text" {...register('email', {
+          <input className='form-control my-2' type="text" name='email' onChange={handleChange} {...register('email', {
             required: true,
             pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/i
           })} />
@@ -58,7 +77,7 @@ const FormLogin = () => {
         </div>
         <div className='mb-4'>
           <label className='label-contact'>Contraseña:*</label>
-          <input className='form-control my-2' type="text" {...register('password', {
+          <input className='form-control my-2' type="text" name='password' onChange={handleChange} {...register('password', {
             required: true,
             minLength: {
               value: 4,
