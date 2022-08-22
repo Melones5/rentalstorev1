@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged  } from 'firebase/auth';
 import auth  from '../firebase-config';
-import { async } from '@firebase/util';
+
 
 
 const LoginSocial = () => {

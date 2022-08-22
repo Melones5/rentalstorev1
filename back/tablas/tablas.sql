@@ -1,10 +1,11 @@
 ﻿create table cliente(
 	id_cliente SERIAL not null,
+	uuid VARCHAR(100) not null unique,
 	nombre varchar(30) not null,
 	apellido varchar(30) not null,
 	direccion varchar(50),
-	telefono VARCHAR(30) NOT NULL,
-	email varchar(55) not null unique,
+	telefono VARCHAR(30) not null,
+	email varchar(55) not null,
 	password varchar (30) not null,
 	rol varchar (20) not null,
 	constraint nombre_rol check (rol in

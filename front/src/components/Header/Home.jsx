@@ -3,34 +3,9 @@ import SearchBar from '../Products/SearchBar/SearchBar'
 //import Slider from '../Products/Header_Category/Slider'
 //import HeaderCategory from '../Products/Header_Category/HeaderCategory'
 import Product from '../Products/Product'
-//import axios from 'axios';
-
 
 
 const Home = () => {
- // const [clientes, setClientes ] = useState([]);
- // const [productos, setProductos] = useState([]);
-  
-  /*useEffect(() => {
-    axios.get("http://localhost:5000/cliente")
-    .then((response) => {
-      setClientes(response.data);
-    })
-    .catch(()=>{
-      console.log("no anda")
-    })
-  }, [])
-
-  useEffect(() => {
-    axios.get("http://localhost:5000/producto")
-    .then((response) => {
-      setProductos(response.data);
-      console.log(response.data)
-    })
-    .catch(()=>{
-      console.log("no anda")
-    })
-  }, [])*/
 
   return (
     <div className='py-5'>

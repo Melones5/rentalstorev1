@@ -16,3 +16,7 @@
       background-color: #a571ff;
       color: #f0f0f0;
 }
+
+.userImg {
+      clip-path: circle();
+}

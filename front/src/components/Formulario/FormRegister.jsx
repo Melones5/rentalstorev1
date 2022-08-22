@@ -6,6 +6,9 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
 
+
+import { UserAuth } from '../../context/userContext'
+
 import { FaFacebookF, FaGoogle } from 'react-icons/fa';
 import './Form.css';
 
@@ -13,11 +16,25 @@ import './Form.css';
 
 const FormRegister = () => {
 
-  let history = useNavigate();
+  let navigate = useNavigate();
+  const { createUser } = UserAuth();
+
+  //para fire y postgresql
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+
+  //para postgresql
+  const [nombre, setNombre] = useState('');
+  const [apellido, setApellido] = useState('');
+  const [direccion, setDireccion] = useState('');
+  const [telefono, setTelefono] = useState('');
+  
 
   const { register, handleSubmit, formState: { errors } } = useForm(
     {
       defaultValues: {
+        uid: '',
         nombre: '',
         apellido: '',
         direccion: '',
@@ -28,6 +45,37 @@ const FormRegister = () => {
       }
     });
 
+  const onSubmit = async (data,e) =>{
+    e.preventDefault();
+    setError('');
+    console.log("Evento e", e)
+    console.log("data", data)
+    try {
+      const crear = await createUser(data.email, data.password);
+      console.log("esto retorna el crear", crear);
+      data.uid = crear.user.uid;
+      axios.post('http://localhost:5000/cliente', data)
+      swal({
+        title: "Usuario",
+        text: "Usuario registrado de manera correcta",
+        icon: "success",
+        button: "Aceptar",
+      });
+      navigate('/account')
+    } catch (error) {
+      swal({
+        title: "Usuario",
+        text: "Correo ya existente",
+        icon: "error",
+        button: "Aceptar"
+      });
+      setError(error.message)
+      console.log(error.message)
+    }
+
+  }
+
+  /* antes de probar el register por firebase
   const onSubmit = (data, e) => axios.post("http://localhost:5000/cliente", data)
     .then(() => {
       console.log("anda")
@@ -50,7 +98,7 @@ const FormRegister = () => {
       e.target.reset();
       console.log(data)
     })
-
+  */
 
   /**  const onSubmit = async (data, e) => {
     console.log("data", data);
@@ -75,7 +123,7 @@ const FormRegister = () => {
       <form className=" form-container-register" autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
         <div className='mb-4'>
           <label className='label-contact'>Nombre:*</label>
-          <input className='form-control my-2' type="text" {...register('nombre', {
+          <input className='form-control my-2' type="text" onChange={(e) => setNombre(e.target.value)} {...register('nombre', {
             required: true,
             maxLength: 10
           })} />
@@ -84,7 +132,7 @@ const FormRegister = () => {
         </div>
         <div className='mb-4'>
           <label className='label-contact'>Apellido:*</label>
-          <input className='form-control my-2' type="text" {...register('apellido', {
+          <input className='form-control my-2' type="text" onChange={(e) => setApellido(e.target.value)}{...register('apellido', {
             required: true,
             maxLength: 10
           })} />
@@ -93,7 +141,7 @@ const FormRegister = () => {
         </div>
         <div className='mb-4'>
           <label className='label-contact'>Dirección:*</label>
-          <input className='form-control my-2' type="text" {...register('direccion', {
+          <input className='form-control my-2' type="text" onChange={(e) => setDireccion(e.target.value)} {...register('direccion', {
             required: true,
             minLength: {
               value: 4,
@@ -104,7 +152,7 @@ const FormRegister = () => {
         </div>
         <div className='mb-4'>
           <label className='label-contact'>Teléfono:*</label>
-          <input className='form-control my-2' type="text" placeholder="(Código de área) Número" {...register('telefono', {
+          <input className='form-control my-2' type="text" placeholder="(Código de área) Número" onChange={(e) => setTelefono(e.target.value)} {...register('telefono', {
             required: true,
             minLength: {
               value: 10,
@@ -115,7 +163,7 @@ const FormRegister = () => {
         </div>
         <div className='mb-4'>
           <label className='label-contact'>Dirección de E-mail:*</label>
-          <input className='form-control my-2' type="text" {...register('email', {
+          <input className='form-control my-2' type="text" onChange={(e) => setEmail(e.target.value)} {...register('email', {
             required: true,
             pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
           })} />
@@ -124,14 +172,14 @@ const FormRegister = () => {
         </div>
         <div className='mb-4'>
           <label className='label-contact'>Contraseña:*</label>
-          <input className='form-control my-2' type="text" {...register('password', {
+          <input className='form-control my-2' type="text" onChange={(e) => setPassword(e.target.value)} {...register('password', {
             required: true,
             minLength: {
-              value: 4,
+              value: 6,
             }
           })} />
           {errors.password?.type === 'required' && <p className='text-danger text-small d-block mb-2'>El campo contraseña es requerido</p>}
-          {errors.password?.type === 'minLength' && <p className='text-danger text-small d-block mb-2'>La contraseña debe tener al menos 4 letras</p>}
+          {errors.password?.type === 'minLength' && <p className='text-danger text-small d-block mb-2'>La contraseña debe tener al menos 6 letras</p>}
         </div>
         {/* <div className='mb-4'> 
           <label className='label-contact'>Rol:*</label>

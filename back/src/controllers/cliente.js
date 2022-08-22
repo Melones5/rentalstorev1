@@ -11,6 +11,13 @@ const pool = new Pool({
   idleTimeoutMillis: 0
 })
 
+var admin = require("firebase-admin");
+var serviceAccount = require("../rentalstoreSDK.json");
+
+administrador = admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount)
+});
+
 //Clientes
 const getCliente = async (req, res) => {
   try {
@@ -23,41 +30,38 @@ const getCliente = async (req, res) => {
   }
 }
 
-const authCliente = async (req, res) => {
-  try {
-    const { email, password } = req.body;
-    if (email && password) {
-      console.log(email, password)
-      const response = await pool.query('SELECT * FROM cliente where email = $1 AND password = $2', [email, password]);    
-      console.log("respuesta", response)
-      res.status(200).json(response.rows)
-  }} catch (error) {
-    console.error(error.message)
-  }
-}
-
+/*
 const getClienteById = async (req, res) => {
   const id_cliente = req.params.id_cliente;
   const response = await pool.query('SELECT * FROM cliente WHERE id_cliente = $1', [id_cliente]);
   res.status(200).json(response.rows);
   console.log(response);
   // res.json(`CLIENTE ${id_cliente} consultado de manera satisfactoria`)
+}*/
+
+const getClienteByEmail = async (req, res) =>{
+  try {
+    const email = req.params.email;
+    const response = await pool.query('SELECT * FROM cliente WHERE email = $1', [email]);
+    res.status(200).json(response.rows[0]);
+    console.log(response)
+  } catch (error) {
+    console.error(error.message)
+  }
 }
 
+//crea el cliente en firebase y lo añade a postgresql 
 const createCliente = async (req, res) => {
   try {
-    const { nombre, apellido, direccion, telefono, email, password, rol } = req.body;
-    const response = await pool.query('INSERT INTO cliente (nombre, apellido, direccion, telefono, email, password, rol) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id_cliente', [
-      nombre, apellido, direccion, telefono, email, password, rol]);
+    const { uid, nombre, apellido, direccion, telefono, email, password, rol } = req.body;
+    const response = await pool.query('INSERT INTO cliente (uuid, nombre, apellido, direccion, telefono, email, password, rol) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING id_cliente', [
+      uid, nombre, apellido, direccion, telefono, email, password, rol]);
     res.status(200).json(response.rows);
-    console.log(response.row);
+    console.log(response.rows);
+    console.log("insertado en postgresql");
   } catch (error) {
-    console.error(error.message);
+    console.error(error.message)
   }
-  // pool.end();
-  // res.status(200).json(response.rows);
-  // console.log(response);
-  // res.json(`CLIENTE ${id_cliente} creado de manera satisfactoria`)   
 }
 
 const deleteCliente = async (req, res) => {
@@ -67,6 +71,7 @@ const deleteCliente = async (req, res) => {
   console.log(response);
   // res.json(`CLIENTE ${id_cliente} eliminado de manera satisfactoria`)
 }
+
 const updateCliente = async (req, res) => {
   const id_cliente = req.params.id_cliente;
   const { nombre, apellido, direccion, telefono, email, password, rol } = req.body;
@@ -138,11 +143,12 @@ const deleteProducto = async (req, res) => {
 
 module.exports = {
   getCliente,
-  getClienteById,
+  getClienteByEmail,
+  //getClienteById,
   createCliente,
   deleteCliente,
   updateCliente,
-  authCliente,
+
   getProducto,
   getProductoById,
   updateProducto,

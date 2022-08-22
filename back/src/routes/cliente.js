@@ -1,10 +1,10 @@
 const { Router } = require('express');
 const { getCliente,
-      getClienteById, 
+      getClienteByEmail,
+      //getClienteById, 
       createCliente, 
       deleteCliente, 
       updateCliente,
-      authCliente,
       getProducto,
       getProductoById,
       updateProducto,
@@ -15,11 +15,11 @@ const router = Router();
 
 //cliente
 router.get('/cliente', getCliente)
-router.get('/cliente/:id_cliente', getClienteById)
+router.get('/cliente/:email', getClienteByEmail)
+//router.get('/cliente/:id_cliente', getClienteById)
 router.post('/cliente', createCliente)
 router.delete('/cliente/:id_cliente', deleteCliente)
 router.put('/cliente/:id_cliente', updateCliente)
-router.post('/login', authCliente)
 
 //producto 
 router.get('/producto', getProducto)

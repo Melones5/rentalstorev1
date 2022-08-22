@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "rental-store-dbd1b",
+  "private_key_id": "5808e54e5a364c3d78b29bd85c41c86813a41932",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCnTLcdeZlBkCzE\n0EDGtGb7O9Jq9VF8LZV3VUB2uaMZCaaVIIimMCKo17EEIUA5xQ3q0qXEaSSWupQI\nJYEfq0+AGOzFVF5tWHYKOEhC7ryQwidpDi9oInjQXB63fnTsF/pZL0XhafdIqx0r\n8FeIkDBxZ43Wu3KlAWr7cBrQXkbk058hg51FNMM42Y8yu5sn037LFODajl+LR6ek\nJKvEQfEl42daj8+XQKBOsVHjW+FOexUJeutTsCtem3aLmS566JfLvwoj1vl4VRyb\nkNcn6IJ2SkZzeIlVWslraBPGRwlMlTPZNE8x7eoj1bgbokGLc72EBlTPHuv2ts5D\nzgQj3YZ7AgMBAAECggEAEbS0zJHJ/n5bvpirwlvlakFyi49bCGFqqC6FnAsZj9TN\npIrE65G8mVH6kg1S1spcJrYUhSz7ilhEwnf1qnxe9Zett1SuibQLChnay/qoSknC\nEgRGUCcV0jdtqM3hYftHq5itNKYaXb5+X+AX44QfHGFxSYCdKYl04ReEPvk7V4xC\nCkHFueJ42hFf4wNPMRQOeQd+VYiu3/z9t8NU1La0hi5m5farG/RMIYonz3AmNL70\nYW9ueYxaqclg0MrnzLez1ql66F3IBSBpjfaooqAb6YMRfuKREQ3QwtsIosdG3hh7\nQbRcty6RIcLyuS0xii9kzv9YJt+Td9IWTgjmmKi2AQKBgQDlQL4Qu8lXAsiEzNMV\nZb6Lkx6VVJ/TKPIqGRFnEPv/R5NDgIAqaLM5FlZcg4WytiO6aevkxcMrbDCGk7Tz\nYACod/g72lD0ri1PhBjIZQafwE5MMqs389eBwPRtR7lp4D3NmW7eFWucuUmSxyJG\nbFS9V4HX/mK4F7irQK5uj56ymwKBgQC60ZJ3u5u/A8nO4vw5ao/MpUmVvvSWGnC9\ncQ19GGuxnT7TrBaxMO+5rjtQjeaCRXmQWSS7OV+0bRnv42FnaOA8v6ZEn2wFRdur\nfZ/4kYts1oBxeHVUMzJPBdiBE19/7RqGDsU0czKRUQDoWhz3Ar2ZLwWNapTYW/uM\na2IlBfNJoQKBgBu3FwNI4I9vW7SKWp6EnWOcVp8xCt1pXtVuEGeIax6ylYAcoeH+\npGQraidnExvG30zjD0yqB+1Q+BDc/IxLt+imEFGUFCNwhzPMwX5AkGtxwUV+/qoW\nBaC/Jg2sFSNSo8YeXYPlzQu2bsma327qG9iEIsNtEpw06fNyL2RYYpQvAoGAZLpq\nxrQZHbzlKu+oHy0dq7HTIzJ6nhRThVFXfIOWTYYDQg4fjhpcpzkSMjTQfJ0JFpN6\nApjEyXup6HYpJqCdhyOueoGatJ0d/DEX9+ZBzsU5K/VPDb8s+P6l5bKUY11sV6vP\nGKCkO0X5v04XH/gSUm3QCJfW+XFfCC8+E8hJjQECgYBqFF8KWwG7izuOvUYWUAKE\nmr3agfTqzz4FlyzAs7ixN4RhI9aeCCGqCIyBe4osXeaoV+yRdqBjF7O8Kz1TXxO+\nRLBJV7GqFQlDmKM4iKTT4X9UZgWLZFkB3d+FHUr0CizK+fdFcV+y/1jesD8rCYWB\nF/SNPLerWQpP/kyVzEAzPg==\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-otuzb@rental-store-dbd1b.iam.gserviceaccount.com",
+  "client_id": "102010725831788197039",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-otuzb%40rental-store-dbd1b.iam.gserviceaccount.com"
+}

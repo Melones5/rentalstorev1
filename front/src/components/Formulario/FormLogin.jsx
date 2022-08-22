@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { useForm } from "react-hook-form";
 import { Button } from 'react-bootstrap';
 import { FaFacebookF, FaGoogle } from 'react-icons/fa';
+import swal from 'sweetalert';
 
+import { UserAuth } from '../../context/userContext'
 
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
@@ -13,22 +15,14 @@ import './Form.css';
 
 
 const FormLogin = () => {
-
-  let navigate = useNavigate();
+  
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
-  const handleChange = e => {
-    if (e.target.name === 'email') {
-      setEmail(e.target.value);
-    } else if (e.target.name === 'password') {
-      setPassword(e.target.value)
-    } else if (e.target.name === 'error') {
-      setError(e.target.value)
-    }
-  };
+  const { signIn } = UserAuth();
 
 
   const { register, handleSubmit, watch, formState: { errors } } = useForm(
@@ -41,7 +35,33 @@ const FormLogin = () => {
 
   const onSubmit = async (data, e) => {
     e.preventDefault();
-    axios.post('http://localhost:5000/login', data)
+    setError('')
+    console.log("Evento e", e)
+    console.log("data", data)
+    try {
+      await signIn(data.email, data.password)
+      //axios.post('http://localhost:5000/login', data)
+      swal({
+        title: "Usuario",
+        text: "Usuario logeado de manera correcta",
+        icon: "success",
+        button: "Aceptar",
+      });
+      navigate('/account')
+    } catch (error) {
+      swal({
+        title: "Usuario",
+        text: "Correo o contraseña incorrecto",
+        icon: "error",
+        button: "Aceptar"
+      });
+      setError(error.message)
+      console.log(error.message)
+    }
+
+    
+    //previo
+    /*axios.post('http://localhost:5000/login', data)
     .then(function (response) {
       console.log('primer console',data);
       console.log('SeGUNDO console',response);
@@ -55,10 +75,8 @@ const FormLogin = () => {
       .catch(function (error) {
         console.log(error);
         handleChange({ target: { name: 'error', value: 'Credenciales inválidas' } });
-
-      });
+      });*/
   }
-
 
 
   return (
@@ -68,7 +86,7 @@ const FormLogin = () => {
       <form className='form-container-login' autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
         <div className='mb-4'>
           <label className='label-contact'>Dirección de E-mail:*</label>
-          <input className='form-control my-2' type="text" name='email' onChange={handleChange} {...register('email', {
+          <input className='form-control my-2' type="text" onChange={(e) => setEmail(e.target.value)} {...register('email', {
             required: true,
             pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/i
           })} />
@@ -77,14 +95,14 @@ const FormLogin = () => {
         </div>
         <div className='mb-4'>
           <label className='label-contact'>Contraseña:*</label>
-          <input className='form-control my-2' type="text" name='password' onChange={handleChange} {...register('password', {
+          <input className='form-control my-2' type="password" onChange={(e) => setPassword(e.target.value)} {...register('password', {
             required: true,
             minLength: {
-              value: 4,
+              value: 6,
             }
           })} />
           {errors.password?.type === 'required' && <p className='text-danger text-small d-block mb-2'>El campo contraseña es requerido</p>}
-          {errors.password?.type === 'minLength' && <p className='text-danger text-small d-block mb-2'>La contraseña debe tener al menos 4 letras</p>}
+          {errors.password?.type === 'minLength' && <p className='text-danger text-small d-block mb-2'>La contraseña debe tener al menos 6 letras</p>}
         </div>
         <div className='mb-4'>
           <a className='text-white' href='#olvido'>¿Olvido su contraseña?</a>

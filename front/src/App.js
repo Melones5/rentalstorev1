@@ -1,20 +1,31 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+//importamos los diferentes componentes para las routes
 import Header from './components/Header/Header.jsx';
 import Home from './components/Header/Home';
 import Contact from './components/Header/Contact';
 import Login from './components/Header/Login';
 import LoginSocial from './components/LoginSocial.jsx';
 import Account from './components/User/Account.jsx';
+import ProductosEnAlquiler from './components/User/ProductosEnAlquiler';
 import Footer from './components/Footer/Footer.jsx';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import {CartProvider} from './CartContext';
 import Cart from './components/Products/Cart.jsx';
 import Error404 from './components/Error404.jsx';
 
 
+
+//Provider y protected route
+import {CartProvider} from './CartContext';
+import { AuthContextProvider } from './context/userContext';
+import ProtectecRoute from './components/ProtectecRoute.js';
+
+
+
 function App() {
   return (
+    <AuthContextProvider>
     <CartProvider>
     <BrowserRouter>
       <Header />
@@ -24,8 +35,17 @@ function App() {
             <Route path="/" exact element={ <Home /> } />
             <Route path="/contact" exact element={ <Contact /> } />
             <Route path="/login" exact element={ <Login />} />
-            <Route path="/loginsocial" exact element={ <LoginSocial />} />
-            <Route path="/account" exact element={ <Account />} />
+            {/* <Route path="/loginsocial" exact element={ <LoginSocial />} /> */}
+            
+            {/* Única ruta protegida */}
+            <Route path="/account" exact element={ 
+              <ProtectecRoute>
+                <Account />
+              </ProtectecRoute>} 
+            />
+
+            <Route path='/productos_alquiler' exact element={ <ProductosEnAlquiler /> }/>
+            
             <Route path="/cart" exact element ={ <Cart />} />
             <Route path="*" element={<Error404 />} /> 
           </Routes>
@@ -34,6 +54,7 @@ function App() {
       <Footer />
     </BrowserRouter>
     </CartProvider>
+    </AuthContextProvider>
   );
 }
 
