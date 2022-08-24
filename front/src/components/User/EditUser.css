@@ -1,22 +1,44 @@
-.edit-user{    
-  background: #6d435aff;
-  padding: 25px 10px;
-  border-radius: 10px;
-  box-shadow: 0 0 11px 5px rgba(49, 48, 49, 0.268);
+.edit-button {
+      color: #f0f0f0;
+      border: none;
+      background-color: #352d39ff;
+      font-family: 'Poppins', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      border-radius: 30px;
+      width: 50%;
 }
 
-.edit-button {
-      font-size: 13px;
-      color: white;
-      background-color: rgb(58, 145, 40);
-      font-weight: 400;      
+.edit-button:active {
+      background-color: #8341f4;
 }
-    
+
 .edit-button:hover {
       background-color: #a571ff;
       color: #f0f0f0;
 }
 
 .userImg {
+      width: 30%;
       clip-path: circle();
+}
+
+.close-button {
+      color: #f0f0f0;
+      border: none;
+      background-color: #352d39ff;
+      font-family: 'Poppins', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      border-radius: 30px;
+      width: 50%;
+}
+
+.close-button:active {
+      background-color: #8341f4;
+}
+
+.close-button:hover {
+      background-color: #a571ff;
+      color: #f0f0f0;
 }
