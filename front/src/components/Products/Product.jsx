@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import { Row, Col, Container } from 'react-bootstrap'
 import ProductCard from './ProductCard'
+import ProductDetail from './ProductDetail'
 import axios from 'axios';
 import { getProductos } from '../../services/funciones';
 

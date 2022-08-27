@@ -10,6 +10,7 @@ import Login from './components/Header/Login';
 import LoginSocial from './components/LoginSocial.jsx';
 import Account from './components/User/Account.jsx';
 import ProductosEnAlquiler from './components/User/ProductosEnAlquiler';
+import ProductDetail from './components/Products/ProductDetail.jsx';
 import Footer from './components/Footer/Footer.jsx';
 import Cart from './components/Products/Cart.jsx';
 import Error404 from './components/Error404.jsx';
@@ -35,6 +36,10 @@ function App() {
             <Route path="/" exact element={ <Home /> } />
             <Route path="/contact" exact element={ <Contact /> } />
             <Route path="/login" exact element={ <Login />} />
+            
+            {/* Acá agregué el detalle del producto a ver si anda */}
+            <Route path='/product-detail/:id_producto' exact element={ <ProductDetail />}/>
+            
             {/* <Route path="/loginsocial" exact element={ <LoginSocial />} /> */}
             
             {/* Única ruta protegida */}
