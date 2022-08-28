@@ -1,4 +1,4 @@
-﻿create table cliente(
+create table cliente(
 	id_cliente SERIAL not null,
 	uuid VARCHAR(100) not null unique,
 	nombre varchar(30) not null,
@@ -14,16 +14,18 @@
 );
 
 create table producto(
-	id_producto SERIAL not null,
-	nombre_producto varchar(30) not null,
-	precio float not null,
-	descripcion_producto varchar,
-	cantidad integer not null,
+	id_producto serial not null,
+	nombre_producto varchar(50) not null,
+	precio float not null check (precio>0),
+	descripcion_producto varchar(255) not null,
+	cantidad integer not null check (cantidad>=0),
 	estado varchar(15) not null,
 	urlfoto varchar(2083),
 	categoria serial not null,
+	cliente serial not null,
 	constraint pk_id_producto primary key (id_producto),
-	constraint fk_id_categoria foreign key (categoria) references categoria(id_categoria)
+	constraint fk_id_categoria foreign key (categoria) references categoria(id_categoria),
+	constraint fk_id_cliente foreign key (cliente) references cliente(id_cliente)
 );
 
 create table categoria(

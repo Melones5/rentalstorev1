@@ -110,6 +110,19 @@ const getProductoById = async (req, res) => {
   // res.json(`CLIENTE ${id_cliente} consultado de manera satisfactoria`)
 }
 
+const createProducto = async (req, res) => {
+  try {
+    const { nombre_producto, precio, descripcion_producto, cantidad, estado, urlfoto, categoria, cliente } = req.body;
+    const response = await pool.query('INSERT INTO producto (nombre_producto, precio, descripcion_producto, cantidad, estado, urlfoto, categoria, cliente) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING id_producto', [
+      nombre_producto, precio, descripcion_producto, cantidad, estado, urlfoto, categoria, cliente]);
+    res.status(200).json(response.rows);
+    console.log(response.rows);
+    console.log("insertado en postgresql");
+  } catch (error) {
+    console.error(error.message)
+  }
+}
+
 const updateProducto = async (req, res) => {
   const id_producto = req.params.id_producto;
   const { nombre_producto, precio, descripcion_producto, cantidad, estado, urlfoto, categoria } = req.body;
@@ -151,6 +164,7 @@ module.exports = {
 
   getProducto,
   getProductoById,
+  createProducto,
   updateProducto,
   deleteProducto,
 }

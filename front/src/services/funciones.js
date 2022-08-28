@@ -16,6 +16,15 @@ export async function getProductos() {
   }
 }
 
+export async function postProductos(){
+  try {
+    const response = await axios.post(`${baseUrl}/producto`)
+    return response
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 export async function getClienteByEmail(email) {
   try {
     const response = await axios.get(`${baseUrl}/cliente/${email}`)

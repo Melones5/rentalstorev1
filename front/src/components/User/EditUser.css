@@ -42,3 +42,10 @@
       background-color: #a571ff;
       color: #f0f0f0;
 }
+
+.modal-content {
+      background: #6d435aff;
+      padding: 25px 10px;
+      border-radius: 20px;
+      box-shadow: 0 0 11px 5px rgba(49, 48, 49, 0.268);
+}

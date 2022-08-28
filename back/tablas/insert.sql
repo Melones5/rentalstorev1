@@ -70,6 +70,8 @@ select * from producto
 
 --INSERTS NUEVOS 
 
+-- tener en cuenta ahora que se agregó la fk de cliente en los productos para tener quien publica que producto
+
 --categorias
 insert into categoria (categoria) values ('PLAYA');
 insert into categoria (categoria) values ('CAMPING');
@@ -83,7 +85,7 @@ insert into producto (nombre_producto, precio, descripcion_producto, cantidad, e
 insert into producto (nombre_producto, precio, descripcion_producto, cantidad, estado, urlfoto,categoria) values ('Sombrilla Playa Playera', 150 , 'Sombrilla playera de excelente calidad, IDEAL para tus vacaciones.', 12,'perfecto estado', 'https://http2.mlstatic.com/D_NQ_NP_691068-MLA48754634335_012022-O.jpg', 1);
 
 --articulos de camping-
-insert into producto (nombre_producto, precio, descripcion_producto, cantidad, estado,urlfoto,categoria) values ('Carpa Camping Ottawa', 160 , 'Modelo: CNG 417 Ottawa IV, IDEAL para tus vacaciones.', 12,'perfecto estado', 'https://http2.mlstatic.com/D_NQ_NP_608040-MLA48923827009_012022-O.jpg',2);
+insert into producto (nombre_producto, precio, descripcion_producto, cantidad, estado,urlfoto,categoria, cliente) values ('Carpa Camping Ottawa', 160 , 'Modelo: CNG 417 Ottawa IV, IDEAL para tus vacaciones.', 12,'perfecto estado', 'https://http2.mlstatic.com/D_NQ_NP_608040-MLA48923827009_012022-O.jpg',2,2);
 insert into producto (nombre_producto, precio, descripcion_producto, cantidad, estado,urlfoto,categoria) values ('Carpa Camping Ottawa', 160 , 'Modelo: CNG 417 Ottawa IV, IDEAL para tus vacaciones.', 12,'perfecto estado', 'https://http2.mlstatic.com/D_NQ_NP_608040-MLA48923827009_012022-O.jpg',2);
 insert into producto (nombre_producto, precio, descripcion_producto, cantidad, estado,urlfoto,categoria) values ('Carpa Camping Ottawa', 160 , 'Modelo: CNG 417 Ottawa IV, IDEAL para tus vacaciones.', 12,'perfecto estado', 'https://http2.mlstatic.com/D_NQ_NP_608040-MLA48923827009_012022-O.jpg',2);
 insert into producto (nombre_producto, precio, descripcion_producto, cantidad, estado,urlfoto,categoria) values ('Carpa Camping Ottawa', 160 , 'Modelo: CNG 417 Ottawa IV, IDEAL para tus vacaciones.', 12,'perfecto estado', 'https://http2.mlstatic.com/D_NQ_NP_608040-MLA48923827009_012022-O.jpg',2);

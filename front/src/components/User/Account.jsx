@@ -147,6 +147,8 @@ const Account = () => {
             <img src={userProfile} className="mg-flex  mx-auto d-block userImg img-thumbnail" alt="" />
             <h5 className='text-center form-h1'>Email:</h5>
             <p className='text-center'>{user && user.email}</p>
+            <h5 className='text-center form-h1'>Calificación:</h5>
+            <p className='text-center'><i class="fa-solid fa-star"></i></p>
             {/* <h5 className='text-center form-h1'>Nombre:</h5>
             <p className='text-center' >{clientes.nombre}</p> */}
             <button className='close-button mx-auto d-block' onClick={handleLogout}>Cerrar sesión</button>

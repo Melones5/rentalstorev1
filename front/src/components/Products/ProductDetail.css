@@ -32,6 +32,18 @@
       width: 100%;
 }
 
+.container-descripcion{
+      border: 1px solid #ffffff;
+      padding: 20px;
+      margin-bottom: 40px;
+}
+
+.container-detalles{
+      border: 1px solid #ffffff;
+      padding: 20px;
+      margin-bottom: 40px;
+      background-color: #FF4C4C;
+}
 .h {
       width: 10%;
       height: 7px;
