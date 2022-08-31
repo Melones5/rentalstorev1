@@ -34,6 +34,15 @@ export async function getClienteByEmail(email) {
   }
 }
 
+export async function getProductoCliente(cliente) {
+  try {
+    const response = await axios.get(`${baseUrl}/producto/productos_alquiler/${cliente}`)
+    return response
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 export async function updateCliente(){
   try {
     

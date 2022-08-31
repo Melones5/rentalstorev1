@@ -82,13 +82,37 @@ const Account = () => {
   // TODO: FUNCIÓN LOGOUT DE USER
   const handleLogout = async () => {
     try {
-      await logout();
-      navigate('/')
-      console.log('deslogeado correctamente')
+      Swal.fire({
+        title: 'Cierre de sesión',
+        text: "¿Estás seguro que querés cerrar tu sesión?",
+        icon: 'warning',
+        color: '#fff',
+        background: '#a571ff',
+        showCancelButton: true,
+        confirmButtonColor: '#8341f4',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Aceptar',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            title: 'Deslogeado',
+            text: "Deslogeado correctamente",
+            icon: 'success',
+            color: '#fff',
+            background: '#a571ff'
+          })
+          logout();
+          navigate('/')
+          console.log('Deslogeado correctamente')
+        }
+      })
     } catch (error) {
       console.log(error.message)
     }
   }
+
+
 
 
   // TODO: función para el submit del form

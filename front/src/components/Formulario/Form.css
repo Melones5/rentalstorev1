@@ -12,7 +12,9 @@
   color: white;
   background-color: #352d39ff;
   font-weight: 600;
-  border-radius: 30px;
+  text-align: center;
+  line-height: 16px;
+  border-radius: 6px;
 }
 
 .register-button:hover {
@@ -34,7 +36,9 @@
   color: white;
   background-color: #352d39ff;
   font-weight: 600;
-  border-radius: 30px;
+  text-align: center;
+  line-height: 16px;
+  border-radius: 6px;
   border: none;
 }
 

@@ -102,6 +102,18 @@ const getProducto = async (req, res) => {
   }
 }
 
+const getProductoCliente = async(req, res) =>{
+  try {
+    const cliente = req.params.cliente;
+    console.log(cliente)
+    const response = await pool.query('SELECT * FROM producto WHERE cliente = $1', [cliente]);
+    res.status(200).json(response.rows);
+    console.log(response);
+  } catch (error) {
+    console.error(error.message);
+  }
+}
+
 const getProductoById = async (req, res) => {
   const id_producto = req.params.id_producto;
   const response = await pool.query('SELECT * FROM producto WHERE id_producto = $1', [id_producto]);
@@ -163,6 +175,7 @@ module.exports = {
   updateCliente,
 
   getProducto,
+  getProductoCliente,
   getProductoById,
   createProducto,
   updateProducto,

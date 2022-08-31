@@ -5,10 +5,19 @@ import ProductDetail from './ProductDetail'
 import axios from 'axios';
 import { getProductos } from '../../services/funciones';
 
+// TODO: esto puede servir para controlar que el usuario este logeado para agregar al carrito
+import { UserAuth } from '../../context/userContext'
+import Swal from 'sweetalert2'
+import { useNavigate } from 'react-router-dom'
+
 
 
 const Product = () => {
   const [productos, setProductos] = useState([]);
+
+  // TODO: esto puede servir para controlar que el usuario este logeado para agregar al carrito
+  const { user } = UserAuth();
+  const navigate = useNavigate();
 
 
   useEffect(() => {
@@ -25,8 +34,51 @@ const Product = () => {
 
   //filtro por producto, donde el id del producto es diferente a los que se pasan por parámetros
   function deleteProduct(id_producto) {
-    axios.delete(`http://localhost:5000/producto/${id_producto}`)
-    setProductos(productos.filter(producto => producto.id_producto !== id_producto))
+    try {
+      if (user) {
+        axios.delete(`http://localhost:5000/producto/${id_producto}`)
+        setProductos(productos.filter(producto => producto.id_producto !== id_producto))
+        Swal.fire({
+          position: 'center',
+          width: '32em',
+          color: '#fff',
+          background: '#a571ff',
+          icon: 'success',
+          iconColor: '#fff',
+          title: 'Agregado al carrito  de manera correcta',
+          showConfirmButton: false,
+          timerProgressBar: true,
+          timer: 2500
+        })
+        navigate('/account')
+      }else{
+        Swal.fire({
+          position: 'center',
+          width: '32em',
+          color: '#fff',
+          background: '#f93333',
+          icon: 'error',
+          iconColor: '#fff',
+          title: 'Para agregar al carrito debe estar logeado / registrado en la página',
+          showConfirmButton: false,
+          timerProgressBar: true,
+          timer: 2500
+        })
+      }
+    } catch (error) {
+      Swal.fire({
+        position: 'center',
+        width: '32em',
+        color: '#fff',
+        background: '#f93333',
+        icon: 'error',
+        iconColor: '#fff',
+        title: 'Para agregar al carrito debe estar logeado / registrado en la página',
+        showConfirmButton: false,
+        timerProgressBar: true,
+        timer: 2500
+      })
+    }
   }
 
   return (

@@ -5,6 +5,7 @@ import { Button, Form } from 'react-bootstrap';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
+import Swal from 'sweetalert2'
 
 
 import { UserAuth } from '../../context/userContext'
@@ -55,20 +56,32 @@ const FormRegister = () => {
       console.log("esto retorna el crear", crear);
       data.uid = crear.user.uid;
       axios.post('http://localhost:5000/cliente', data)
-      swal({
-        title: "Usuario",
-        text: "Usuario registrado de manera correcta",
-        icon: "success",
-        button: "Aceptar",
-      });
+      Swal.fire({
+        position: 'center',
+        width: '32em',
+        color: '#fff',
+        background: '#a571ff',
+        icon: 'success',
+        iconColor: '#fff',
+        title: 'Usuario registrado de manera correcta',
+        showConfirmButton: false,
+        timerProgressBar: true,
+        timer: 2500
+      })
       navigate('/account')
     } catch (error) {
-      swal({
-        title: "Usuario",
-        text: "Correo ya existente",
-        icon: "error",
-        button: "Aceptar"
-      });
+      Swal.fire({
+        position: 'center',
+        width: '32em',
+        color: '#fff',
+        background: '#f93333',
+        icon: 'error',
+        iconColor: '#fff',
+        title: 'Error al agregar el usuario',
+        showConfirmButton: false,
+        timerProgressBar: true,
+        timer: 2500
+      })
       setError(error.message)
       console.log(error.message)
     }
@@ -172,7 +185,7 @@ const FormRegister = () => {
         </div>
         <div className='mb-4'>
           <label className='label-contact'>Contraseña:*</label>
-          <input className='form-control my-2' type="text" onChange={(e) => setPassword(e.target.value)} {...register('password', {
+          <input className='form-control my-2' type="password" onChange={(e) => setPassword(e.target.value)} {...register('password', {
             required: true,
             minLength: {
               value: 6,

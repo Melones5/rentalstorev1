@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import { Button } from 'react-bootstrap';
 import { FaFacebookF, FaGoogle } from 'react-icons/fa';
 import swal from 'sweetalert';
+import Swal from 'sweetalert2'
+
 
 import { UserAuth } from '../../context/userContext'
 
@@ -41,20 +43,33 @@ const FormLogin = () => {
     try {
       await signIn(data.email, data.password)
       //axios.post('http://localhost:5000/login', data)
-      swal({
-        title: "Usuario",
-        text: "Usuario logeado de manera correcta",
-        icon: "success",
-        button: "Aceptar",
-      });
+      Swal.fire({
+        position: 'center',
+        width: '32em',
+        color: '#fff',
+        background: '#a571ff',
+        icon: 'success',
+        iconColor: '#fff',
+        title: 'Usuario logeado de manera correcta',
+        confirmButtonText: "Aceptar",
+        showConfirmButton: true,
+        timerProgressBar: true,
+        timer: 2500
+      })
       navigate('/account')
     } catch (error) {
-      swal({
-        title: "Usuario",
-        text: "Correo o contraseña incorrecto",
-        icon: "error",
-        button: "Aceptar"
-      });
+      Swal.fire({
+        position: 'center',
+        width: '32em',
+        color: '#fff',
+        background: '#f93333',
+        icon: 'error',
+        iconColor: '#fff',
+        title: 'Correo o contraseña incorrecto',
+        showConfirmButton: false,
+        timerProgressBar: true,
+        timer: 2500
+      })
       setError(error.message)
       console.log(error.message)
     }

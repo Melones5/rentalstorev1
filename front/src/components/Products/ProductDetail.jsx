@@ -1,11 +1,17 @@
 import React, { Fragment, useState, useEffect } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import axios from 'axios';
 import './ProductDetail.css';
 
+import { UserAuth } from '../../context/userContext'
+
 const ProductDetail = () => {
   const { id_producto } = useParams();
+
+
+  const { user } = UserAuth();
 
   console.log(id_producto)
 
@@ -60,9 +66,62 @@ const ProductDetail = () => {
           })}
         </Row>
       </Container>
-      <Container>
-        <h3 className='detail-h3'>  <i class="fa-solid fa-comment-dots"></i> Comentarios sobre el producto</h3>
 
+
+      {/* // TODO: falta desarrollar este featuring, donde se agregan los comentarios de los clientes, y propietarios
+       Ver si está bien aplicado el ternario para controlar usuario 
+      */}
+      <Container>
+        <h3 className='detail-h3 mt-5 mb-5'>¿Tenés preguntas sobre el producto?</h3>
+        {
+          user ?
+            <>
+              <textarea name="" id="" cols="30" rows="10">
+
+              </textarea>
+              <div>
+                <button>Enviar pregunta</button>
+              </div>
+            </>
+            :
+            <>
+              <p className='p-text'>Iniciá sesión en tu cuenta para poder hacer una pregunta</p>
+              <Link to={"/login"}>
+                <button className='detail-login-button'> <i class="fa-solid fa-user"></i> Iniciar sesión</button>
+              </Link>
+            </>
+        }
+        <ul className='detail-ul'>
+          <h3 className='detail-h3 mt-5 mb-5'><i class="fa-solid fa-comment-dots"></i> Otros usuarios comentaron</h3>
+          <li className='li-comment'>
+            <Row className='row-comment'>
+              <Col xs={12} md={1} lg={2} className='center'>
+                <i class="fa-solid fa-user"></i>
+              </Col>
+              <Col xs={12} md={11} lg={10}>
+                <p className='p-text'>En que condiciones se encuentra el producto?</p>
+                <p className='p-li-date'>30/08/22</p>
+              </Col>
+            </Row>
+          </li>
+          <li className='li-comment'>
+            <Row className='row-comment-owner'>
+              <Col xs={12} md={1} lg={2} className='center'>
+                <i class="fa-solid fa-user"></i>
+              </Col>
+              <Col xs={12} md={11} lg={10}>
+                <p className='p-text'>Hola Pyrke,
+                  gracias por su consulta.
+                  Le comento que el producto está en excelentes condiciones
+                  para su uso normal, en cualquier superficie
+                  por el momento tenemos 1 en stock.
+                  Saludos cordiales.
+                </p>
+                <p className='p-li-date'>30/08/22</p>
+              </Col>
+            </Row>
+          </li>
+        </ul>
       </Container>
     </Fragment>
   )

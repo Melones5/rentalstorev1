@@ -20,7 +20,9 @@
   font-family: 'Poppins', sans-serif;
   font-size: 18px;
   font-weight: 600;
-  border-radius: 30px;
+  border-radius: 6px;
+  line-height: 16px;
+  text-align: center;
   width: 100%;
 }
 

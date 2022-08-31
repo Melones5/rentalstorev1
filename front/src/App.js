@@ -18,7 +18,7 @@ import Error404 from './components/Error404.jsx';
 
 
 //Provider y protected route
-import {CartProvider} from './CartContext';
+import { CartProvider } from './CartContext';
 import { AuthContextProvider } from './context/userContext';
 import ProtectecRoute from './components/ProtectecRoute.js';
 
@@ -27,38 +27,43 @@ import ProtectecRoute from './components/ProtectecRoute.js';
 function App() {
   return (
     <AuthContextProvider>
-    <CartProvider>
-    <BrowserRouter>
-      <Header />
-      <main className='py-3'>
-      <Container>
-          <Routes>
-            <Route path="/" exact element={ <Home /> } />
-            <Route path="/contact" exact element={ <Contact /> } />
-            <Route path="/login" exact element={ <Login />} />
-            
-            {/* Acá agregué el detalle del producto a ver si anda */}
-            <Route path='/product-detail/:id_producto' exact element={ <ProductDetail />}/>
-            
-            {/* <Route path="/loginsocial" exact element={ <LoginSocial />} /> */}
-            
-            {/* Única ruta protegida */}
-            <Route path="/account" exact element={ 
-              <ProtectecRoute>
-                <Account />
-              </ProtectecRoute>} 
-            />
+      <CartProvider>
+        <BrowserRouter>
+          <Header />
+          <main className='py-3'>
+            <Container>
+              <Routes>
+                <Route path="/" exact element={<Home />} />
+                <Route path="/contact" exact element={<Contact />} />
+                <Route path="/login" exact element={<Login />} />
 
-            <Route path='/productos_alquiler' exact element={ <ProductosEnAlquiler /> }/>
-            
-            <Route path="/cart" exact element ={ <Cart />} />
-            <Route path="*" element={<Error404 />} /> 
-          </Routes>
-      </Container>
-      </main>
-      <Footer />
-    </BrowserRouter>
-    </CartProvider>
+                {/* Acá agregué el detalle del producto a ver si anda */}
+                <Route path='/product-detail/:id_producto' exact element={<ProductDetail />} />
+
+                {/* <Route path="/loginsocial" exact element={ <LoginSocial />} /> */}
+
+                {/* rutas protegidas */}
+                <Route path="/account" exact element={
+                  <ProtectecRoute>
+                    <Account />
+                  </ProtectecRoute>}
+                />
+
+                <Route path='/productos_alquiler' exact element={
+                  <ProtectecRoute>
+                    <ProductosEnAlquiler />
+                  </ProtectecRoute>
+                }
+                />
+
+                <Route path="/cart" exact element={<Cart />} />
+                <Route path="*" element={<Error404 />} />
+              </Routes>
+            </Container>
+          </main>
+          <Footer />
+        </BrowserRouter>
+      </CartProvider>
     </AuthContextProvider>
   );
 }

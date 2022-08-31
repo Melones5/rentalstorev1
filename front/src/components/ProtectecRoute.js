@@ -9,7 +9,7 @@ function ProtectecRoute({ children }) {
   //si no hay usuario logeado en el context, se lo envía al homepage
 
   if (!user) {
-    return <Navigate to='/' />
+    return <Navigate to='/' replace/>
   }
 
   return children;

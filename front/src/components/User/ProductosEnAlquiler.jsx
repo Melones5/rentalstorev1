@@ -1,19 +1,120 @@
-import React, { useState } from 'react'
-import Table from 'react-bootstrap/Table';
+import React, { useState, useEffect } from 'react'
 import Button from 'react-bootstrap/Button';
+import Table from 'react-bootstrap/Table';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import { Container, Row, Col } from 'react-bootstrap';
 import './EditUser.css';
 
+// TODO: Imports necesarios para utilizar las tablas de material ui
+import MUIDataTable from 'mui-datatables'
+import Box from '@mui/material/Box';
+import { createTheme, ThemeProvider } from '@mui/material';
+import { dark } from '@mui/material/styles/createPalette';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+
 // TODO: imports de lo necesario para hacer post
 import axios from 'axios';
 import { useForm } from "react-hook-form";
 import { useNavigate } from 'react-router-dom';
-import swal from 'sweetalert';
 import Swal from 'sweetalert2'
 
+// TODO: imports para obtener el id del usuario logeado
+import { UserAuth } from '../../context/userContext'
+import { getClienteByEmail, getProductoCliente } from '../../services/funciones';
+
+
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark'
+  }
+})
+
 const ProductosEnAlquiler = () => {
+
+  const columns = [
+    {
+      name: "id_producto",
+      label: "ID"
+    },
+    {
+      name: "nombre_producto",
+      label: "Nombre"
+    },
+    {
+      name: "precio",
+      label: "Precio"
+    },
+    {
+      name: "descripcion_producto",
+      label: "Descripción"
+    },
+    {
+      name: "cantidad",
+      label: "Cantidad"
+    },
+    {
+      name: "estado",
+      label: "Estado"
+    },
+    {
+      name: "urlfoto",
+      label: "Imagen",
+      options: {
+        customBodyRender: (data, dataIndex, rowIndex) => {
+          console.log(data)
+          return (
+            <div>
+              <Box
+                component="img"
+                sx={{ height: 50, width: 50, }}
+                alt="Imagen producto"
+                src={data}
+              />
+            </div>
+          )
+        }
+      }
+    },
+    {
+      name: "categoria",
+      label: "Categoría"
+    },
+    {
+      name: "Acciones",
+      options: {
+        customBodyRender: (data, dataIndex, rowIndex) => {
+          return (
+            <Container>
+              <Row>
+                <Col>
+                  <button onClick={() => console.log(dataIndex)}>
+                    <EditIcon />
+                  </button>
+                </Col>
+                <Col>
+                  <button onClick={() => console.log(dataIndex)}>
+                    <DeleteIcon />
+                  </button>
+                </Col>
+              </Row>
+            </Container>
+          )
+        }
+      }
+    }
+  ]
+  const options = {
+    responsive: "standard",
+    rowsPerPage: 5,
+    rowsPerPageOptions: [2, 3, 5],
+  }
+
+  // TODO: Usuario logeado y seteo del mismo en el estado clientes
+  // Importante entender que si o si un usuario debe estar logeado para agregar productos y obtener el id
+  const { user, logout } = UserAuth();
+  const [clientes, setClientes] = useState('');
 
   let navigate = useNavigate();
 
@@ -28,6 +129,7 @@ const ProductosEnAlquiler = () => {
 
   const [error, setError] = useState('');
 
+
   //para postgresql
   const [nombreProducto, setNombreProducto] = useState('');
   const [precioProducto, setPrecioProducto] = useState('');
@@ -38,6 +140,10 @@ const ProductosEnAlquiler = () => {
   const [categoriaProducto, setCategoriaProducto] = useState('');
   //: TODO: puede ir acá como no, se verá después
   const [clienteProducto, setClienteProducto] = useState('');
+
+  // TODO: acá van el seteo de los productos del cliente logeado
+
+  const [productos, setProductos] = useState([]);
 
 
   const { register, handleSubmit, formState: { errors } } = useForm(
@@ -54,12 +160,45 @@ const ProductosEnAlquiler = () => {
       }
     });
 
+  useEffect(() => {
+    async function cargarCliente() {
+      const response = await getClienteByEmail(user.email)
+      if (response.status === 200) {
+        setClientes(response.data)
+        console.log("data sobre el cliente", response.data)
+      }
+    }
+    cargarCliente()
+    cargarProductos()
+  }, [user])
+
+  const cargarProductos = async () => {
+    const response = await getProductoCliente(user.email)
+    if (response.status === 200) {
+      setProductos(response.data)
+      console.log("productos del cliente", response.data)
+    }
+  }
+  // useEffect(() => {
+  //   async function cargarProductos() {
+  //     const response = await getProductoCliente(user.email)
+  //     if (response.status === 200) {
+  //       setProductos(response.data)
+  //       console.log("productos del cliente", response.data)
+  //     }
+  //   }
+  //   cargarProductos()
+  // }, [user])
+
+  
+
   const onSubmit = async (data, e) => {
     e.preventDefault();
     setError('');
     console.log("Evento e", e)
     console.log("data", data)
     try {
+      data.cliente = user.email;
       axios.post('http://localhost:5000/producto', data)
       Swal.fire({
         position: 'center',
@@ -71,9 +210,10 @@ const ProductosEnAlquiler = () => {
         title: 'Producto agregado de manera correcta',
         showConfirmButton: false,
         timerProgressBar: true,
-        timer: 2500
+        timer: 1500
       })
-      navigate('/')
+      navigate('/productos_alquiler')
+      window.setTimeout(function(){window.location.reload()},1500)
     } catch (error) {
       Swal.fire({
         position: 'center',
@@ -82,7 +222,7 @@ const ProductosEnAlquiler = () => {
         background: '#f93333',
         icon: 'error',
         iconColor: '#fff',
-        title: 'Error al agregar el usuario',
+        title: 'Error al agregar el producto',
         showConfirmButton: false,
         timerProgressBar: true,
         timer: 2500
@@ -92,10 +232,7 @@ const ProductosEnAlquiler = () => {
     }
 
   }
-
-  const handleChangeNombre = e => {
-    setNombreProducto(e.target.value)
-  }
+  
 
   return (
     <div className='py-5'>
@@ -104,7 +241,7 @@ const ProductosEnAlquiler = () => {
           Agregar producto
         </Button>
       </div>
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose} centered>
         <Modal.Header closeButton closeVariant='white'>
           <Modal.Title className='text-white mb-1 form-h1'>Producto</Modal.Title>
         </Modal.Header>
@@ -114,7 +251,7 @@ const ProductosEnAlquiler = () => {
               <Col xs={12} lg={6}>
                 <div className='mb-4'>
                   <label className='label-contact'>Nombre:*</label>
-                  <input className='form-control my-2' type="text" onChange={handleChangeNombre} {...register('nombre_producto', {
+                  <input className='form-control my-2' type="text" onChange={(e) => setNombreProducto(e.target.value)} {...register('nombre_producto', {
                     required: true,
                     maxLength: 50
                   })}
@@ -240,7 +377,7 @@ const ProductosEnAlquiler = () => {
                   {errors.categoria?.type === 'minLength' && <p className='text-danger text-small d-block mb-2'>El campo Categoria debe tener al menos 1 letras</p>}
                 </div>
               </Col>
-              <Col xs={12} lg={6}>
+              {/* <Col xs={12} lg={6}>
                 <div className='mb-4'>
                   <label className='label-contact'>Cliente:*</label>
                   <input className='form-control my-2' type="text" onChange={(e) => setClienteProducto(e.target.value)} {...register('cliente', {
@@ -252,7 +389,7 @@ const ProductosEnAlquiler = () => {
                   {errors.cliente?.type === 'required' && <p className='text-danger text-small d-block mb-2'>El campo Cliente es requerido</p>}
                   {errors.cliente?.type === 'minLength' && <p className='text-danger text-small d-block mb-2'>El campo Cliente debe tener al menos 1 letras</p>}
                 </div>
-              </Col>
+              </Col> */}
             </Row>
             <button className='btn register-button my-2'>Agregar</button>
 
@@ -266,32 +403,54 @@ const ProductosEnAlquiler = () => {
       </Modal>
 
 
-      {/* <Table striped bordered hover>
+      <Table striped bordered hover variant="dark" responsive className='caption-top align-middle'>
+        <caption>Lista de productos</caption>
         <thead>
           <tr>
             <th>id</th>
             <th>Nombre</th>
             <th>Precio</th>
-            <th>Stock</th>
             <th>Descripcion</th>
+            <th>Cantidad</th>
             <th>Estado</th>
-            <th>Calificacion</th>
+            <th>Imágen</th>
+            <th>Categoría</th>
+            <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>Mark</td>
-            <td>300</td>
-            <td>50</td>
-            <td>Sombrilla para playa, buena calidad</td>
-            <td>Nueva</td>
-            <td>0</td>
-            <button>eliminar</button>
-            <button>editar</button>
-          </tr>
+          {productos.map((producto) => (
+            <tr key={producto.id_producto}>
+              <td>{producto.id_producto}</td>
+              <td>{producto.nombre_producto}</td>
+              <td>{producto.precio}</td>
+              <td>{producto.descripcion_producto}</td>
+              <td>{producto.cantidad}</td>
+              <td>{producto.estado}</td>
+              <td><img src={producto.urlfoto} alt="" width="50" height="50" className='mx-auto d-block img-thumbnail img-table' /></td>
+              <td>{producto.categoria}</td>
+              <td>
+                <Button className='btn btn-primary'><i class="fa-solid fa-pen-to-square"></i> </Button> {"   "}
+                <Button className='btn btn-danger'><i class="fa-solid fa-trash"></i> </Button>
+              </td>
+            </tr>
+          ))}
         </tbody>
-      </Table> */}
+      </Table>
+
+
+      {/* <ThemeProvider theme={darkTheme}>
+        <Box display="flex" justifyContent="center" alignItems="center">
+          <MUIDataTable
+            title={"Lista de productos"}
+            data={productos}
+            columns={columns}
+            options={options}
+          />
+        </Box>
+      </ThemeProvider> */}
+
+
     </div>
   )
 }

@@ -1,4 +1,4 @@
-create table cliente(
+﻿create table cliente(
 	id_cliente SERIAL not null,
 	uuid VARCHAR(100) not null unique,
 	nombre varchar(30) not null,
@@ -10,7 +10,7 @@ create table cliente(
 	rol varchar (20) not null,
 	constraint nombre_rol check (rol in
 	('ARRENDADOR','PROPIETARIO')),
-	constraint pk_id_cliente primary key (id_cliente)
+	constraint pk_email primary key (email)
 );
 
 create table producto(
@@ -22,10 +22,10 @@ create table producto(
 	estado varchar(15) not null,
 	urlfoto varchar(2083),
 	categoria serial not null,
-	cliente serial not null,
+	cliente varchar(55) not null,
 	constraint pk_id_producto primary key (id_producto),
 	constraint fk_id_categoria foreign key (categoria) references categoria(id_categoria),
-	constraint fk_id_cliente foreign key (cliente) references cliente(id_cliente)
+	constraint fk_email foreign key (cliente) references cliente(email)
 );
 
 create table categoria(
