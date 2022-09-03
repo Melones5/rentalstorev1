@@ -55,10 +55,10 @@ const ProductDetail = () => {
                     </ul>
                   </div>
                   <div className='container-descripcion'>
-                    <h3 className='detail-h3'> <i class="fa-solid fa-star"></i> Calificación</h3>
+                    <h3 className='detail-h3'> <i className="fa-solid fa-star"></i> Calificación</h3>
                     <p className='p-text'>ACÁ IRÍAN LAS ESTRELLITAS</p>
                     <p className='p-text'>Cantidad unidades : <input type="number" onChange={e => setValor(e.target.value)} name="quantity" defaultValue="1" min="1" max={item.cantidad} /></p>
-                    <button className='detail-button'>Añadir a carrito <i class="fa-solid fa-cart-shopping"></i> </button>
+                    <button className='detail-button'>Añadir a carrito <i className="fa-solid fa-cart-shopping"></i> </button>
                   </div>
                 </Col>
               </>
@@ -87,16 +87,16 @@ const ProductDetail = () => {
             <>
               <p className='p-text'>Iniciá sesión en tu cuenta para poder hacer una pregunta</p>
               <Link to={"/login"}>
-                <button className='detail-login-button'> <i class="fa-solid fa-user"></i> Iniciar sesión</button>
+                <button className='detail-login-button'> <i className="fa-solid fa-user"></i> Iniciar sesión</button>
               </Link>
             </>
         }
         <ul className='detail-ul'>
-          <h3 className='detail-h3 mt-5 mb-5'><i class="fa-solid fa-comment-dots"></i> Otros usuarios comentaron</h3>
+          <h3 className='detail-h3 mt-5 mb-5'><i className="fa-solid fa-comment-dots"></i> Otros usuarios comentaron</h3>
           <li className='li-comment'>
             <Row className='row-comment'>
               <Col xs={12} md={1} lg={2} className='center'>
-                <i class="fa-solid fa-user"></i>
+                <i className="fa-solid fa-user"></i>
               </Col>
               <Col xs={12} md={11} lg={10}>
                 <p className='p-text'>En que condiciones se encuentra el producto?</p>
@@ -107,7 +107,7 @@ const ProductDetail = () => {
           <li className='li-comment'>
             <Row className='row-comment-owner'>
               <Col xs={12} md={1} lg={2} className='center'>
-                <i class="fa-solid fa-user"></i>
+                <i className="fa-solid fa-user"></i>
               </Col>
               <Col xs={12} md={11} lg={10}>
                 <p className='p-text'>Hola Pyrke,

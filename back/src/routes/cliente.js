@@ -20,7 +20,7 @@ router.get('/cliente', getCliente)
 router.get('/cliente/:email', getClienteByEmail)
 //router.get('/cliente/:id_cliente', getClienteById)
 router.post('/cliente', createCliente)
-router.delete('/cliente/:id_cliente', deleteCliente)
+router.delete('/cliente/:uid', deleteCliente)
 router.put('/cliente/:id_cliente', updateCliente)
 
 //producto 

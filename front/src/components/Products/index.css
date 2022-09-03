@@ -55,3 +55,7 @@
       box-shadow: 0 0 11px 5px rgba(49, 48, 49, 0.268);
       border: #a571ff;
 }
+
+.scrolling-box {
+      scroll-behavior: smooth;
+}

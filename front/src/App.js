@@ -11,6 +11,7 @@ import LoginSocial from './components/LoginSocial.jsx';
 import Account from './components/User/Account.jsx';
 import ProductosEnAlquiler from './components/User/ProductosEnAlquiler';
 import ProductDetail from './components/Products/ProductDetail.jsx';
+import EditProduct from './components/Products/EditProduct.jsx';
 import Footer from './components/Footer/Footer.jsx';
 import Cart from './components/Products/Cart.jsx';
 import Error404 from './components/Error404.jsx';
@@ -22,6 +23,8 @@ import { CartProvider } from './CartContext';
 import { AuthContextProvider } from './context/userContext';
 import ProtectecRoute from './components/ProtectecRoute.js';
 
+import ScrollToTop from './helpers/ScrollToTop';
+
 
 
 function App() {
@@ -29,6 +32,7 @@ function App() {
     <AuthContextProvider>
       <CartProvider>
         <BrowserRouter>
+        <ScrollToTop />
           <Header />
           <main className='py-3'>
             <Container>
@@ -55,6 +59,11 @@ function App() {
                   </ProtectecRoute>
                 }
                 />
+                <Route path='edit-product/:id_producto' exact element={
+                  <ProtectecRoute>
+                    <EditProduct />
+                  </ProtectecRoute>
+                } />
 
                 <Route path="/cart" exact element={<Cart />} />
                 <Route path="*" element={<Error404 />} />

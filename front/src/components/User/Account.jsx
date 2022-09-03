@@ -10,7 +10,7 @@ import axios from 'axios';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import { getClienteByEmail } from '../../services/funciones';
 
-import userProfile from '../../assets/user.png'
+import userProfile from '../../assets/usuario.png'
 
 import './EditUser.css'
 
@@ -112,6 +112,51 @@ const Account = () => {
     }
   }
 
+  const handleDelete = async () =>{
+    try {
+      Swal.fire({
+        title: 'Eliminar Cuenta',
+        text: "¿Estás seguro que querés eliminar tu cuenta?",
+        // icon: 'warning',
+        iconHtml: '<i class="fa-solid fa-face-sad-cry"></i>',
+        iconColor: '#f9333391',
+        color: '#fff',
+        background: '#a571ff',
+        showCancelButton: true,
+        confirmButtonColor: '#8341f4',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Aceptar',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            title: 'Eliminado',
+            text: "Eliminado correctamente",
+            icon: 'success',
+            color: '#fff',
+            background: '#a571ff'
+          })
+          axios.delete(`http://localhost:5000/cliente/${user.uid}`)
+          logout();
+          navigate('/')
+          console.log('Eliminado correctamente')
+        }
+      })
+    } catch (error) {
+      console.log("este es el error", error)
+      Swal.fire({
+        position: 'center',
+        width: '32em',
+        color: '#fff',
+        background: '#f93333',
+        icon: 'error',
+        iconColor: '#fff',
+        title: 'Error al eliminar el usuario',
+        showConfirmButton: false,
+      })
+    }
+  }
+
 
 
 
@@ -172,15 +217,20 @@ const Account = () => {
             <h5 className='text-center form-h1'>Email:</h5>
             <p className='text-center'>{user && user.email}</p>
             <h5 className='text-center form-h1'>Calificación:</h5>
-            <p className='text-center'><i class="fa-solid fa-star"></i></p>
+            <p className='text-center'><i className="fa-solid fa-star"></i></p>
             {/* <h5 className='text-center form-h1'>Nombre:</h5>
             <p className='text-center' >{clientes.nombre}</p> */}
-            <button className='close-button mx-auto d-block' onClick={handleLogout}>Cerrar sesión</button>
+            <div>
+              <button className='close-button mx-auto d-block' onClick={handleLogout}> <i className="fa-solid fa-arrow-right-from-bracket"></i> Cerrar sesión</button>
+            </div>
+            <div>
+              <button className='delete-button mx-auto d-block mt-1' onClick={handleDelete}> <i className="fa-solid fa-heart-crack"></i> Eliminar cuenta</button>
+            </div>
           </Col>
 
           <Col xs={12} md={8} lg={6}>
             {/* Parte del edit user */}
-            <h1 className='py-5 text-center form-h1'>Edite su perfil <i class="fa-solid fa-user-gear"></i></h1>
+            <h1 className='py-5 text-center form-h1'>Edite su perfil <i className="fa-solid fa-user-gear"></i></h1>
             <form className="form-container-register" autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
               {/* <div className='mb-4'>
                 <label className='label-contact'>Nombre:*</label>

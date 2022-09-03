@@ -6,6 +6,9 @@ import Modal from 'react-bootstrap/Modal';
 import { Container, Row, Col } from 'react-bootstrap';
 import './EditUser.css';
 
+import InputGroup from 'react-bootstrap/InputGroup';
+
+
 // TODO: Imports necesarios para utilizar las tablas de material ui
 import MUIDataTable from 'mui-datatables'
 import Box from '@mui/material/Box';
@@ -23,6 +26,11 @@ import Swal from 'sweetalert2'
 // TODO: imports para obtener el id del usuario logeado
 import { UserAuth } from '../../context/userContext'
 import { getClienteByEmail, getProductoCliente } from '../../services/funciones';
+
+import { useParams } from 'react-router-dom'
+
+//TODO: importe para el edit producto
+import { Link } from 'react-router-dom'
 
 
 const darkTheme = createTheme({
@@ -118,6 +126,10 @@ const ProductosEnAlquiler = () => {
 
   let navigate = useNavigate();
 
+  const [search, setSearch] = useState('');
+  console.log(search);
+
+
   // TODO: controles del modal
   const [show, setShow] = useState(false);
   const handleClose = () => {
@@ -145,6 +157,12 @@ const ProductosEnAlquiler = () => {
 
   const [productos, setProductos] = useState([]);
 
+
+  const [opcion, setOpcion] = useState('');
+  const [tipo, setTipo] = useState('');
+
+  console.log("id del tipo: " + tipo)
+  console.log("id del ordenar: " + opcion)
 
   const { register, handleSubmit, formState: { errors } } = useForm(
     {
@@ -190,7 +208,6 @@ const ProductosEnAlquiler = () => {
   //   cargarProductos()
   // }, [user])
 
-  
 
   const onSubmit = async (data, e) => {
     e.preventDefault();
@@ -213,7 +230,7 @@ const ProductosEnAlquiler = () => {
         timer: 1500
       })
       navigate('/productos_alquiler')
-      window.setTimeout(function(){window.location.reload()},1500)
+      window.setTimeout(function () { window.location.reload() }, 1500)
     } catch (error) {
       Swal.fire({
         position: 'center',
@@ -232,15 +249,109 @@ const ProductosEnAlquiler = () => {
     }
 
   }
-  
 
+  function deleteProduct(id_producto) {
+    console.log("tengo o no el id?", id_producto)
+    try {
+      if (user) {
+        Swal.fire({
+          title: 'Eliminar producto',
+          text: "¿Estás seguro que querés eliminar este producto?",
+          icon: 'warning',
+          color: '#fff',
+          background: '#a571ff',
+          showCancelButton: true,
+          confirmButtonColor: '#8341f4',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Aceptar',
+          cancelButtonText: 'Cancelar'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            Swal.fire({
+              title: 'Eliminado',
+              text: "Eliminado correctamente",
+              icon: 'success',
+              color: '#fff',
+              background: '#a571ff'
+            })
+            axios.delete(`http://localhost:5000/producto/${id_producto}`)
+            setProductos(productos.filter(producto => producto.id_producto !== id_producto))
+            navigate('/productos_alquiler')
+            console.log('Deslogeado correctamente')
+          }
+        })
+      }
+    } catch (error) {
+      Swal.fire({
+        position: 'center',
+        width: '32em',
+        color: '#fff',
+        background: '#f93333',
+        icon: 'error',
+        iconColor: '#fff',
+        title: 'Error al eliminar este producto',
+        showConfirmButton: false,
+        timerProgressBar: true,
+        timer: 2500
+      })
+    }
+  }
+
+  const handleSearch = async (e) => {
+    setSearch(e.target.value);
+  }
+  const handleSubmitSearch = (e) => {
+    e.preventDefault();
+  }
+
+  const hadleCategory = async (e) =>{
+    setTipo(e.target.value);
+  }
   return (
     <div className='py-5'>
       <div className='py-5'>
-        <Button variant="primary" onClick={handleShow}>
-          Agregar producto
+        <Button className='add-button' onClick={handleShow}>
+          <i className="fa-regular fa-plus"></i> Agregar producto
         </Button>
       </div>
+      <div>
+        <Form onSubmit={handleSubmitSearch}>
+          <InputGroup className='my-3'>
+            <InputGroup.Text id="basic-addon1"><i class="fa-solid fa-magnifying-glass"></i></InputGroup.Text>
+            <Form.Control onChange={handleSearch} placeholder='Buscar producto...' style={{ border: "none" }} />
+          </InputGroup>
+        </Form>
+      </div>
+
+      <Container className="container-search" fluid>
+        <Row>
+          {/* busca por categorías */}
+          <Col className='pt-2' md="auto">
+            <div>
+              <select className="form-select" value={tipo} aria-label="Default select example" onChange={hadleCategory}>
+                <option value="1">Artículos de playa</option>
+                <option value="2">Artículos de camping</option>
+                <option value="3">Artículos deportivos</option>
+                <option value="4">Herramientas</option>
+              </select>
+            </div>
+          </Col>
+
+          {/* ordena por nombre y precio */}
+          <Col className='pt-2' md="auto">
+            <div>
+              <div>
+                <select className="form-select" value={opcion} aria-label="Default select example" onChange={opc => setOpcion(opc.target.value)}>
+                  <option value="precio">Precio</option>
+                  <option value="nombre">Nombre</option>
+                </select>
+              </div>
+            </div>
+          </Col>
+        </Row>
+      </Container>
+
+
       <Modal show={show} onHide={handleClose} centered>
         <Modal.Header closeButton closeVariant='white'>
           <Modal.Title className='text-white mb-1 form-h1'>Producto</Modal.Title>
@@ -288,7 +399,7 @@ const ProductosEnAlquiler = () => {
             <div className='mb-4'>
               <label className='label-contact'>Descripcion:*</label>
               <div className="form-outline">
-                <textarea class="form-control my-2" id="textoDescripcion" rows="4" type="text" onChange={(e) => setDescripcionProducto(e.target.value)} {...register('descripcion_producto', {
+                <textarea className="form-control my-2" id="textoDescripcion" rows="4" type="text" onChange={(e) => setDescripcionProducto(e.target.value)} {...register('descripcion_producto', {
                   required: true,
                   minLength: {
                     value: 4,
@@ -403,6 +514,7 @@ const ProductosEnAlquiler = () => {
       </Modal>
 
 
+      {/* TODO: CAPAZ LO USO O NO DEPENDE
       <Table striped bordered hover variant="dark" responsive className='caption-top align-middle'>
         <caption>Lista de productos</caption>
         <thead>
@@ -430,14 +542,58 @@ const ProductosEnAlquiler = () => {
               <td><img src={producto.urlfoto} alt="" width="50" height="50" className='mx-auto d-block img-thumbnail img-table' /></td>
               <td>{producto.categoria}</td>
               <td>
-                <Button className='btn btn-primary'><i class="fa-solid fa-pen-to-square"></i> </Button> {"   "}
-                <Button className='btn btn-danger'><i class="fa-solid fa-trash"></i> </Button>
+                <Link to={`/edit-product/${producto.id_producto}`} style={{textDecoration: "none"}}>
+                  <Button className='btn btn-primary'><i className="fa-solid fa-pen-to-square"></i> </Button> {"   "}
+                </Link>
+                <Button className='btn btn-danger' onClick={() => deleteProduct(producto.id_producto)}><i className="fa-solid fa-trash"></i> </Button>
               </td>
             </tr>
           ))}
         </tbody>
-      </Table>
+      </Table> */}
 
+      <Container>
+        <h3 className='detail-h3'> <i className="fa-solid fa-box-open"></i> Lista de productos</h3>
+        {/* TODO: Diferentes métodos para el array producto del Alquiler productos*/}
+        {productos
+          .filter((producto) => {
+            if (search === '') {
+              return producto
+            } else if (producto.nombre_producto.toLowerCase().includes(search.toLowerCase())) {
+              return producto
+            }
+            // return search.toLowerCase() === ''
+            //   ? producto
+            //   : producto.nombre_producto.toLowerCase().includes(search);
+          })          
+          .sort((a, b) => a.id_producto > b.id_producto ? 1 : -1)
+          .map((producto) => (
+            <>
+              <Row className='row-products'>
+                <Col xs={12} lg={3} className='m-auto d-block'>
+                  <img src={producto.urlfoto} alt="" className='m-auto mb-3 d-block img-thumbnail img-table' />
+                </Col>
+                <Col xs={12} lg={3}>
+                  <p className='p-row'><strong>Nombre:</strong> {producto.nombre_producto}</p>
+                  <p className='p-row'><strong>Precio:</strong> {producto.precio}</p>
+                  <p className='p-row'><strong>Descripción:</strong> {producto.descripcion_producto}</p>
+                </Col>
+                <Col xs={12} lg={3}>
+                  <p className='p-row'> <strong>Cantidad:</strong> {producto.cantidad}</p>
+                  <p className='p-row'><strong>Estado:</strong> {producto.estado}</p>
+                  <p className='p-row'><strong>Categoría:</strong> {producto.categoria}</p>
+                </Col>
+                <Col xs={12} lg={3}>
+                  <p className='p-row'><strong>Acciones</strong></p>
+                  <Link to={`/edit-product/${producto.id_producto}`} style={{ textDecoration: "none" }}>
+                    <Button className='btn btn-primary mb-3 d-flex'><i className="fa-solid fa-pen-to-square"></i></Button>
+                  </Link>
+                  <Button className='btn btn-danger d-flex ' onClick={() => deleteProduct(producto.id_producto)}><i className="fa-solid fa-trash"></i></Button>
+                </Col>
+              </Row>
+            </>
+          ))}
+      </Container>
 
       {/* <ThemeProvider theme={darkTheme}>
         <Box display="flex" justifyContent="center" alignItems="center">

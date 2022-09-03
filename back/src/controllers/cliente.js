@@ -39,7 +39,7 @@ const getClienteById = async (req, res) => {
   // res.json(`CLIENTE ${id_cliente} consultado de manera satisfactoria`)
 }*/
 
-const getClienteByEmail = async (req, res) =>{
+const getClienteByEmail = async (req, res) => {
   try {
     const email = req.params.email;
     const response = await pool.query('SELECT * FROM cliente WHERE email = $1', [email]);
@@ -65,10 +65,27 @@ const createCliente = async (req, res) => {
 }
 
 const deleteCliente = async (req, res) => {
-  const id_cliente = req.params.id_cliente;
-  const response = await pool.query('DELETE FROM cliente WHERE id_cliente = $1', [id_cliente]);
-  res.status(200).json(response.rows);
-  console.log(response);
+  try {
+    const uid = req.params.uid;
+    const responseFire = await administrador.auth().deleteUser(uid)
+    res.status(200).json(responseFire.rows)
+      .then(() => {
+        const uuid = req.params.uid;
+        const response = pool.query('DELETE FROM cliente WHERE uuid = $1', [uuid]);
+        return res.status(200).json(response.rows);
+        console.log(response);
+        console.log('Successfully deleted user');
+      })
+      .catch((error) => {
+        console.log('Error deleting user:', error);
+      });
+  } catch (error) {
+    console.log(error)
+  }
+  // const id_cliente = req.params.id_cliente;
+  // const response = await pool.query('DELETE FROM cliente WHERE id_cliente = $1', [id_cliente]);
+  // res.status(200).json(response.rows);
+  // console.log(response);
   // res.json(`CLIENTE ${id_cliente} eliminado de manera satisfactoria`)
 }
 
@@ -102,7 +119,7 @@ const getProducto = async (req, res) => {
   }
 }
 
-const getProductoCliente = async(req, res) =>{
+const getProductoCliente = async (req, res) => {
   try {
     const cliente = req.params.cliente;
     console.log(cliente)
@@ -137,15 +154,16 @@ const createProducto = async (req, res) => {
 
 const updateProducto = async (req, res) => {
   const id_producto = req.params.id_producto;
-  const { nombre_producto, precio, descripcion_producto, cantidad, estado, urlfoto, categoria } = req.body;
-  const response = await pool.query('UPDATE producto SET nombre_producto = $1, precio = $2, descripcion_producto =$3, cantidad=$4, estado=$5, urlfoto=$6, categoria=$7 WHERE id_producto=$8', [
+  const { nombre_producto, precio, descripcion_producto, cantidad, estado, urlfoto, categoria, cliente } = req.body;
+  const response = await pool.query('UPDATE producto SET nombre_producto = $1, precio = $2, descripcion_producto =$3, cantidad=$4, estado=$5, urlfoto=$6, categoria=$7, cliente=$8 WHERE id_producto=$9', [
     nombre_producto,
     precio,
     descripcion_producto,
     cantidad,
     estado,
     urlfoto,
-    categoria,
+    categoria, 
+    cliente,
     id_producto,
   ]);
   res.status(200).json(response.rows);

@@ -20,6 +20,27 @@
       color: #f0f0f0;
 }
 
+.add-button {
+      color: #f0f0f0;
+      border: none;
+      background-color: rgb(0, 117, 72);
+      font-family: 'Poppins', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      border-radius: 6px;
+      line-height: 16px;
+      text-align: center;
+}
+
+.add-button:active {
+      background-color: #8341f4;
+}
+
+.add-button:hover {
+      background-color: #a571ff;
+      color: #f0f0f0;
+}
+
 .userImg {
       width: 30%;
       clip-path: circle();
@@ -30,7 +51,7 @@
       border: none;
       background-color: #352d39ff;
       font-family: 'Poppins', sans-serif;
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 600;
       border-radius: 6px;
       line-height: 16px;
@@ -40,6 +61,29 @@
 }
 
 .close-button:active {
+      background-color: #8341f4;
+}
+
+.delete-button:hover {
+      background-color: #a571ff;
+      color: #f0f0f0;
+}
+
+.delete-button {
+      color: #f0f0f0;
+      border: none;
+      background-color: rgb(255, 0, 0);
+      font-family: 'Poppins', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: 6px;
+      line-height: 16px;
+      text-align: center;
+      width: 50%;
+      padding: 4px;
+}
+
+.delete-button:active {
       background-color: #8341f4;
 }
 
@@ -56,5 +100,24 @@
 }
 
 .img-table {
-      object-fit: cover;
+      object-fit: scale-down;
+      height: 170px;
+      width: 170px;
+}
+
+.row-products {
+      background-color: #fff;
+      padding: 24px;
+      border-bottom: 1px solid rgba(0, 0, 0, .1);
+      -webkit-border-radius: 6px;
+      border-radius: 6px;
+      -webkit-filter: drop-shadow(0 0 1px rgba(0, 0, 0, .12));
+      filter: drop-shadow(0 0 1px rgba(0, 0, 0, .12));
+      margin-bottom: 16px;
+}
+
+.p-row {
+      line-height: 18px;
+      text-align:justify;
+      font-size: 14px;
 }

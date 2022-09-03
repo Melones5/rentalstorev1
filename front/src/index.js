@@ -5,6 +5,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 
+
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // TODO: tener cuidado con el strictmode, puede ocasionar problemas con el local storage

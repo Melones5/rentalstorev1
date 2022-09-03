@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState, useContext } from "react";
+
 import {
   createUserWithEmailAndPassword,
   updateEmail,
@@ -9,6 +10,7 @@ import {
 } from "firebase/auth";
 
 import auth from "../firebase-config";
+
 
 const UserContext = createContext();
 
@@ -24,21 +26,21 @@ export const AuthContextProvider = ({ children }) => {
 
   const updateUserEmail = (email) => {
     return updateEmail(auth, email);
-  }
+  };
 
   const updateUserPassword = (password) => {
     return updatePassword(auth, password);
-  }
+  };
 
   //se hace el login del usuario (usuario registrado previamente)
   const signIn = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password)
-  }
+  };
 
   //logout del usuario, se lo elimina el estado global (usuario logeado previamente)
   const logout = () => {
     return signOut(auth);
-  }
+  };
 
   //este useEffect se ejecuta en el mount del componente y setea el usuario ya logeado previamente al state actual
   useEffect(() => {

@@ -6,7 +6,6 @@ import './index.css';
 const SearchBar = () => {
 
 
-  const [palabra, setPalabra] = useState('');
   const [opcion, setOpcion] = useState('');
   const [tipo, setTipo] = useState('');
 

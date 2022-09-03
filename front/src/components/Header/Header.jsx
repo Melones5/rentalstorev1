@@ -29,10 +29,10 @@ const Header = () => {
 
               <Nav className="ms-auto navbar-header py-2">
 
-                <NavLink exact="true" to="/" className="py-1 px-2 cursor-pointer" activeClassName="active">Inicio</NavLink>
-                <NavLink exact="true" to="/contact" className="py-1 px-2 cursor-pointer" activeClassName="active">Contacto</NavLink>
+                <NavLink exact="true" to="/" className="py-1 px-2 cursor-pointer" >Inicio</NavLink>
+                <NavLink exact="true" to="/contact" className="py-1 px-2 cursor-pointer" >Contacto</NavLink>
 
-                <NavLink exact="true" to="/login" className="py-1 px-2 cursor-pointer" activeClassName="active"><i className="fa-solid fa-right-to-bracket"></i> Ingresá</NavLink>
+                <NavLink exact="true" to="/login" className="py-1 px-2 cursor-pointer" ><i className="fa-solid fa-right-to-bracket"></i> Ingresá</NavLink>
 
                 {/* Iniciar sesión con las redes sociales */}
                 {/* <NavLink exact="true" to="/loginsocial" className="py-1 px-2 cursor-pointer" activeClassName="active"><i className="fa-solid fa-right-to-bracket"></i> SocialLogin</NavLink> */}
@@ -43,7 +43,7 @@ const Header = () => {
                 {/* <NavLink exact="true" to="/productos_alquiler" className="py-1 px-2 cursor-pointer" activeClassName="active"><i class="fa-solid fa-box-open"></i> Mis Productos</NavLink> */}
                 {/* <NavLink exact="true" to="/account" className="py-1 px-2 cursor-pointer" activeClassName="active"><i class="fa-solid fa-user"></i> Cuenta</NavLink> */}
 
-                <NavLink exact="true" to='/cart' className="py-1 px-2 cursor-pointer" activeClassName="active"> <i class="fa-solid fa-cart-shopping"></i> <span>{productos.length}</span></NavLink>
+                <NavLink exact="true" to='/cart' className="py-1 px-2 cursor-pointer" > <i className="fa-solid fa-cart-shopping"></i> <span>{productos.length}</span></NavLink>
 
               </Nav>
 
@@ -65,8 +65,8 @@ const Header = () => {
 
             <Nav className="ms-auto navbar-header py-2">
 
-              <NavLink exact="true" to="/" className="py-1 px-2 cursor-pointer" activeClassName="active">Inicio</NavLink>
-              <NavLink exact="true" to="/contact" className="py-1 px-2 cursor-pointer" activeClassName="active">Contacto</NavLink>
+              <NavLink exact="true" to="/" className="py-1 px-2 cursor-pointer" >Inicio</NavLink>
+              <NavLink exact="true" to="/contact" className="py-1 px-2 cursor-pointer" >Contacto</NavLink>
 
               {/* <NavLink exact="true" to="/login" className="py-1 px-2 cursor-pointer" activeClassName="active"><i className="fa-solid fa-right-to-bracket"></i> Ingresá</NavLink> */}
 
@@ -76,10 +76,10 @@ const Header = () => {
 
               {/* Productos alquilados */}
               {/* <NavLink exact="true" to="/productos_alquilados" className="py-1 px-2 cursor-pointer" activeClassName="active"> Mis Alquileres</NavLink> */}
-              <NavLink exact="true" to="/productos_alquiler" className="py-1 px-2 cursor-pointer" activeClassName="active"><i class="fa-solid fa-box-open"></i> Mis Productos</NavLink>
-              <NavLink exact="true" to="/account" className="py-1 px-2 cursor-pointer" activeClassName="active"><i class="fa-solid fa-user"></i> Cuenta</NavLink>
+              <NavLink exact="true" to="/productos_alquiler" className="py-1 px-2 cursor-pointer"><i className="fa-solid fa-box-open"></i> Mis Productos</NavLink>
+              <NavLink exact="true" to="/account" className="py-1 px-2 cursor-pointer" ><i className="fa-solid fa-user"></i> Cuenta</NavLink>
 
-              <NavLink exact="true" to='/cart' className="py-1 px-2 cursor-pointer" activeClassName="active"> <i class="fa-solid fa-cart-shopping"></i> <span>{productos.length}</span></NavLink>
+              <NavLink exact="true" to='/cart' className="py-1 px-2 cursor-pointer" > <i className="fa-solid fa-cart-shopping"></i> <span>{productos.length}</span></NavLink>
 
             </Nav>
 

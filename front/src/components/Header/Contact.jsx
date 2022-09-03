@@ -57,7 +57,7 @@ const Contact = () => {
             <div className='mb-4'>
               <label className='label-contact'>Mensaje*</label>
               <div className="form-outline">
-                <textarea class="form-control my-2" id="textoMensaje" rows="4" type="text" {...register('mensaje', {
+                <textarea className="form-control my-2" id="textoMensaje" rows="4" type="text" {...register('mensaje', {
                   required: true,
                 })}>
                 </textarea>

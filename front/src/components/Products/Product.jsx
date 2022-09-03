@@ -5,6 +5,9 @@ import ProductDetail from './ProductDetail'
 import axios from 'axios';
 import { getProductos } from '../../services/funciones';
 
+import InputGroup from 'react-bootstrap/InputGroup';
+import Form from 'react-bootstrap/Form';
+
 // TODO: esto puede servir para controlar que el usuario este logeado para agregar al carrito
 import { UserAuth } from '../../context/userContext'
 import Swal from 'sweetalert2'
@@ -19,10 +22,13 @@ const Product = () => {
   const { user } = UserAuth();
   const navigate = useNavigate();
 
+  const [search, setSearch] = useState('');
+  console.log(search);
+
 
   useEffect(() => {
     // TODO: TRAIGO LAS FUNCIONES ESPECÍFICAS DESDE EL ARCHIVO SERVICES
-    async function cargarProductos(){
+    async function cargarProductos() {
       const response = await getProductos()
       if (response.status === 200) {
         setProductos(response.data)
@@ -51,7 +57,7 @@ const Product = () => {
           timer: 2500
         })
         navigate('/account')
-      }else{
+      } else {
         Swal.fire({
           position: 'center',
           width: '32em',
@@ -81,18 +87,34 @@ const Product = () => {
     }
   }
 
+  const handleSearch = async (e) => {
+    setSearch(e.target.value);
+  }
+  const handleSubmitSearch = (e) => {
+    e.preventDefault();
+  }
+
   return (
     <Fragment>
       <Container className='container-product py-5'>
-        <input
-          type='text'
-          className='form-control mx-auto'
-          placeholder='Buscá un producto...'
-          onChange={""}
-          value={""}
-        />
+        <div>
+          <Form onSubmit={handleSubmitSearch}>
+            <InputGroup className='my-3'>
+              <InputGroup.Text id="basic-addon1"><i class="fa-solid fa-magnifying-glass"></i></InputGroup.Text>
+              <Form.Control onChange={handleSearch} placeholder='Buscar producto...' style={{ border: "none" }} />
+            </InputGroup>
+          </Form>
+        </div>
         <Row xs={1} md={2} lg={4} className="g-3">
-          {productos.map((producto, key) => {
+          {productos
+          .filter((producto) => {
+            if(search === '') {
+              return producto
+            } else if (producto.nombre_producto.toLowerCase().includes(search.toLowerCase())){
+              return producto
+            }
+          })
+          .map((producto, key) => {
             return (
               <Col key={producto.id_producto}>
                 <ProductCard
