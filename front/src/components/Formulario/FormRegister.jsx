@@ -60,7 +60,7 @@ const FormRegister = () => {
         position: 'center',
         width: '32em',
         color: '#fff',
-        background: '#a571ff',
+        background: '#6d435aff',
         icon: 'success',
         iconColor: '#fff',
         title: 'Usuario registrado de manera correcta',
@@ -77,7 +77,7 @@ const FormRegister = () => {
         background: '#f93333',
         icon: 'error',
         iconColor: '#fff',
-        title: 'Error al agregar el usuario',
+        title: 'Error al agregar el usuario. El correo ya está en uso :C',
         showConfirmButton: false,
         timerProgressBar: true,
         timer: 2500

@@ -59,3 +59,9 @@
 .scrolling-box {
       scroll-behavior: smooth;
 }
+
+.product-container-menu{
+      background: #6d435aff;
+      border-radius: 20px;
+      box-shadow: 0 0 11px 5px rgba(49, 48, 49, 0.268);
+}

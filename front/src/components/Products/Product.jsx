@@ -22,6 +22,10 @@ const Product = () => {
   const { user } = UserAuth();
   const navigate = useNavigate();
 
+
+
+  const [opcion, setOpcion] = useState('');
+  const [tipo, setTipo] = useState('');
   const [search, setSearch] = useState('');
   console.log(search);
 
@@ -96,39 +100,73 @@ const Product = () => {
 
   return (
     <Fragment>
-      <Container className='container-product py-5'>
-        <div>
-          <Form onSubmit={handleSubmitSearch}>
-            <InputGroup className='my-3'>
-              <InputGroup.Text id="basic-addon1"><i class="fa-solid fa-magnifying-glass"></i></InputGroup.Text>
-              <Form.Control onChange={handleSearch} placeholder='Buscar producto...' style={{ border: "none" }} />
-            </InputGroup>
-          </Form>
+
+      <Container className='py-2'>
+        <div className='py-1'>
+        <Row className='product-container-menu py-3'>
+           {/* busca por categorías */}
+           <Col className='pt-1' md="auto" xs={12} lg={4}>
+            <div>
+              <select className="form-select" value={tipo} aria-label="Default select example" onChange="">
+                <option value="1">Artículos de playa</option>
+                <option value="2">Artículos de camping</option>
+                <option value="3">Artículos deportivos</option>
+                <option value="4">Herramientas</option>
+              </select>
+            </div>
+          </Col>
+          
+          {/* ordena por nombre y precio */}
+          <Col className='pt-1' md="auto" xs={12} lg={4}>
+            <div>
+              <div>
+                <select className="form-select" value={opcion} aria-label="Default select example" onChange={opc => setOpcion(opc.target.value)}>
+                  <option value="precio">Precio</option>
+                  <option value="nombre">Nombre</option>
+                </select>
+              </div>
+            </div>
+          </Col>
+
+          {/* búsqueda */}
+          <Col className='pt-1' md="auto" xs={12} lg={4}>
+            <Form onSubmit={handleSubmitSearch}>
+              <InputGroup className='main'>
+                <Form.Control onChange={handleSearch} className='input-search' placeholder='Buscar producto...'/>
+                <a className='icon-search'><i className="fa-solid fa-magnifying-glass"></i></a>
+              </InputGroup>
+            </Form>
+          </Col>
+        </Row>
         </div>
-        <Row xs={1} md={2} lg={4} className="g-3">
+      </Container>
+
+
+      <Container className='container-product py-5'>
+        <Row xs={1} md={2} lg={4} className="g-3">          
           {productos
-          .filter((producto) => {
-            if(search === '') {
-              return producto
-            } else if (producto.nombre_producto.toLowerCase().includes(search.toLowerCase())){
-              return producto
-            }
-          })
-          .map((producto, key) => {
-            return (
-              <Col key={producto.id_producto}>
-                <ProductCard
-                  urlfoto={producto.urlfoto}
-                  nombre={producto.nombre_producto}
-                  descripcion={producto.descripcion_producto}
-                  categoria={producto.categoria_producto}
-                  precio={producto.precio}
-                  id={producto.id_producto}
-                  deleteProduct={deleteProduct}
-                />
-              </Col>
-            )
-          })}
+            .filter((producto) => {
+              if (search === '') {
+                return producto
+              } else if (producto.nombre_producto.toLowerCase().includes(search.toLowerCase())) {
+                return producto
+              }
+            })
+            .map((producto, key) => {
+              return (
+                <Col key={producto.id_producto}>
+                  <ProductCard
+                    urlfoto={producto.urlfoto}
+                    nombre={producto.nombre_producto}
+                    descripcion={producto.descripcion_producto}
+                    categoria={producto.categoria_producto}
+                    precio={producto.precio}
+                    id={producto.id_producto}
+                    deleteProduct={deleteProduct}
+                  />
+                </Col>
+              )
+            })}
         </Row>
       </Container>
     </Fragment>

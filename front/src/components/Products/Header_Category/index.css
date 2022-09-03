@@ -4,7 +4,8 @@
 
 .carousel-slider img {
       height: 37rem;
-      opacity: 80%;
+      opacity: 85%;
+      object-fit: cover;
 }
 
 .carousel-slider h3 {

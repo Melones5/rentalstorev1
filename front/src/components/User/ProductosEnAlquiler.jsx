@@ -221,7 +221,7 @@ const ProductosEnAlquiler = () => {
         position: 'center',
         width: '32em',
         color: '#fff',
-        background: '#a571ff',
+        background: '#6d435aff',
         icon: 'success',
         iconColor: '#fff',
         title: 'Producto agregado de manera correcta',
@@ -259,7 +259,7 @@ const ProductosEnAlquiler = () => {
           text: "¿Estás seguro que querés eliminar este producto?",
           icon: 'warning',
           color: '#fff',
-          background: '#a571ff',
+          background: '#6d435aff',
           showCancelButton: true,
           confirmButtonColor: '#8341f4',
           cancelButtonColor: '#d33',
@@ -272,7 +272,7 @@ const ProductosEnAlquiler = () => {
               text: "Eliminado correctamente",
               icon: 'success',
               color: '#fff',
-              background: '#a571ff'
+              background: '#6d435aff'
             })
             axios.delete(`http://localhost:5000/producto/${id_producto}`)
             setProductos(productos.filter(producto => producto.id_producto !== id_producto))
@@ -304,7 +304,7 @@ const ProductosEnAlquiler = () => {
     e.preventDefault();
   }
 
-  const hadleCategory = async (e) =>{
+  const hadleCategory = async (e) => {
     setTipo(e.target.value);
   }
   return (
@@ -314,19 +314,11 @@ const ProductosEnAlquiler = () => {
           <i className="fa-regular fa-plus"></i> Agregar producto
         </Button>
       </div>
-      <div>
-        <Form onSubmit={handleSubmitSearch}>
-          <InputGroup className='my-3'>
-            <InputGroup.Text id="basic-addon1"><i class="fa-solid fa-magnifying-glass"></i></InputGroup.Text>
-            <Form.Control onChange={handleSearch} placeholder='Buscar producto...' style={{ border: "none" }} />
-          </InputGroup>
-        </Form>
-      </div>
 
       <Container className="container-search" fluid>
-        <Row>
+        <Row className='product-container-menu py-3'>
           {/* busca por categorías */}
-          <Col className='pt-2' md="auto">
+          <Col className='pt-2' md="auto" xs={12} lg={4}>
             <div>
               <select className="form-select" value={tipo} aria-label="Default select example" onChange={hadleCategory}>
                 <option value="1">Artículos de playa</option>
@@ -336,9 +328,9 @@ const ProductosEnAlquiler = () => {
               </select>
             </div>
           </Col>
-
+          
           {/* ordena por nombre y precio */}
-          <Col className='pt-2' md="auto">
+          <Col className='pt-2' md="auto" xs={12} lg={4}>
             <div>
               <div>
                 <select className="form-select" value={opcion} aria-label="Default select example" onChange={opc => setOpcion(opc.target.value)}>
@@ -348,6 +340,19 @@ const ProductosEnAlquiler = () => {
               </div>
             </div>
           </Col>
+
+          <Col>
+            <div>
+              <Form onSubmit={handleSubmitSearch}>
+                <InputGroup className='mt-2 main' xs={12} lg={4}>
+                  <Form.Control onChange={handleSearch} placeholder='Buscar producto...' className='input-search' />
+                  <a className='icon-search'><i className="fa-solid fa-magnifying-glass"></i></a>
+                  {/* <InputGroup.Text id="basic-addon1"><i class="fa-solid fa-magnifying-glass"></i></InputGroup.Text> */}
+                </InputGroup>
+              </Form>
+            </div>
+          </Col>
+
         </Row>
       </Container>
 
@@ -551,9 +556,12 @@ const ProductosEnAlquiler = () => {
           ))}
         </tbody>
       </Table> */}
+      <Container className='py-3'>
 
-      <Container>
-        <h3 className='detail-h3'> <i className="fa-solid fa-box-open"></i> Lista de productos</h3>
+      </Container>
+
+      <Container className='py-5'>
+        <h3 className='detail-h3 py-5'> <i className="fa-solid fa-box-open"></i> Lista de productos</h3>
         {/* TODO: Diferentes métodos para el array producto del Alquiler productos*/}
         {productos
           .filter((producto) => {
@@ -565,7 +573,7 @@ const ProductosEnAlquiler = () => {
             // return search.toLowerCase() === ''
             //   ? producto
             //   : producto.nombre_producto.toLowerCase().includes(search);
-          })          
+          })
           .sort((a, b) => a.id_producto > b.id_producto ? 1 : -1)
           .map((producto) => (
             <>

@@ -47,7 +47,7 @@ const FormLogin = () => {
         position: 'center',
         width: '32em',
         color: '#fff',
-        background: '#a571ff',
+        background: '#6d435aff',
         icon: 'success',
         iconColor: '#fff',
         title: 'Usuario logeado de manera correcta',

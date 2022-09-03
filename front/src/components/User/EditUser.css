@@ -118,6 +118,41 @@
 
 .p-row {
       line-height: 18px;
-      text-align:justify;
+      text-align: justify;
       font-size: 14px;
+}
+
+.main {
+      width: 100%;
+      border: 02px solid white;
+      border-radius: 6px;
+      line-height: 16px;
+      background-color: #352d39ff;
+}
+
+.input-search {
+      background: transparent;
+      border: 0px;
+      outline: 0px;
+      width: 320px;
+}
+
+.input-search::placeholder {
+      color: white;
+}
+
+.input-search:focus {
+      background: transparent;
+      color: white;
+      border: 1px solid red;
+      border-radius: 0%;
+      border: 0px;
+      box-shadow: none;
+}
+
+.icon-search {
+      color: white;
+      font-size: 20px;
+      padding-top: 7px;
+      padding-right: 10px;
 }

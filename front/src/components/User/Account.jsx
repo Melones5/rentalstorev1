@@ -87,7 +87,7 @@ const Account = () => {
         text: "¿Estás seguro que querés cerrar tu sesión?",
         icon: 'warning',
         color: '#fff',
-        background: '#a571ff',
+        background: '#6d435aff',
         showCancelButton: true,
         confirmButtonColor: '#8341f4',
         cancelButtonColor: '#d33',
@@ -100,7 +100,7 @@ const Account = () => {
             text: "Deslogeado correctamente",
             icon: 'success',
             color: '#fff',
-            background: '#a571ff'
+            background: '#6d435aff'
           })
           logout();
           navigate('/')
@@ -121,7 +121,7 @@ const Account = () => {
         iconHtml: '<i class="fa-solid fa-face-sad-cry"></i>',
         iconColor: '#f9333391',
         color: '#fff',
-        background: '#a571ff',
+        background: '#6d435aff',
         showCancelButton: true,
         confirmButtonColor: '#8341f4',
         cancelButtonColor: '#d33',
@@ -134,7 +134,7 @@ const Account = () => {
             text: "Eliminado correctamente",
             icon: 'success',
             color: '#fff',
-            background: '#a571ff'
+            background: '#6d435aff'
           })
           axios.delete(`http://localhost:5000/cliente/${user.uid}`)
           logout();
@@ -178,7 +178,7 @@ const Account = () => {
         position: 'center',
         width: '32em',
         color: '#fff',
-        background: '#a571ff',
+        background: '#6d435aff',
         icon: 'success',
         iconColor: '#fff',
         title: 'Usuario modificado de manera correcta',
