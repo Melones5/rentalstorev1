@@ -1,9 +1,7 @@
-.carousel-slider{
-      margin-top: 10px;
-}
+
 
 .carousel-slider img {
-      height: 37rem;
+      height: 20rem;
       opacity: 85%;
       object-fit: cover;
 }

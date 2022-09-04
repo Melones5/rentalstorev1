@@ -8,15 +8,6 @@ import './EditUser.css';
 
 import InputGroup from 'react-bootstrap/InputGroup';
 
-
-// TODO: Imports necesarios para utilizar las tablas de material ui
-import MUIDataTable from 'mui-datatables'
-import Box from '@mui/material/Box';
-import { createTheme, ThemeProvider } from '@mui/material';
-import { dark } from '@mui/material/styles/createPalette';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
-
 // TODO: imports de lo necesario para hacer post
 import axios from 'axios';
 import { useForm } from "react-hook-form";
@@ -27,108 +18,19 @@ import Swal from 'sweetalert2'
 import { UserAuth } from '../../context/userContext'
 import { getClienteByEmail, getProductoCliente } from '../../services/funciones';
 
-import { useParams } from 'react-router-dom'
 
 //TODO: importe para el edit producto
 import { Link } from 'react-router-dom'
-
-
-const darkTheme = createTheme({
-  palette: {
-    mode: 'dark'
-  }
-})
+import FilterProduct from '../Products/Header_Category/FilterProduct';
 
 const ProductosEnAlquiler = () => {
 
-  const columns = [
-    {
-      name: "id_producto",
-      label: "ID"
-    },
-    {
-      name: "nombre_producto",
-      label: "Nombre"
-    },
-    {
-      name: "precio",
-      label: "Precio"
-    },
-    {
-      name: "descripcion_producto",
-      label: "Descripción"
-    },
-    {
-      name: "cantidad",
-      label: "Cantidad"
-    },
-    {
-      name: "estado",
-      label: "Estado"
-    },
-    {
-      name: "urlfoto",
-      label: "Imagen",
-      options: {
-        customBodyRender: (data, dataIndex, rowIndex) => {
-          console.log(data)
-          return (
-            <div>
-              <Box
-                component="img"
-                sx={{ height: 50, width: 50, }}
-                alt="Imagen producto"
-                src={data}
-              />
-            </div>
-          )
-        }
-      }
-    },
-    {
-      name: "categoria",
-      label: "Categoría"
-    },
-    {
-      name: "Acciones",
-      options: {
-        customBodyRender: (data, dataIndex, rowIndex) => {
-          return (
-            <Container>
-              <Row>
-                <Col>
-                  <button onClick={() => console.log(dataIndex)}>
-                    <EditIcon />
-                  </button>
-                </Col>
-                <Col>
-                  <button onClick={() => console.log(dataIndex)}>
-                    <DeleteIcon />
-                  </button>
-                </Col>
-              </Row>
-            </Container>
-          )
-        }
-      }
-    }
-  ]
-  const options = {
-    responsive: "standard",
-    rowsPerPage: 5,
-    rowsPerPageOptions: [2, 3, 5],
-  }
-
   // TODO: Usuario logeado y seteo del mismo en el estado clientes
   // Importante entender que si o si un usuario debe estar logeado para agregar productos y obtener el id
-  const { user, logout } = UserAuth();
+  const { user } = UserAuth();
   const [clientes, setClientes] = useState('');
 
   let navigate = useNavigate();
-
-  const [search, setSearch] = useState('');
-  console.log(search);
-
 
   // TODO: controles del modal
   const [show, setShow] = useState(false);
@@ -152,18 +54,37 @@ const ProductosEnAlquiler = () => {
   const [categoriaProducto, setCategoriaProducto] = useState('');
   //: TODO: puede ir acá como no, se verá después
   const [clienteProducto, setClienteProducto] = useState('');
+  
 
   // TODO: acá van el seteo de los productos del cliente logeado
-
   const [productos, setProductos] = useState([]);
 
+  // TODO: acá se setea el valor que ingresa en el input el usuario para buscar producto
+  const [search, setSearch] = useState('');
+  console.log(search);
 
-  const [opcion, setOpcion] = useState('');
-  const [tipo, setTipo] = useState('');
+  // TODO: acá va el filtro por categoría con su estado
+  const [filterCategoria, setFilterCategoria] = useState('');
 
-  console.log("id del tipo: " + tipo)
-  console.log("id del ordenar: " + opcion)
+  //función que filtra y retorna el producto en la categoría adecuada
+  const filteredProductList = productos.filter((producto) =>{
+    if(filterCategoria === '1'){
+      return producto.categoria === 1;
+    }else if (filterCategoria === '2'){
+      return producto.categoria === 2;
+    }else if (filterCategoria === '3'){
+      return producto.categoria === 3;
+    }else if (filterCategoria === '4'){
+      return producto.categoria === 4;
+    }else if (filterCategoria === '5'){
+      return producto
+    }else {
+      return producto
+    }
+  })
 
+
+  // TODO: useForm que controla el add de producto nuevo
   const { register, handleSubmit, formState: { errors } } = useForm(
     {
       defaultValues: {
@@ -190,6 +111,8 @@ const ProductosEnAlquiler = () => {
     cargarProductos()
   }, [user])
 
+
+  //función que carga los productos de un determinado cliente
   const cargarProductos = async () => {
     const response = await getProductoCliente(user.email)
     if (response.status === 200) {
@@ -304,9 +227,11 @@ const ProductosEnAlquiler = () => {
     e.preventDefault();
   }
 
-  const hadleCategory = async (e) => {
-    setTipo(e.target.value);
+  //función que filtra por categoría
+  function onFilterValueSelected(filterValue){
+    setFilterCategoria(filterValue);
   }
+
   return (
     <div className='py-5'>
       <div className='py-5'>
@@ -317,15 +242,10 @@ const ProductosEnAlquiler = () => {
 
       <Container className="container-search" fluid>
         <Row className='product-container-menu py-3'>
-          {/* busca por categorías */}
+          {/* ordena por categorías */}
           <Col className='pt-2' md="auto" xs={12} lg={4}>
             <div>
-              <select className="form-select" value={tipo} aria-label="Default select example" onChange={hadleCategory}>
-                <option value="1">Artículos de playa</option>
-                <option value="2">Artículos de camping</option>
-                <option value="3">Artículos deportivos</option>
-                <option value="4">Herramientas</option>
-              </select>
+              <FilterProduct filterValueSelected={onFilterValueSelected}/>
             </div>
           </Col>
           
@@ -333,7 +253,7 @@ const ProductosEnAlquiler = () => {
           <Col className='pt-2' md="auto" xs={12} lg={4}>
             <div>
               <div>
-                <select className="form-select" value={opcion} aria-label="Default select example" onChange={opc => setOpcion(opc.target.value)}>
+                <select className="form-select" value={""} aria-label="Default select example" onChange="">
                   <option value="precio">Precio</option>
                   <option value="nombre">Nombre</option>
                 </select>
@@ -346,7 +266,7 @@ const ProductosEnAlquiler = () => {
               <Form onSubmit={handleSubmitSearch}>
                 <InputGroup className='mt-2 main' xs={12} lg={4}>
                   <Form.Control onChange={handleSearch} placeholder='Buscar producto...' className='input-search' />
-                  <a className='icon-search'><i className="fa-solid fa-magnifying-glass"></i></a>
+                  <a href="#" className='icon-search'><i className="fa-solid fa-magnifying-glass"></i></a>
                   {/* <InputGroup.Text id="basic-addon1"><i class="fa-solid fa-magnifying-glass"></i></InputGroup.Text> */}
                 </InputGroup>
               </Form>
@@ -563,13 +483,14 @@ const ProductosEnAlquiler = () => {
       <Container className='py-5'>
         <h3 className='detail-h3 py-5'> <i className="fa-solid fa-box-open"></i> Lista de productos</h3>
         {/* TODO: Diferentes métodos para el array producto del Alquiler productos*/}
-        {productos
+        {filteredProductList
           .filter((producto) => {
             if (search === '') {
               return producto
             } else if (producto.nombre_producto.toLowerCase().includes(search.toLowerCase())) {
               return producto
             }
+              return false;
             // return search.toLowerCase() === ''
             //   ? producto
             //   : producto.nombre_producto.toLowerCase().includes(search);
@@ -602,18 +523,6 @@ const ProductosEnAlquiler = () => {
             </>
           ))}
       </Container>
-
-      {/* <ThemeProvider theme={darkTheme}>
-        <Box display="flex" justifyContent="center" alignItems="center">
-          <MUIDataTable
-            title={"Lista de productos"}
-            data={productos}
-            columns={columns}
-            options={options}
-          />
-        </Box>
-      </ThemeProvider> */}
-
 
     </div>
   )

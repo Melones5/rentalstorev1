@@ -12,6 +12,8 @@ import Form from 'react-bootstrap/Form';
 import { UserAuth } from '../../context/userContext'
 import Swal from 'sweetalert2'
 import { useNavigate } from 'react-router-dom'
+import Slider from './Header_Category/Slider';
+
 
 
 
@@ -27,6 +29,7 @@ const Product = () => {
   const [opcion, setOpcion] = useState('');
   const [tipo, setTipo] = useState('');
   const [search, setSearch] = useState('');
+
   console.log(search);
 
 
@@ -41,6 +44,28 @@ const Product = () => {
     }
     cargarProductos()
   }, []);
+
+
+  // const ordenarPorMenorPrecio = (array) => {
+  //   return (array.sort((a, b) => {
+  //       if (a.precio < b.precio)
+  //           return -1;
+  //       else if (a.precio > b.precio)
+  //           return 1;
+  //       return 0;
+  //   }))
+  // }
+
+  // const ordenarPorMayorPrecio = (array) => {
+  //   return (array.sort((a, b) => {
+  //       if (a.precio > b.precio)
+  //           return -1;
+  //       else if (a.precio < b.precio)
+  //           return 1;
+  //       return 0;
+  //   }))
+  // }
+
 
   //filtro por producto, donde el id del producto es diferente a los que se pasan por parámetros
   function deleteProduct(id_producto) {
@@ -101,12 +126,13 @@ const Product = () => {
   return (
     <Fragment>
 
-      <Container className='py-2'>
-        <div className='py-1'>
-        <Row className='product-container-menu py-3'>
+      <Container>
+        <div>
+        <Row className='py-3'>
            {/* busca por categorías */}
            <Col className='pt-1' md="auto" xs={12} lg={4}>
             <div>
+              <div className="text-white">Ordenar por categoría</div>
               <select className="form-select" value={tipo} aria-label="Default select example" onChange="">
                 <option value="1">Artículos de playa</option>
                 <option value="2">Artículos de camping</option>
@@ -120,9 +146,10 @@ const Product = () => {
           <Col className='pt-1' md="auto" xs={12} lg={4}>
             <div>
               <div>
-                <select className="form-select" value={opcion} aria-label="Default select example" onChange={opc => setOpcion(opc.target.value)}>
-                  <option value="precio">Precio</option>
-                  <option value="nombre">Nombre</option>
+                <div className="text-white">Ordenar por precio</div>
+                <select className="form-select" value={""} aria-label="Default select example" onChange={opc => setOpcion(opc.target.value)}>
+                  <option value="1">Mayor precio</option>
+                  <option value="2">Menor precio</option>
                 </select>
               </div>
             </div>
@@ -130,6 +157,7 @@ const Product = () => {
 
           {/* búsqueda */}
           <Col className='pt-1' md="auto" xs={12} lg={4}>
+            <div className="text-white">Buscá un producto</div>
             <Form onSubmit={handleSubmitSearch}>
               <InputGroup className='main'>
                 <Form.Control onChange={handleSearch} className='input-search' placeholder='Buscar producto...'/>
@@ -141,6 +169,7 @@ const Product = () => {
         </div>
       </Container>
 
+      {/* <Slider /> */}
 
       <Container className='container-product py-5'>
         <Row xs={1} md={2} lg={4} className="g-3">          
