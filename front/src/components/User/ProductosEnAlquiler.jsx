@@ -22,6 +22,7 @@ import { getClienteByEmail, getProductoCliente } from '../../services/funciones'
 //TODO: importe para el edit producto
 import { Link } from 'react-router-dom'
 import FilterProduct from '../Products/Header_Category/FilterProduct';
+import FilterPrice from '../Products/Header_Category/FilterPrice';
 
 const ProductosEnAlquiler = () => {
 
@@ -54,7 +55,7 @@ const ProductosEnAlquiler = () => {
   const [categoriaProducto, setCategoriaProducto] = useState('');
   //: TODO: puede ir acá como no, se verá después
   const [clienteProducto, setClienteProducto] = useState('');
-  
+
 
   // TODO: acá van el seteo de los productos del cliente logeado
   const [productos, setProductos] = useState([]);
@@ -65,23 +66,45 @@ const ProductosEnAlquiler = () => {
 
   // TODO: acá va el filtro por categoría con su estado
   const [filterCategoria, setFilterCategoria] = useState('');
+  const [filterPrecio, setFilterPrecio] = useState('');
 
   //función que filtra y retorna el producto en la categoría adecuada
-  const filteredProductList = productos.filter((producto) =>{
-    if(filterCategoria === '1'){
+  const filteredProductList = productos.filter((producto) => {
+    if (filterCategoria === '1') {
       return producto.categoria === 1;
-    }else if (filterCategoria === '2'){
+    } else if (filterCategoria === '2') {
       return producto.categoria === 2;
-    }else if (filterCategoria === '3'){
+    } else if (filterCategoria === '3') {
       return producto.categoria === 3;
-    }else if (filterCategoria === '4'){
+    } else if (filterCategoria === '4') {
       return producto.categoria === 4;
-    }else if (filterCategoria === '5'){
+    } else if (filterCategoria === '5') {
       return producto
-    }else {
+    } else if (filterCategoria === '6') {
+    } else {
       return producto
     }
   })
+
+  // const ordenarPorMenorPrecio = (array) => {
+  //   return (array.sort((a, b) => {
+  //       if (a.precio < b.precio)
+  //           return -1;
+  //       else if (a.precio > b.precio)
+  //           return 1;
+  //       return 0;
+  //   }))
+  // }
+
+  // const ordenarPorMayorPrecio = (array) => {
+  //   return (array.sort((a, b) => {
+  //       if (a.precio > b.precio)
+  //           return -1;
+  //       else if (a.precio < b.precio)
+  //           return 1;
+  //       return 0;
+  //   }))
+  // }
 
 
   // TODO: useForm que controla el add de producto nuevo
@@ -228,7 +251,7 @@ const ProductosEnAlquiler = () => {
   }
 
   //función que filtra por categoría
-  function onFilterValueSelected(filterValue){
+  function onFilterValueSelected(filterValue) {
     setFilterCategoria(filterValue);
   }
 
@@ -240,31 +263,34 @@ const ProductosEnAlquiler = () => {
         </Button>
       </div>
 
-      <Container className="container-search" fluid>
-        <Row className='product-container-menu py-3'>
+      <Container className="container-search mb-5" fluid>
+        <Row className='main-selects py-3'>
           {/* ordena por categorías */}
           <Col className='pt-2' md="auto" xs={12} lg={4}>
             <div>
-              <FilterProduct filterValueSelected={onFilterValueSelected}/>
+              <div className="text-white pb-1">Ordenar por categoría</div>
+              <FilterProduct filterValueSelected={onFilterValueSelected} />
             </div>
           </Col>
-          
+
           {/* ordena por nombre y precio */}
           <Col className='pt-2' md="auto" xs={12} lg={4}>
-            <div>
+            {/* <div>
               <div>
+                <div className="text-white pb-1">Ordenar por precio</div>
                 <select className="form-select" value={""} aria-label="Default select example" onChange="">
                   <option value="precio">Precio</option>
                   <option value="nombre">Nombre</option>
                 </select>
               </div>
-            </div>
+            </div> */}
           </Col>
 
-          <Col>
+          <Col className='pt-1' md="auto" xs={12} lg={4}>
             <div>
               <Form onSubmit={handleSubmitSearch}>
-                <InputGroup className='mt-2 main' xs={12} lg={4}>
+                <div className="text-white pb-1">Buscá un producto</div>
+                <InputGroup className='main'>
                   <Form.Control onChange={handleSearch} placeholder='Buscar producto...' className='input-search' />
                   <a href="#" className='icon-search'><i className="fa-solid fa-magnifying-glass"></i></a>
                   {/* <InputGroup.Text id="basic-addon1"><i class="fa-solid fa-magnifying-glass"></i></InputGroup.Text> */}
@@ -476,8 +502,8 @@ const ProductosEnAlquiler = () => {
           ))}
         </tbody>
       </Table> */}
-      <Container className='py-3'>
-
+      <Container className='py-5'>
+      
       </Container>
 
       <Container className='py-5'>
@@ -490,7 +516,7 @@ const ProductosEnAlquiler = () => {
             } else if (producto.nombre_producto.toLowerCase().includes(search.toLowerCase())) {
               return producto
             }
-              return false;
+            return false;
             // return search.toLowerCase() === ''
             //   ? producto
             //   : producto.nombre_producto.toLowerCase().includes(search);

@@ -9,6 +9,7 @@ import Contact from './components/Header/Contact';
 import Login from './components/Header/Login';
 import LoginSocial from './components/LoginSocial.jsx';
 import Account from './components/User/Account.jsx';
+import ProductosAlquilados from './components/User/ProductosAlquilados';
 import ProductosEnAlquiler from './components/User/ProductosEnAlquiler';
 import ProductDetail from './components/Products/ProductDetail.jsx';
 import EditProduct from './components/Products/EditProduct.jsx';
@@ -19,7 +20,7 @@ import Error404 from './components/Error404.jsx';
 
 
 //Provider y protected route
-import { CartProvider } from './CartContext';
+import { CartProvider } from './context/CartContext';
 import { AuthContextProvider } from './context/userContext';
 import ProtectecRoute from './components/ProtectecRoute.js';
 
@@ -32,7 +33,7 @@ function App() {
     <AuthContextProvider>
       <CartProvider>
         <BrowserRouter>
-        <ScrollToTop />
+          <ScrollToTop />
           <Header />
           <main className='py-3'>
             <Container>
@@ -64,8 +65,18 @@ function App() {
                     <EditProduct />
                   </ProtectecRoute>
                 } />
-
-                <Route path="/cart" exact element={<Cart />} />
+                <Route path='/productos_alquilados' exact element={
+                  <ProtectecRoute>
+                    <ProductosAlquilados />
+                  </ProtectecRoute>
+                }
+                />
+                <Route path="/cart" exact element={
+                  <ProtectecRoute>
+                    <Cart />
+                  </ProtectecRoute>
+                }
+                />
                 <Route path="*" element={<Error404 />} />
               </Routes>
             </Container>

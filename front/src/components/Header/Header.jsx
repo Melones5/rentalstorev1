@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import './index.css'
-import CartContext from '../../CartContext';
+import CartContext from '../../context/CartContext';
 import { useContext } from 'react';
 import { UserAuth } from '../../context/userContext'
 import imgLogo from '../../assets/logoRental.png'
@@ -14,6 +14,7 @@ const Header = () => {
 
   console.log(user)
 
+  //<span>{productos.length}</span>
   // TODO: Preguntar si esto tiene sentido
 
   if (user === null) {
@@ -43,7 +44,7 @@ const Header = () => {
                 {/* <NavLink exact="true" to="/productos_alquiler" className="py-1 px-2 cursor-pointer" activeClassName="active"><i class="fa-solid fa-box-open"></i> Mis Productos</NavLink> */}
                 {/* <NavLink exact="true" to="/account" className="py-1 px-2 cursor-pointer" activeClassName="active"><i class="fa-solid fa-user"></i> Cuenta</NavLink> */}
 
-                <NavLink exact="true" to='/cart' className="py-1 px-2 cursor-pointer" > <i className="fa-solid fa-cart-shopping"></i> <span>{productos.length}</span></NavLink>
+                {/* <NavLink exact="true" to='/cart' className="py-1 px-2 cursor-pointer" > <i className="fa-solid fa-cart-shopping"></i> </NavLink> */}
 
               </Nav>
 
@@ -75,11 +76,11 @@ const Header = () => {
 
 
               {/* Productos alquilados */}
-              {/* <NavLink exact="true" to="/productos_alquilados" className="py-1 px-2 cursor-pointer" activeClassName="active"> Mis Alquileres</NavLink> */}
+              <NavLink exact="true" to="/productos_alquilados" className="py-1 px-2 cursor-pointer" activeClassName="active"><i class="fa-solid fa-boxes-packing"></i>  Mis Alquileres</NavLink>
               <NavLink exact="true" to="/productos_alquiler" className="py-1 px-2 cursor-pointer"><i className="fa-solid fa-box-open"></i> Mis Productos</NavLink>
               <NavLink exact="true" to="/account" className="py-1 px-2 cursor-pointer" ><i className="fa-solid fa-user"></i> Cuenta</NavLink>
 
-              <NavLink exact="true" to='/cart' className="py-1 px-2 cursor-pointer" > <i className="fa-solid fa-cart-shopping"></i> <span>{productos.length}</span></NavLink>
+              <NavLink exact="true" to='/cart' className="py-1 px-2 cursor-pointer" > {productos.length} <i className="fa-solid fa-cart-shopping"></i> </NavLink>
 
             </Nav>
 

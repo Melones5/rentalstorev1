@@ -128,6 +128,17 @@
       border-radius: 6px;
       line-height: 16px;
       background-color: #352d39ff;
+      margin-bottom: 15px;
+      margin-left: 2px;
+}
+.main-selects {
+      width: 100%;
+      border: 02px solid white;
+      border-radius: 6px;
+      line-height: 16px;
+      background-color: #FF4C4C;
+      margin-bottom: 15px;
+      margin-left: 2px;
 }
 
 .input-search {
